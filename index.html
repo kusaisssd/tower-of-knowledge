@@ -1,0 +1,1820 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+<title>Tower of Knowledge | برج المعرفة</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@700;800&family=Tajawal:wght@700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{font-family:'Nunito','Tajawal',sans-serif;background:#1a3d1a;overflow:hidden;width:100vw;height:100vh;user-select:none}
+.screen{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;transition:opacity .35s}
+.screen.hidden{opacity:0;pointer-events:none}
+
+/* ── START ── */
+#sScreen{background:linear-gradient(180deg,#0a1f0a 0%,#1a3d1a 60%,#2d5a1b 100%)}
+.logo{font-family:'Fredoka One',cursive;font-size:clamp(2rem,8vw,4rem);color:#ffd700;text-shadow:0 0 30px rgba(255,215,0,.6),0 4px 0 #8b6914;text-align:center;animation:float 3s ease-in-out infinite}
+.logo-ar{font-family:'Tajawal',sans-serif;font-size:clamp(1.1rem,4vw,1.8rem);color:#a8e6a0;text-align:center}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.tower-ico{font-size:clamp(4rem,15vw,8rem);animation:bob 2s ease-in-out infinite;filter:drop-shadow(0 10px 20px rgba(0,0,0,.5))}
+@keyframes bob{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+.lang-row{display:flex;gap:14px}
+.langBtn{padding:11px 28px;border-radius:50px;border:2.5px solid #ffd700;background:rgba(255,215,0,.08);color:#ffd700;font-family:'Fredoka One',cursive;font-size:1.05rem;cursor:pointer;transition:all .2s}
+.langBtn.active,.langBtn:hover{background:#ffd700;color:#1a3d1a;transform:scale(1.06)}
+.startBtn{padding:17px 55px;background:linear-gradient(135deg,#f39c12,#e74c3c);color:#fff;font-family:'Fredoka One','Tajawal',cursive;font-size:clamp(1.1rem,4vw,1.7rem);border:none;border-radius:50px;cursor:pointer;box-shadow:0 8px 25px rgba(231,76,60,.5);animation:pulse 2s infinite;transition:transform .2s}
+@keyframes pulse{0%,100%{box-shadow:0 8px 25px rgba(231,76,60,.5)}50%{box-shadow:0 8px 40px rgba(231,76,60,.9)}}
+.startBtn:hover{transform:scale(1.06) translateY(-3px)}
+.howTo{color:rgba(255,255,255,.6);font-size:.9rem;text-align:center;max-width:340px;line-height:1.7}
+
+/* ── GAME ── */
+#gScreen{padding:0;background:transparent}
+#gc{position:absolute;inset:0;width:100%;height:100%}
+
+/* ── HUD ── */
+#hud{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-around;align-items:center;padding:8px 12px;background:linear-gradient(180deg,rgba(5,20,5,.95) 0%,transparent 100%);z-index:10;pointer-events:none}
+.hbox{background:rgba(5,20,5,.8);border:2px solid rgba(100,200,80,.35);border-radius:14px;padding:5px 13px;display:flex;align-items:center;gap:7px;backdrop-filter:blur(4px)}
+.hico{font-size:1.35rem}
+.hval{font-family:'Fredoka One',cursive;font-size:1.25rem;color:#fff}
+.hlbl{font-size:.65rem;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.05em}
+.hcol{display:flex;flex-direction:column}
+.coin-c{color:#ffd700}.wave-c{color:#a8e6a0}.hp-c{color:#ff8080}.arch-c{color:#80d4ff}
+
+/* ── CONTROLS ── */
+#ctrls{position:absolute;bottom:0;left:0;right:0;display:flex;justify-content:center;gap:8px;padding:10px 12px;background:linear-gradient(0deg,rgba(5,20,5,.95) 0%,transparent 100%);z-index:10;flex-wrap:wrap}
+.cbtn{padding:9px 14px;border-radius:13px;border:2px solid rgba(255,255,255,.2);color:#fff;font-family:'Fredoka One','Tajawal',cursive;font-size:clamp(.65rem,2.2vw,.9rem);cursor:pointer;transition:all .15s;display:flex;flex-direction:column;align-items:center;gap:3px;min-width:65px;text-align:center;line-height:1.2}
+.cbtn .cico{font-size:1.3rem}
+.cbtn .ccost{background:rgba(0,0,0,.3);border-radius:7px;padding:1px 5px;font-size:.72rem;color:#ffd700}
+.cbtn:hover:not(:disabled){transform:translateY(-3px)}
+.cbtn:active:not(:disabled){transform:scale(.95)}
+.cbtn:disabled{opacity:.38;cursor:not-allowed}
+.b-archer{background:linear-gradient(135deg,#1a5276,#2980b9)}
+.b-upgrade{background:linear-gradient(135deg,#5b2c6f,#8e44ad)}
+.b-wall{background:linear-gradient(135deg,#4a5568,#7f8c8d)}
+.b-sniper{background:linear-gradient(135deg,#0e6655,#16a085)}
+.b-coins{background:linear-gradient(135deg,#d35400,#f39c12)}
+
+/* ── MODALS ── */
+.overlay{position:absolute;inset:0;background:rgba(0,0,0,.72);backdrop-filter:blur(7px);display:flex;align-items:center;justify-content:center;z-index:100;padding:18px}
+.overlay.hidden{display:none}
+.mbox{background:linear-gradient(135deg,#061406,#0d2d0d);border:2.5px solid rgba(100,200,80,.35);border-radius:24px;padding:24px;max-width:480px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.8);animation:mpop .3s cubic-bezier(.34,1.56,.64,1)}
+@keyframes mpop{from{transform:scale(.7);opacity:0}to{transform:scale(1);opacity:1}}
+.mtitle{font-family:'Fredoka One','Tajawal',cursive;font-size:1.75rem;color:#ffd700;text-align:center;margin-bottom:18px;text-shadow:0 0 20px rgba(255,215,0,.4)}
+.stepdots{display:flex;gap:7px;justify-content:center;margin-bottom:14px}
+.dot{width:11px;height:11px;border-radius:50%;background:rgba(255,255,255,.18);border:2px solid rgba(255,255,255,.28);transition:all .3s}
+.dot.on{background:#ffd700;border-color:#ffd700}
+.subjgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:14px}
+.sbtn{padding:11px 7px;border-radius:13px;border:2px solid transparent;color:#fff;font-family:'Fredoka One','Tajawal',cursive;font-size:.83rem;cursor:pointer;text-align:center;transition:all .2s}
+.sbtn:hover{transform:scale(1.06)}
+.s-math{background:linear-gradient(135deg,#1a5276,#2980b9)}
+.s-sci{background:linear-gradient(135deg,#1e8449,#27ae60)}
+.s-phy{background:linear-gradient(135deg,#5b2c6f,#8e44ad)}
+.diffgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:18px}
+.dbtn{padding:11px;border-radius:13px;border:2px solid transparent;color:#fff;font-family:'Fredoka One','Tajawal',cursive;font-size:.88rem;cursor:pointer;text-align:center;transition:all .2s;display:flex;flex-direction:column;align-items:center;gap:4px}
+.dbtn:hover{transform:translateY(-3px)}
+.d-easy{background:linear-gradient(135deg,#145a32,#27ae60)}
+.d-med{background:linear-gradient(135deg,#784212,#f39c12)}
+.d-hard{background:linear-gradient(135deg,#641e16,#e74c3c)}
+.dreward{font-size:.73rem;color:#ffd700}
+.qbox{background:rgba(255,255,255,.05);border:2px solid rgba(255,255,255,.1);border-radius:15px;padding:18px;margin-bottom:14px;text-align:center}
+.qtxt{color:#fff;font-size:clamp(.95rem,2.8vw,1.2rem);line-height:1.65;font-weight:700}
+.agrid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:14px}
+.abtn{padding:13px 9px;border-radius:13px;border:2px solid rgba(255,255,255,.18);background:rgba(255,255,255,.05);color:#fff;font-family:'Nunito','Tajawal',sans-serif;font-size:clamp(.82rem,2.4vw,.98rem);font-weight:700;cursor:pointer;transition:all .2s;text-align:center;line-height:1.3}
+.abtn:hover{background:rgba(255,255,255,.15);transform:scale(1.03)}
+.abtn.correct{background:linear-gradient(135deg,#145a32,#27ae60);border-color:#2ecc71;animation:cpop .4s}
+.abtn.wrong{background:linear-gradient(135deg,#641e16,#e74c3c);border-color:#c0392b;animation:shake .4s}
+@keyframes cpop{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.mclose{display:block;width:100%;padding:13px;background:rgba(255,255,255,.08);border:2px solid rgba(255,255,255,.18);border-radius:13px;color:rgba(255,255,255,.65);font-family:'Fredoka One','Tajawal',cursive;font-size:.98rem;cursor:pointer;transition:all .2s;margin-top:8px}
+.mclose:hover{background:rgba(255,255,255,.18)}
+
+/* ── RESULT ── */
+#rScreen{background:linear-gradient(180deg,#061406 0%,#0d2d0d 100%);z-index:200}
+.remo{font-size:clamp(4rem,14vw,7rem);animation:rbounce .6s cubic-bezier(.34,1.56,.64,1)}
+@keyframes rbounce{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
+.rtitle{font-family:'Fredoka One','Tajawal',cursive;font-size:clamp(1.8rem,7vw,3.2rem);text-align:center}
+.rstats{background:rgba(255,255,255,.05);border:2px solid rgba(255,255,255,.1);border-radius:18px;padding:18px 28px;text-align:center;color:rgba(255,255,255,.8);font-size:1.05rem;line-height:2}
+.rbtn{padding:15px 48px;background:linear-gradient(135deg,#f39c12,#e74c3c);color:#fff;font-family:'Fredoka One','Tajawal',cursive;font-size:1.35rem;border:none;border-radius:50px;cursor:pointer;transition:all .2s}
+.rbtn:hover{transform:scale(1.06)}
+
+/* ── OVERLAYS ── */
+#waveAnn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Fredoka One','Tajawal',cursive;font-size:clamp(1.4rem,5.5vw,2.8rem);color:#fff;text-shadow:0 0 25px rgba(100,255,100,.7);background:rgba(10,50,10,.85);border:3px solid rgba(100,255,100,.5);border-radius:18px;padding:14px 38px;text-align:center;pointer-events:none;z-index:50;display:none;animation:wann 2s forwards}
+@keyframes wann{0%{opacity:0;transform:translate(-50%,-50%) scale(.5)}20%{opacity:1;transform:translate(-50%,-50%) scale(1.1)}80%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-50%) scale(.8)}}
+#coinPop{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Fredoka One',cursive;font-size:clamp(1.4rem,5vw,2.4rem);color:#ffd700;text-shadow:0 0 20px rgba(255,215,0,.8);pointer-events:none;z-index:50;display:none;animation:cpopA 1.5s forwards}
+@keyframes cpopA{0%{opacity:0;transform:translate(-50%,-50%) scale(.5)}30%{opacity:1;transform:translate(-50%,-50%) scale(1.2)}80%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-55%) translateY(-40px)}}
+
+@media(max-width:480px){.cbtn{min-width:54px;padding:7px 9px}.cbtn .cico{font-size:1.1rem}#ctrls{gap:5px;padding:8px 6px}}
+</style>
+</head>
+<body>
+
+<!-- ══════════ START ══════════ -->
+<div class="screen" id="sScreen">
+  <div class="tower-ico">🏰</div>
+  <div class="logo" id="logoTxt">Tower of Knowledge</div>
+  <div class="logo-ar">برج المعرفة</div>
+  <div class="lang-row">
+    <button class="langBtn active" onclick="setLang('en',this)">English</button>
+    <button class="langBtn" onclick="setLang('ar',this)">العربية</button>
+  </div>
+  <button class="startBtn" id="sBtnMain" onclick="startGame()">🎮 Play Now!</button>
+  <div class="howTo" id="howToTxt">Defend your tower from zombies!<br>Earn coins by answering questions!</div>
+  <div style="margin-top:18px;text-align:center;opacity:0.55;font-size:0.78rem;color:#a8e6a0;line-height:1.8">
+    <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:0.12em;color:rgba(168,230,160,0.5);margin-bottom:2px">Developed by</div>
+    <div style="font-family:'Fredoka One',cursive;font-size:1rem;color:#a8e6a0;letter-spacing:0.04em">Kosay Alassaf</div>
+    <a href="https://kosayalassaf.github.io/" target="_blank" rel="noopener"
+       style="color:rgba(168,230,160,0.6);text-decoration:none;font-size:0.72rem;border-bottom:1px solid rgba(168,230,160,0.3);padding-bottom:1px;transition:color .2s"
+       onmouseover="this.style.color='#a8e6a0'" onmouseout="this.style.color='rgba(168,230,160,0.6)'">
+      Kosay Alassaf | Portfolio
+    </a>
+  </div>
+</div>
+
+<!-- ══════════ GAME ══════════ -->
+<div class="screen hidden" id="gScreen">
+  <canvas id="gc"></canvas>
+
+  <div id="hud">
+    <div class="hbox"><span class="hico">🌊</span><div class="hcol"><span class="hval wave-c" id="hWave">1</span><span class="hlbl" id="lWave">Wave</span></div></div>
+    <div class="hbox"><span class="hico">💰</span><div class="hcol"><span class="hval coin-c" id="hCoins">10</span><span class="hlbl" id="lCoins">Coins</span></div></div>
+    <div class="hbox"><span class="hico">🧟</span><div class="hcol"><span class="hval hp-c" id="hInv">0/10</span><span class="hlbl" id="lInv">Invaded</span></div></div>
+    <div class="hbox"><span class="hico">🏹</span><div class="hcol"><span class="hval arch-c" id="hArch">1</span><span class="hlbl" id="lArch">Archers</span></div></div>
+  </div>
+
+  <div id="ctrls">
+    <button class="cbtn b-archer" id="bArcher" onclick="buy('archer')">
+      <span class="cico">🏹</span><span id="lbArcher">Add Archer</span><span class="ccost" id="cArcher">10🪙</span>
+    </button>
+    <button class="cbtn b-upgrade" id="bUpgrade" onclick="buy('upgrade')">
+      <span class="cico">⬆️</span><span id="lbUpgrade">Upgrade</span><span class="ccost" id="cUpgrade">6🪙</span>
+    </button>
+    <button class="cbtn b-wall" id="bWall" onclick="buy('wall')">
+      <span class="cico">🧱</span><span id="lbWall">Wall</span><span class="ccost" id="cWall">8🪙</span>
+    </button>
+    <button class="cbtn b-sniper" id="bSniper" onclick="buy('sniper')">
+      <span class="cico">🎯</span><span id="lbSniper">Sniper</span><span class="ccost" id="cSniper">14🪙</span>
+    </button>
+    <button class="cbtn b-coins" onclick="openQuiz()">
+      <span class="cico">💡</span><span id="lbCoins">+Coins</span><span class="ccost">Quiz!</span>
+    </button>
+  </div>
+
+  <div id="waveAnn"></div>
+  <div id="coinPop"></div>
+  <div id="archerHint" style="position:absolute;top:70px;left:50%;transform:translateX(-50%);background:rgba(255,215,0,0.15);border:2px solid rgba(255,215,0,0.5);border-radius:12px;padding:6px 18px;color:#ffd700;font-family:'Fredoka One','Tajawal',cursive;font-size:0.88rem;pointer-events:none;z-index:20;display:none;text-align:center;backdrop-filter:blur(4px)"></div>
+</div>
+
+<!-- ══════════ QUIZ MODAL ══════════ -->
+<div class="overlay hidden" id="qModal">
+  <div class="mbox">
+    <div class="mtitle" id="qTitle">Get Coins! 💰</div>
+
+    <!-- Step 1: Subject -->
+    <div id="qS1">
+      <div class="stepdots"><div class="dot on"></div><div class="dot"></div><div class="dot"></div></div>
+      <p style="color:rgba(255,255,255,.65);text-align:center;margin-bottom:13px;font-size:.93rem" id="lSubjPick">Choose a subject:</p>
+      <div class="subjgrid">
+        <button class="sbtn s-math" onclick="pickSubj('math')">🔢<br><span id="lsMath">Math</span></button>
+        <button class="sbtn s-sci"  onclick="pickSubj('science')">🔬<br><span id="lsSci">Science</span></button>
+        <button class="sbtn s-phy"  onclick="pickSubj('physics')">⚡<br><span id="lsPhy">Physics</span></button>
+      </div>
+    </div>
+
+    <!-- Step 2: Difficulty -->
+    <div id="qS2" style="display:none">
+      <div class="stepdots"><div class="dot"></div><div class="dot on"></div><div class="dot"></div></div>
+      <p style="color:rgba(255,255,255,.65);text-align:center;margin-bottom:13px;font-size:.93rem" id="lDiffPick">Choose difficulty:</p>
+      <div class="diffgrid">
+        <button class="dbtn d-easy" onclick="pickDiff('easy')">😊<br><span id="ldEasy">Easy</span><br><span class="dreward">+1 🪙</span></button>
+        <button class="dbtn d-med"  onclick="pickDiff('medium')">🤔<br><span id="ldMed">Medium</span><br><span class="dreward">+2 🪙</span></button>
+        <button class="dbtn d-hard" onclick="pickDiff('hard')">🔥<br><span id="ldHard">Hard</span><br><span class="dreward">+3 🪙</span></button>
+      </div>
+    </div>
+
+    <!-- Step 3: Question -->
+    <div id="qS3" style="display:none">
+      <div class="stepdots"><div class="dot"></div><div class="dot"></div><div class="dot on"></div></div>
+      <div class="qbox"><div class="qtxt" id="qTxt"></div></div>
+      <div class="agrid" id="aGrid"></div>
+    </div>
+
+    <button class="mclose" onclick="closeQuiz()">✕ <span id="lClose">Close</span></button>
+  </div>
+</div>
+
+<!-- ══════════ RESULT ══════════ -->
+<div class="screen hidden" id="rScreen">
+  <div class="remo" id="rEmo">💀</div>
+  <div class="rtitle" id="rTitle"></div>
+  <div class="rstats" id="rStats"></div>
+  <button class="rbtn" onclick="restartGame()">🔄 <span id="lRestart">Play Again</span></button>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════
+// LANGUAGE
+// ═══════════════════════════════════════════════════
+var LANG = 'en';
+var TX = {
+  en:{
+    startBtn:'🎮 Play Now!', howTo:'Defend your tower from zombies!<br>Earn coins by answering questions!',
+    wave:'Wave', coins:'Coins', invaded:'Invaded', archers:'Archers',
+    addArcher:'Add Archer', upgrade:'Upgrade', wall:'Wall', sniper:'Sniper', getCoins:'+Coins',
+    qTitle:'Get Coins! 💰', subjPick:'Choose a subject:', diffPick:'Choose difficulty:',
+    sMath:'Math', sSci:'Science', sPhy:'Physics',
+    dEasy:'Easy', dMed:'Medium', dHard:'Hard',
+    close:'Close', restart:'Play Again',
+    wann:function(n){return '⚔️ Wave '+n+'!'},
+    bann:function(n){return '💀 BOSS Wave '+n+'!'},
+    loseTitle:'Game Over!', winTitle:'Victory! 🎊',
+    stats:function(w,k,q){return 'You reached Wave '+w+'<br>Zombies defeated: '+k+'<br>Questions answered: '+q},
+    notEnough:'Not enough coins! 💸', maxArch:'Maximum archers reached!',
+    maxLvl:'Already at max level!', maxWall:'No more wall space!',
+    upgraded:'Upgraded! ⬆️', wallBuilt:'Wall built! 🧱',
+    archAdded:'Archer added! 🏹', sniperAdded:'Sniper added! 🎯',
+  },
+  ar:{
+    startBtn:'🎮 العب الآن!', howTo:'دافع عن برجك ضد الزومبي!<br>اربح كوينز بالإجابة على الأسئلة!',
+    wave:'موجة', coins:'كوينز', invaded:'اقتحم', archers:'رماة',
+    addArcher:'أضف رامياً', upgrade:'طور', wall:'جدار', sniper:'قناص', getCoins:'+كوينز',
+    qTitle:'احصل على كوينز! 💰', subjPick:'اختر المادة:', diffPick:'اختر الصعوبة:',
+    sMath:'رياضيات', sSci:'علوم', sPhy:'فيزياء',
+    dEasy:'سهل', dMed:'متوسط', dHard:'صعب',
+    close:'إغلاق', restart:'العب مجدداً',
+    wann:function(n){return '⚔️ الموجة '+n+'!'},
+    bann:function(n){return '💀 موجة البوس '+n+'!'},
+    loseTitle:'انتهت اللعبة!', winTitle:'انتصرت! 🎊',
+    stats:function(w,k,q){return 'وصلت للموجة '+w+'<br>الزومبي المقتولون: '+k+'<br>الأسئلة المجابة: '+q},
+    notEnough:'لا توجد كوينز كافية! 💸', maxArch:'وصلت للحد الأقصى من الرماة!',
+    maxLvl:'وصلت للمستوى الأعلى!', maxWall:'لا يوجد مكان لجدار آخر!',
+    upgraded:'تمت الترقية! ⬆️', wallBuilt:'جدار جديد! 🧱',
+    archAdded:'تمت إضافة رامٍ! 🏹', sniperAdded:'تمت إضافة قناص! 🎯',
+  }
+};
+function T(k){return TX[LANG][k]||k;}
+function setLang(l,btn){
+  LANG=l;
+  document.querySelectorAll('.langBtn').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  document.documentElement.lang=l;
+  document.documentElement.dir=l==='ar'?'rtl':'ltr';
+  refreshUI();
+}
+function refreshUI(){
+  var l=LANG;
+  document.getElementById('sBtnMain').textContent=TX[l].startBtn;
+  document.getElementById('howToTxt').innerHTML=TX[l].howTo;
+  document.getElementById('lWave').textContent=TX[l].wave;
+  document.getElementById('lCoins').textContent=TX[l].coins;
+  document.getElementById('lInv').textContent=TX[l].invaded;
+  document.getElementById('lArch').textContent=TX[l].archers;
+  document.getElementById('lbArcher').textContent=TX[l].addArcher;
+  document.getElementById('lbUpgrade').textContent=TX[l].upgrade;
+  document.getElementById('lbWall').textContent=TX[l].wall;
+  document.getElementById('lbSniper').textContent=TX[l].sniper;
+  document.getElementById('lbCoins').textContent=TX[l].getCoins;
+  document.getElementById('qTitle').textContent=TX[l].qTitle;
+  document.getElementById('lSubjPick').textContent=TX[l].subjPick;
+  document.getElementById('lDiffPick').textContent=TX[l].diffPick;
+  document.getElementById('lsMath').textContent=TX[l].sMath;
+  document.getElementById('lsSci').textContent=TX[l].sSci;
+  document.getElementById('lsPhy').textContent=TX[l].sPhy;
+  document.getElementById('ldEasy').textContent=TX[l].dEasy;
+  document.getElementById('ldMed').textContent=TX[l].dMed;
+  document.getElementById('ldHard').textContent=TX[l].dHard;
+  document.getElementById('lClose').textContent=TX[l].close;
+  document.getElementById('lRestart').textContent=TX[l].restart;
+}
+
+// ═══════════════════════════════════════════════════
+// QUESTIONS
+// ═══════════════════════════════════════════════════
+var QDB = {
+  math:{
+    easy:[
+      {q:"7 × 8 = ?",ar:"7 × 8 = ؟",a:["56","54","48","63"],c:0},
+      {q:"125 ÷ 5 = ?",ar:"125 ÷ 5 = ؟",a:["20","25","30","15"],c:1},
+      {q:"What is 15% of 200?",ar:"ما هو 15% من 200؟",a:["25","30","35","40"],c:1},
+      {q:"3² + 4² = ?",ar:"3² + 4² = ؟",a:["25","7","49","20"],c:0},
+      {q:"Perimeter of square, side = 9?",ar:"محيط مربع طول ضلعه 9 = ؟",a:["36","27","18","45"],c:0},
+      {q:"1/2 + 1/4 = ?",ar:"1/2 + 1/4 = ؟",a:["3/4","2/6","1/8","2/4"],c:0},
+      {q:"50% of 80 = ?",ar:"50% من 80 = ؟",a:["40","35","45","50"],c:0},
+      {q:"What is 6³?",ar:"ما هو 6³؟",a:["216","180","144","36"],c:0},
+      {q:"Area: length=8, width=5?",ar:"المساحة: طول=8، عرض=5؟",a:["40","26","13","80"],c:0},
+      {q:"0.5 × 0.5 = ?",ar:"0.5 × 0.5 = ؟",a:["0.25","0.5","1.0","0.025"],c:0},
+      {q:"Simplify 18/24",ar:"بسّط 18/24",a:["3/4","2/3","4/6","1/2"],c:0},
+      {q:"Round 3.76 to nearest whole?",ar:"قرّب 3.76 لأقرب عدد صحيح",a:["3","4","5","6"],c:1},
+      {q:"9 × 9 = ?",ar:"9 × 9 = ؟",a:["81","72","90","63"],c:0},
+      {q:"48 ÷ 6 = ?",ar:"48 ÷ 6 = ؟",a:["8","7","9","6"],c:0},
+      {q:"What is 25% of 120?",ar:"ما هو 25% من 120؟",a:["30","25","35","40"],c:0},
+      {q:"What is π approximately?",ar:"ما هي القيمة التقريبية لـ π؟",a:["3.14","3.41","2.14","4.13"],c:0},
+      {q:"Which is a prime number?",ar:"أي من التالي عدد أولي؟",a:["17","15","21","27"],c:0},
+      {q:"120 × 5 = ?",ar:"120 × 5 = ؟",a:["600","500","700","480"],c:0},
+      {q:"3/4 of 80 = ?",ar:"3/4 من 80 = ؟",a:["60","40","70","45"],c:0},
+      {q:"What is 2⁵?",ar:"ما هو 2⁵؟",a:["32","16","64","25"],c:0},
+      {q:"Right angle = ?",ar:"الزاوية القائمة = ؟",a:["90°","45°","180°","60°"],c:0},
+      {q:"Area of triangle: base=10, height=6?",ar:"مساحة مثلث: قاعدة=10، ارتفاع=6؟",a:["30","60","16","50"],c:0},
+      {q:"1000 ÷ 25 = ?",ar:"1000 ÷ 25 = ؟",a:["40","25","50","35"],c:0},
+      {q:"Supplementary angles sum to:",ar:"الزاويتان المتتامتان مجموعهما:",a:["180°","90°","360°","45°"],c:0},
+      {q:"8² = ?",ar:"8² = ؟",a:["64","56","72","48"],c:0},
+      {q:"30 out of 150 = ?%",ar:"30 من 150 تساوي كم بالمئة؟",a:["20%","25%","15%","30%"],c:0},
+      {q:"0.75 as a fraction:",ar:"0.75 كسراً:",a:["3/4","7/5","5/8","3/5"],c:0},
+      {q:"Sum of angles in a triangle = ?",ar:"مجموع زوايا المثلث = ؟",a:["180°","360°","90°","270°"],c:0},
+      {q:"144 ÷ 12 = ?",ar:"144 ÷ 12 = ؟",a:["12","11","13","14"],c:0},
+    ],
+    medium:[
+      {q:"Solve: 3x + 9 = 24",ar:"حل: 3س + 9 = 24",a:["x=5","x=4","x=6","x=3"],c:0},
+      {q:"Right triangle: legs 3 & 4. Hypotenuse?",ar:"مثلث قائم أضلاعه 3 و4. الوتر = ؟",a:["5","7","6","4"],c:0},
+      {q:"Train: 60 km/h for 2.5h. Distance?",ar:"قطار 60كم/ساعة لـ 2.5 ساعة. المسافة؟",a:["150km","120km","180km","100km"],c:0},
+      {q:"If 40% of x = 20, then x = ?",ar:"إذا كان 40% من س = 20، إذن س = ؟",a:["50","40","60","80"],c:0},
+      {q:"LCM of 12 and 18?",ar:"المضاعف المشترك الأصغر لـ 12 و18؟",a:["36","24","6","72"],c:0},
+      {q:"Area of circle, r=7? (π≈3.14)",ar:"مساحة دائرة نصف قطرها 7؟ (π≈3.14)",a:["153.86","43.96","21.98","100"],c:0},
+      {q:"-5 + 3 × (-2) = ?",ar:"-5 + 3 × (-2) = ؟",a:["-11","1","-1","11"],c:0},
+      {q:"Volume of cube, side=4?",ar:"حجم مكعب طول ضلعه 4؟",a:["64","48","16","32"],c:0},
+      {q:"4/5 ÷ 2/3 = ?",ar:"4/5 ÷ 2/3 = ؟",a:["6/5","8/15","2/3","12/10"],c:0},
+      {q:"Prime factors of 60?",ar:"العوامل الأولية لـ 60؟",a:["2²×3×5","2×3×10","4×15","2³×5"],c:0},
+      {q:"If x/4 = 7, then x = ?",ar:"إذا كان س/4 = 7، إذن س = ؟",a:["28","11","3","47"],c:0},
+      {q:"GCF of 24 and 36?",ar:"القاسم المشترك الأكبر لـ 24 و36؟",a:["12","6","18","24"],c:0},
+      {q:"Speed = 80km/h, time = 3h. Distance?",ar:"سرعة = 80 كم/ساعة، زمن = 3 ساعات. المسافة؟",a:["240km","270km","200km","300km"],c:0},
+      {q:"What is 35% of 60?",ar:"ما هو 35% من 60؟",a:["21","18","24","15"],c:0},
+      {q:"Perimeter of circle, r=5? (π≈3.14)",ar:"محيط دائرة نصف قطرها 5؟ (π≈3.14)",a:["31.4","15.7","78.5","10"],c:0},
+      {q:"Solve: 5x - 3 = 22",ar:"حل: 5س - 3 = 22",a:["x=5","x=4","x=6","x=3"],c:0},
+      {q:"Surface area of cube, side=3?",ar:"المساحة الكلية لمكعب ضلعه 3؟",a:["54","27","36","72"],c:0},
+      {q:"Ratio 4:6 simplified:",ar:"النسبة 4:6 مبسّطة:",a:["2:3","1:2","3:4","4:6"],c:0},
+      {q:"Which is NOT a multiple of 7?",ar:"أي من التالي ليس مضاعفاً لـ 7؟",a:["74","49","56","63"],c:0},
+      {q:"1.5 × 1.5 = ?",ar:"1.5 × 1.5 = ؟",a:["2.25","3.0","1.75","2.5"],c:0},
+      {q:"If 3y = 21, y = ?",ar:"إذا كان 3ص = 21، ص = ؟",a:["7","6","8","9"],c:0},
+      {q:"Convert 2.5 hours to minutes?",ar:"حوّل 2.5 ساعة إلى دقائق؟",a:["150","125","200","100"],c:0},
+    ],
+    hard:[
+      {q:"x² - 5x + 6 = 0. Sum of solutions?",ar:"س² - 5س + 6 = 0. مجموع الحلول؟",a:["5","6","3","2"],c:0},
+      {q:"a:b = 3:5 and a+b = 64. Find a.",ar:"أ:ب = 3:5 و أ+ب = 64. أوجد أ.",a:["24","40","20","32"],c:0},
+      {q:"Trapezoid: bases 6&10, height 4. Area?",ar:"شبه منحرف: قاعدتاه 6 و10، الارتفاع 4. المساحة؟",a:["32","40","24","48"],c:0},
+      {q:"Sum of interior angles of hexagon?",ar:"مجموع الزوايا الداخلية للسداسي؟",a:["720°","360°","540°","900°"],c:0},
+      {q:"2(3x - 4) = 5x + 2. Find x.",ar:"2(3س - 4) = 5س + 2. أوجد س.",a:["x=10","x=8","x=12","x=6"],c:0},
+      {q:"90 km/h converted to m/s?",ar:"90 كم/ساعة بالمتر/ثانية؟",a:["25 m/s","30 m/s","18 m/s","45 m/s"],c:0},
+      {q:"If f(x)=2x²-3, find f(4).",ar:"إذا كانت ف(س)=2س²-3، أوجد ف(4).",a:["29","13","32","16"],c:0},
+      {q:"Cylinder: r=3, h=10. Volume? (π≈3.14)",ar:"أسطوانة: نق=3، ع=10. الحجم؟ (π≈3.14)",a:["282.6","94.2","188.4","30"],c:0},
+      {q:"Diagonal of square, side=6? (√2≈1.41)",ar:"قطر مربع ضلعه 6؟ (√2≈1.41)",a:["8.46","6","12","10"],c:0},
+      {q:"(x+3)(x-2) expanded = ?",ar:"(س+3)(س-2) بعد التوسيع = ؟",a:["x²+x-6","x²-x-6","x²+5x-6","x²-6"],c:0},
+      {q:"A 40% discount on 250. Final price?",ar:"خصم 40% على 250. السعر النهائي؟",a:["150","100","175","200"],c:0},
+      {q:"3 workers finish in 8 days. 6 workers take?",ar:"3 عمال ينهون في 8 أيام. 6 عمال يحتاجون؟",a:["4 days","6 days","12 days","2 days"],c:0},
+      {q:"Sphere surface area: r=3? (π≈3.14)",ar:"مساحة سطح كرة: نق=3؟ (π≈3.14)",a:["113.04","28.26","75.36","56.52"],c:0},
+      {q:"If log₁₀(1000) = ?",ar:"ما هو log₁₀(1000)؟",a:["3","100","10","1000"],c:0},
+      {q:"Solve: |2x - 4| = 10. One solution?",ar:"حل: |2س - 4| = 10. أحد الحلول؟",a:["7","3","5","8"],c:0},
+      {q:"Arithmetic sequence: 3,7,11... 10th term?",ar:"متتالية حسابية: 3،7،11... الحد العاشر؟",a:["39","35","43","40"],c:0},
+    ]
+  },
+  science:{
+    easy:[
+      {q:"Plants make food through:",ar:"النباتات تصنع غذاءها عن طريق:",a:["Photosynthesis|التمثيل الضوئي","Respiration|التنفس","Digestion|الهضم","Absorption|الامتصاص"],c:0},
+      {q:"Plants absorb which gas from air?",ar:"أي غاز تمتصه النباتات من الهواء؟",a:["CO₂","O₂","N₂","H₂"],c:0},
+      {q:"The human heart has ___ chambers.",ar:"قلب الإنسان له ___ حجرات.",a:["4","2","3","6"],c:0},
+      {q:"Water boils at ___ °C.",ar:"يغلي الماء عند ___ °م.",a:["100","90","80","120"],c:0},
+      {q:"Powerhouse of the cell:",ar:"محطة الطاقة في الخلية:",a:["Mitochondria|الميتوكوندريا","Nucleus|النواة","Ribosome|الريبوسوم","Vacuole|الفجوة"],c:0},
+      {q:"Vitamin produced by sunlight:",ar:"الفيتامين الذي يُنتج بالشمس:",a:["D|د","C|ج","A|أ","B|ب"],c:0},
+      {q:"Largest planet in solar system:",ar:"أكبر كوكب في المجموعة الشمسية:",a:["Jupiter|المشتري","Saturn|زحل","Neptune|نبتون","Uranus|أورانوس"],c:0},
+      {q:"Universal donor blood type:",ar:"فصيلة الدم المانح العالمي:",a:["O-","A+","B-","AB+"],c:0},
+      {q:"Sound travels fastest through:",ar:"الصوت يسافر بأسرع ما يكون في:",a:["Solids|الصلبة","Liquids|السوائل","Gases|الغازات","Vacuum|الفراغ"],c:0},
+      {q:"Bees are important for:",ar:"النحل مهم من أجل:",a:["Pollination|التلقيح","Photosynthesis|التمثيل الضوئي","Digestion|الهضم","Erosion|التعرية"],c:0},
+      {q:"Planet closest to the Sun:",ar:"أقرب كوكب إلى الشمس:",a:["Mercury|عطارد","Venus|الزهرة","Earth|الأرض","Mars|المريخ"],c:0},
+      {q:"Solid water is called:",ar:"الماء الصلب يُسمى:",a:["Ice|جليد","Steam|بخار","Gas|غاز","Plasma|بلازما"],c:0},
+      {q:"How many bones in adult human body?",ar:"كم عظمة في جسم الإنسان البالغ؟",a:["206","208","196","220"],c:0},
+      {q:"Which organ pumps blood?",ar:"أي عضو يضخ الدم؟",a:["Heart|القلب","Lung|الرئة","Kidney|الكلية","Liver|الكبد"],c:0},
+      {q:"Plants release which gas during photosynthesis?",ar:"ما الغاز الذي تطلقه النباتات خلال التمثيل الضوئي؟",a:["O₂|الأكسجين","CO₂|ثاني أكسيد الكربون","N₂|النيتروجين","H₂|الهيدروجين"],c:0},
+      {q:"The Sun is a:",ar:"الشمس هي:",a:["Star|نجم","Planet|كوكب","Moon|قمر","Comet|مذنب"],c:0},
+      {q:"Which is NOT a mammal?",ar:"أي من التالي ليس من الثدييات؟",a:["Shark|قرش","Whale|حوت","Dolphin|دلفين","Bat|خفاش"],c:0},
+      {q:"Human body has ___ senses.",ar:"جسم الإنسان لديه ___ حواس.",a:["5","4","6","7"],c:0},
+      {q:"The moon orbits:",ar:"القمر يدور حول:",a:["Earth|الأرض","Sun|الشمس","Mars|المريخ","Jupiter|المشتري"],c:0},
+      {q:"Water chemical formula is:",ar:"الصيغة الكيميائية للماء هي:",a:["H₂O","HO₂","H₃O","HO"],c:0},
+      {q:"Which sense organ detects smell?",ar:"أي عضو حسي يكشف الروائح؟",a:["Nose|الأنف","Eye|العين","Ear|الأذن","Tongue|اللسان"],c:0},
+      {q:"Caterpillar turns into:",ar:"تتحول اليرقة إلى:",a:["Butterfly|فراشة","Bee|نحلة","Spider|عنكبوت","Ant|نملة"],c:0},
+      {q:"Humans breathe ___ from the air.",ar:"البشر يتنفسون ___ من الهواء.",a:["Oxygen|الأكسجين","Carbon dioxide|ثاني أكسيد الكربون","Nitrogen|النيتروجين","Hydrogen|الهيدروجين"],c:0},
+      {q:"Which planet is known as the Red Planet?",ar:"أي كوكب يُعرف بالكوكب الأحمر؟",a:["Mars|المريخ","Jupiter|المشتري","Venus|الزهرة","Saturn|زحل"],c:0},
+      {q:"Roots of a plant absorb:",ar:"جذور النبات تمتص:",a:["Water & minerals|ماء ومعادن","Sunlight|ضوء شمس","CO₂|ثاني أكسيد الكربون","Oxygen|أكسجين"],c:0},
+      {q:"Blood color is red due to:",ar:"لون الدم أحمر بسبب:",a:["Hemoglobin|الهيموغلوبين","Iron only|الحديد فقط","Red cells only|الخلايا الحمراء فقط","Plasma|البلازما"],c:0},
+    ],
+    medium:[
+      {q:"Osmosis: water moves from ___ to ___ concentration.",ar:"التناضح: الماء ينتقل من تركيز ___ إلى ___.",a:["Low→High|منخفض→مرتفع","High→Low|مرتفع→منخفض","Equal→Equal","None"],c:0},
+      {q:"DNA is found in cell's:",ar:"DNA يوجد في:",a:["Nucleus|النواة","Cytoplasm|السيتوبلازم","Membrane|الغشاء","Ribosome|الريبوسوم"],c:0},
+      {q:"Rock formed from lava:",ar:"صخور تتشكل من الحمم البركانية:",a:["Igneous|النارية","Sedimentary|الرسوبية","Metamorphic|المتحولة","Limestone|الحجر الجيري"],c:0},
+      {q:"Chlorophyll gives plants ___ color.",ar:"الكلوروفيل يعطي النباتات اللون ___.",a:["Green|الأخضر","Yellow|الأصفر","Red|الأحمر","Blue|الأزرق"],c:0},
+      {q:"Mushrooms belong to kingdom:",ar:"الفطريات تنتمي لمملكة:",a:["Fungi|الفطريات","Plantae|النباتات","Animalia|الحيوانات","Protista|البروتيستا"],c:0},
+      {q:"Food is mainly digested in:",ar:"يتم هضم الطعام بشكل رئيسي في:",a:["Small intestine|الأمعاء الدقيقة","Stomach|المعدة","Large intestine|الأمعاء الغليظة","Liver|الكبد"],c:0},
+      {q:"Organ that filters blood:",ar:"العضو الذي يصفي الدم:",a:["Kidney|الكلية","Liver|الكبد","Heart|القلب","Lungs|الرئتان"],c:0},
+      {q:"Photosynthesis products:",ar:"نواتج التمثيل الضوئي:",a:["Glucose+O₂","CO₂+H₂O","ATP+NADPH","H₂+CO₂"],c:0},
+      {q:"Which planet has rings?",ar:"أي كوكب له حلقات واضحة؟",a:["Saturn|زحل","Jupiter|المشتري","Uranus|أورانوس","Neptune|نبتون"],c:0},
+      {q:"Cells divide by process called:",ar:"الخلايا تنقسم بعملية تسمى:",a:["Mitosis|الانقسام","Osmosis|التناضح","Photosynthesis|التمثيل الضوئي","Diffusion|الانتشار"],c:0},
+      {q:"Respiration in cells produces:",ar:"التنفس الخلوي ينتج:",a:["Energy|طاقة","Glucose|جلوكوز","Water only|ماء فقط","CO₂ only|ثاني أكسيد الكربون فقط"],c:0},
+      {q:"Vertebrates are animals with:",ar:"الفقاريات هي حيوانات ذات:",a:["Backbone|عمود فقري","Wings|أجنحة","Scales|قشور","6 legs|6 أرجل"],c:0},
+      {q:"The hardest substance in the human body:",ar:"أصلب مادة في جسم الإنسان:",a:["Tooth enamel|مينا الأسنان","Bone|العظم","Cartilage|الغضروف","Nail|الظفر"],c:0},
+      {q:"Plants store food as:",ar:"النباتات تخزن الغذاء على شكل:",a:["Starch|نشا","Glucose|جلوكوز","Protein|بروتين","Fat|دهون"],c:0},
+      {q:"Arteries carry blood ___ the heart.",ar:"الشرايين تحمل الدم ___ القلب.",a:["Away from|بعيداً عن","Toward|نحو","Around|حول","Into|داخل"],c:0},
+      {q:"Fossil fuels formed from:",ar:"الوقود الأحفوري تشكّل من:",a:["Ancient organisms|كائنات قديمة","Volcanic rock|صخور بركانية","Sea water|ماء البحر","Desert sand|رمال الصحراء"],c:0},
+      {q:"Which gas makes up most of Earth's atmosphere?",ar:"أي غاز يشكّل معظم الغلاف الجوي للأرض؟",a:["Nitrogen|النيتروجين","Oxygen|الأكسجين","CO₂|ثاني أكسيد الكربون","Argon|الأرغون"],c:0},
+      {q:"An ecosystem includes:",ar:"النظام البيئي يشمل:",a:["Living & non-living|حيّ وغير حيّ","Only animals|الحيوانات فقط","Only plants|النباتات فقط","Only soil|التربة فقط"],c:0},
+      {q:"The process of water changing to vapour is:",ar:"تحوّل الماء إلى بخار يُسمى:",a:["Evaporation|التبخر","Condensation|التكثف","Freezing|التجمد","Melting|الانصهار"],c:0},
+      {q:"Which organ produces insulin?",ar:"أي عضو ينتج الأنسولين؟",a:["Pancreas|البنكرياس","Liver|الكبد","Kidney|الكلية","Stomach|المعدة"],c:0},
+    ],
+    hard:[
+      {q:"Cellular respiration equation products:",ar:"نواتج معادلة التنفس الخلوي:",a:["CO₂+H₂O+ATP","Glucose+O₂","O₂+H₂O","ATP only"],c:0},
+      {q:"Antibodies are produced by:",ar:"الأجسام المضادة تُنتج بواسطة:",a:["B lymphocytes|خلايا B","T lymphocytes|خلايا T","Red blood cells|كريات حمراء","Platelets|الصفائح"],c:0},
+      {q:"Ozone layer is located in:",ar:"طبقة الأوزون توجد في:",a:["Stratosphere|الستراتوسفير","Troposphere|التروبوسفير","Mesosphere|الميزوسفير","Thermosphere|الثرموسفير"],c:0},
+      {q:"Enzyme breaking starch in saliva:",ar:"إنزيم تحليل النشا في اللعاب:",a:["Amylase|الأميليز","Lipase|الليباز","Protease|البروتياز","Lactase|اللاكتاز"],c:0},
+      {q:"Which base pairs with Adenine in DNA?",ar:"أي قاعدة ترتبط بالأدينين في DNA؟",a:["Thymine|الثايمين","Guanine|الغوانين","Cytosine|السيتوزين","Uracil|اليوراسيل"],c:0},
+      {q:"Process by which plants lose water:",ar:"العملية التي تفقد بها النباتات الماء:",a:["Transpiration|النتح","Respiration|التنفس","Photosynthesis|التمثيل الضوئي","Osmosis|التناضح"],c:0},
+      {q:"Meiosis produces cells with ___ chromosomes.",ar:"الانقسام المنصف ينتج خلايا ذات ___ كروموسوم.",a:["Half|نصف العدد","Double|ضعف العدد","Same|نفس العدد","Triple|ثلاثة أضعاف"],c:0},
+      {q:"Which part of brain controls balance?",ar:"أي جزء من الدماغ يتحكم بالتوازن؟",a:["Cerebellum|المخيخ","Cerebrum|المخ","Brain stem|جذع الدماغ","Hypothalamus|المهاد"],c:0},
+      {q:"ATP stands for:",ar:"ATP اختصار لـ:",a:["Adenosine Triphosphate","Amino Tri Phosphate","Acid Tri Protein","Active Transport Protein"],c:0},
+      {q:"Endothermic reaction:",ar:"التفاعل الماص للحرارة:",a:["Absorbs heat|يمتص الحرارة","Releases heat|يطلق الحرارة","No energy change","Releases light"],c:0},
+      {q:"Photosynthesis light reaction produces:",ar:"التفاعل الضوئي في التمثيل الضوئي ينتج:",a:["ATP & NADPH","Glucose","CO₂","Starch"],c:0},
+      {q:"A mutation is a change in:",ar:"الطفرة هي تغيير في:",a:["DNA sequence|تسلسل DNA","Cell shape|شكل الخلية","Cell size|حجم الخلية","Protein amount|كمية البروتين"],c:0},
+      {q:"Which blood cells fight infection?",ar:"أي خلايا دم تحارب العدوى؟",a:["White blood cells|كريات الدم البيضاء","Red blood cells|كريات الدم الحمراء","Platelets|الصفائح الدموية","Plasma cells|خلايا البلازما"],c:0},
+    ]
+  },
+  physics:{
+    easy:[
+      {q:"Speed = Distance ÷ ___",ar:"السرعة = المسافة ÷ ___",a:["Time|الزمن","Mass|الكتلة","Volume|الحجم","Force|القوة"],c:0},
+      {q:"Unit of force:",ar:"وحدة القوة:",a:["Newton|نيوتن","Joule|جول","Watt|واط","Pascal|باسكال"],c:0},
+      {q:"Light speed ≈ ___ km/s",ar:"سرعة الضوء ≈ ___ كم/ث",a:["300,000","3,000","3,000,000","30,000"],c:0},
+      {q:"Gravity on Earth ≈ ___ m/s²",ar:"الجاذبية الأرضية ≈ ___ م/ث²",a:["9.8","8.9","10.8","6.7"],c:0},
+      {q:"Newton's ___ law: object at rest stays at rest",ar:"القانون ___ لنيوتن: الجسم الساكن يبقى ساكناً",a:["1st|الأول","2nd|الثاني","3rd|الثالث","4th|الرابع"],c:0},
+      {q:"Which is faster: light or sound?",ar:"أيهما أسرع: الضوء أم الصوت؟",a:["Light|الضوء","Sound|الصوت","Equal|متساوٍ","Depends|يعتمد"],c:0},
+      {q:"Rubber is an:",ar:"المطاط هو:",a:["Insulator|عازل","Conductor|موصل","Semi-conductor|شبه موصل","Magnet|مغناطيس"],c:0},
+      {q:"Freezing point of water is ___ °C",ar:"نقطة تجمد الماء هي ___ °م",a:["0","-10","10","100"],c:0},
+      {q:"Which travels in straight lines?",ar:"ماذا يسير في خطوط مستقيمة؟",a:["Light|الضوء","Sound|الصوت","Wind|الريح","Water|الماء"],c:0},
+      {q:"Unit of energy is:",ar:"وحدة الطاقة هي:",a:["Joule|جول","Newton|نيوتن","Watt|واط","Ampere|أمبير"],c:0},
+      {q:"Magnets have ___ poles.",ar:"المغناطيس له ___ قطبان.",a:["2|اثنان","1|واحد","3|ثلاثة","4|أربعة"],c:0},
+      {q:"A mirror reflects ___.",ar:"المرآة تعكس ___.",a:["Light|الضوء","Sound|الصوت","Heat only|الحرارة فقط","Water|الماء"],c:0},
+      {q:"Unit of electric current:",ar:"وحدة التيار الكهربائي:",a:["Ampere|أمبير","Volt|فولت","Ohm|أوم","Watt|واط"],c:0},
+      {q:"Objects fall due to:",ar:"تسقط الأجسام بسبب:",a:["Gravity|الجاذبية","Magnetism|المغناطيسية","Friction|الاحتكاك","Air pressure|ضغط الهواء"],c:0},
+      {q:"Heat travels through metal by:",ar:"تنتقل الحرارة خلال المعدن عن طريق:",a:["Conduction|التوصيل","Convection|الحمل","Radiation|الإشعاع","Reflection|الانعكاس"],c:0},
+      {q:"Which colour bends most in a prism?",ar:"أي لون ينحرف أكثر في المنشور؟",a:["Violet|بنفسجي","Red|أحمر","Green|أخضر","Yellow|أصفر"],c:0},
+      {q:"Friction is a force that ___ motion.",ar:"الاحتكاك قوة تُبطئ ___.",a:["Opposes|تعارض","Increases|تزيد","Starts|تبدأ","Stops|تمنع"],c:0},
+      {q:"Which state of matter has no fixed shape?",ar:"أي حالة من المادة ليس لها شكل ثابت؟",a:["Liquid & Gas|سائل وغاز","Solid|صلب","Liquid only|سائل فقط","Gas only|غاز فقط"],c:0},
+      {q:"Boiling creates ___ from liquid.",ar:"الغليان يحوّل السائل إلى ___.",a:["Gas|غاز","Solid|صلب","Plasma|بلازما","Ice|جليد"],c:0},
+      {q:"The unit of voltage is:",ar:"وحدة الجهد الكهربائي هي:",a:["Volt|فولت","Ampere|أمبير","Ohm|أوم","Watt|واط"],c:0},
+    ],
+    medium:[
+      {q:"F = m×a. m=5kg, a=4m/s². F=?",ar:"ق = ك×ع. ك=5كغ، ع=4م/ث². ق=؟",a:["20 N","9 N","1.25 N","45 N"],c:0},
+      {q:"P=100W, t=5s. Energy=?",ar:"ق=100واط، ز=5ث. الطاقة=؟",a:["500 J","20 J","2000 J","105 J"],c:0},
+      {q:"Pressure = F÷A. F=50N, A=2m². P=?",ar:"الضغط = ق÷م. ق=50ن، م=2م². الضغط=؟",a:["25 Pa","100 Pa","52 Pa","48 Pa"],c:0},
+      {q:"Falling ball: what increases?",ar:"كرة تسقط: ماذا يزداد؟",a:["Kinetic energy|الطاقة الحركية","Potential energy|الطاقة الكامنة","Mass|الكتلة","Volume|الحجم"],c:0},
+      {q:"Sound frequency measured in:",ar:"تردد الصوت يُقاس بـ:",a:["Hz|هرتز","dB|ديسيبل","m/s","Watt|واط"],c:0},
+      {q:"Converging lens type:",ar:"العدسة التي تجمع الضوء:",a:["Convex|محدبة","Concave|مقعرة","Flat|مسطحة","Prism|منشور"],c:0},
+      {q:"An object moving 100m in 20s. Speed?",ar:"جسم يتحرك 100م في 20ث. السرعة؟",a:["5 m/s","20 m/s","2000 m/s","0.2 m/s"],c:0},
+      {q:"When temperature rises, resistance in metal:",ar:"عند ارتفاع الحرارة، مقاومة المعدن:",a:["Increases|تزداد","Decreases|تنقص","Stays same|تبقى","Disappears|تختفي"],c:0},
+      {q:"Car: 0→60 km/h in 10s. Acceleration?",ar:"سيارة: 0→60كم/ساعة في 10ث. التسارع؟",a:["6 km/h/s","10 km/h/s","600 km/h/s","0.6 km/h/s"],c:0},
+      {q:"Parallel resistors R1=6Ω, R2=3Ω. Total?",ar:"مقاومتان بالتوازي: 6أوم و3أوم. الكلي؟",a:["2Ω","9Ω","18Ω","4.5Ω"],c:0},
+      {q:"Which colour has highest frequency?",ar:"أي لون له أعلى تردد في الضوء المرئي؟",a:["Violet|البنفسجي","Red|الأحمر","Green|الأخضر","Yellow|الأصفر"],c:0},
+      {q:"60W bulb × 2 hours. Energy used?",ar:"مصباح 60واط × ساعتان. الطاقة المستهلكة؟",a:["120 Wh","30 Wh","62 Wh","240 Wh"],c:0},
+      {q:"Density: m=200g, v=40cm³. d=?",ar:"الكثافة: ك=200غ، ح=40سم³. الكثافة=؟",a:["5 g/cm³","8 g/cm³","160 g/cm³","0.2 g/cm³"],c:0},
+      {q:"A wave with freq=50Hz, period=?",ar:"موجة ترددها 50هرتز، الدور=؟",a:["0.02 s","50 s","2 s","0.5 s"],c:0},
+      {q:"Mechanical advantage of lever = ?",ar:"المزية الآلية للرافعة = ؟",a:["Effort arm ÷ Load arm","Load ÷ Effort","Force × distance","Mass × speed"],c:0},
+      {q:"Weight of 5kg object on Earth? (g=10)",ar:"وزن جسم كتلته 5كغ على الأرض؟ (g=10)",a:["50 N","5 N","500 N","0.5 N"],c:0},
+      {q:"Two like poles of magnets:",ar:"قطبان متماثلان من المغناطيس:",a:["Repel|يتنافران","Attract|يتجاذبان","No force","Spin"],c:0},
+    ],
+    hard:[
+      {q:"KE = ½mv². m=2kg, v=4m/s. KE=?",ar:"الطاقة الحركية = ½ك·ع². ك=2كغ، ع=4م/ث. KE=؟",a:["16 J","8 J","32 J","4 J"],c:0},
+      {q:"Ohm's Law: V=12V, R=4Ω. Current=?",ar:"قانون أوم: ف=12فولت، ق=4أوم. التيار=؟",a:["3 A","8 A","48 A","16 A"],c:0},
+      {q:"Celsius = Fahrenheit at temperature:",ar:"درجة تتساوى فيها مئوية وفهرنهايت:",a:["-40°","0°","100°","32°"],c:0},
+      {q:"Work = F×d. F=10N, d=5m. Work=?",ar:"الشغل = ق×م. ق=10ن، م=5م. الشغل=؟",a:["50 J","2 J","15 J","55 J"],c:0},
+      {q:"Momentum = m×v. m=3kg, v=6m/s. p=?",ar:"الزخم = ك×س. ك=3كغ، س=6م/ث. الزخم=؟",a:["18 kg·m/s","9 kg·m/s","2 kg·m/s","36 kg·m/s"],c:0},
+      {q:"Series circuit: R1=4Ω, R2=6Ω. Total R=?",ar:"دائرة تسلسلية: م1=4أوم، م2=6أوم. المقاومة الكلية؟",a:["10Ω","2.4Ω","24Ω","1Ω"],c:0},
+      {q:"PE = mgh. m=2kg, h=10m, g=10. PE=?",ar:"الطاقة الكامنة = ك·ع·ه. ك=2كغ، ه=10م، ع=10. الطاقة=؟",a:["200 J","20 J","100 J","2000 J"],c:0},
+      {q:"Wave speed = frequency × ___",ar:"سرعة الموجة = التردد × ___",a:["Wavelength|الطول الموجي","Amplitude|السعة","Period|الدور","Energy|الطاقة"],c:0},
+      {q:"Transformer: V1=220V, N1=100, N2=50. V2=?",ar:"محول: ف1=220فولت، ل1=100، ل2=50. ف2=؟",a:["110V","440V","55V","880V"],c:0},
+      {q:"Power = V×I. V=12V, I=3A. Power=?",ar:"القدرة = ف×ت. ف=12فولت، ت=3أمبير. القدرة=؟",a:["36 W","4 W","15 W","9 W"],c:0},
+      {q:"Object dropped from rest after 3s, speed? (g=10)",ar:"جسم سقط من السكون بعد 3ث، السرعة؟ (g=10)",a:["30 m/s","3 m/s","10 m/s","90 m/s"],c:0},
+      {q:"Efficiency = useful output ÷ total input × 100. Input=500J, output=400J. Efficiency=?",ar:"الكفاءة = الطاقة المفيدة ÷ الطاقة الكلية × 100. ٪Efficiency=؟ (400/500)",a:["80%","60%","40%","20%"],c:0},
+      {q:"Refraction occurs when light passes between:",ar:"الانكسار يحدث عندما يمر الضوء بين:",a:["Two different media|وسطين مختلفين","Two mirrors|مرآتين","Two lenses","Vacuum & vacuum"],c:0},
+    ]
+  }
+};
+
+function getQ(subj, diff){
+  var pool = QDB[subj][diff];
+  var raw = pool[Math.floor(Math.random()*pool.length)];
+  var q = (LANG==='ar' && raw.ar) ? raw.ar : raw.q;
+  var answers = raw.a.map(function(ans){
+    var parts = ans.split('|');
+    return LANG==='ar' && parts.length>1 ? parts[1] : parts[0];
+  });
+  return {q:q, a:answers, c:raw.c};
+}
+
+// ═══════════════════════════════════════════════════
+// CANVAS SETUP
+// ═══════════════════════════════════════════════════
+var cv = document.getElementById('gc');
+var ctx = cv.getContext('2d');
+var W, H, CX, GY;
+var TS = 80; // tower size
+
+function resize(){
+  W = cv.width = window.innerWidth;
+  H = cv.height = window.innerHeight;
+  CX = W/2;
+  GY = H - 160;
+}
+window.addEventListener('resize', resize);
+
+// ═══════════════════════════════════════════════════
+// GAME STATE
+// ═══════════════════════════════════════════════════
+var G = {};
+var COSTS = {archer:10, upgrade:6, wall:8, sniper:14};
+var REWARDS = {easy:1, medium:2, hard:3};
+
+function initState(){
+  G = {
+    coins:10, wave:1, invaded:0,
+    killed:0, questionsOk:0,
+    paused:false, over:false,
+    gameTime:0,
+    archers:[{lvl:1, type:'archer', angle:0, shootTimer:0}],
+    walls:[], zombies:[], arrows:[], particles:[], floats:[],
+    trees:[],
+    waveActive:false, toSpawn:0, spawned:0, spawnTimer:0, spawnInterval:2,
+    waveDelay:1,
+  };
+  INPUT.selectedIdx = -1;
+  INPUT.cursorX = -9999; INPUT.cursorY = -9999;
+  buildTrees();
+  updateHUD();
+}
+
+// ═══════════════════════════════════════════════════
+// FOREST TREES (background)
+// ═══════════════════════════════════════════════════
+function buildTrees(){
+  G.trees = [];
+  var count = Math.floor(W/60)+5;
+  for(var i=0;i<count;i++){
+    G.trees.push({
+      x: Math.random()*W,
+      y: GY,
+      h: 60 + Math.random()*80,
+      w: 30 + Math.random()*30,
+      variant: Math.floor(Math.random()*3), // 0=pine, 1=round, 2=tall
+      shade: Math.random()*0.3,
+    });
+  }
+  // Also some in background (smaller)
+  for(var j=0;j<20;j++){
+    G.trees.push({
+      x: Math.random()*W,
+      y: GY - 50 - Math.random()*60,
+      h: 30 + Math.random()*40,
+      w: 15 + Math.random()*20,
+      variant: Math.floor(Math.random()*3),
+      shade: Math.random()*0.3 + 0.2,
+    });
+  }
+}
+
+// ═══════════════════════════════════════════════════
+// GAME LOOP
+// ═══════════════════════════════════════════════════
+var RAF = null, prevT = 0;
+function loop(ts){
+  var dt = Math.min((ts - prevT)/1000, 0.05);
+  prevT = ts;
+  if(!G.paused && !G.over) update(dt);
+  render();
+  RAF = requestAnimationFrame(loop);
+}
+
+// ═══════════════════════════════════════════════════
+// UPDATE
+// ═══════════════════════════════════════════════════
+function update(dt){
+  G.gameTime += dt;
+
+  // Wave management
+  if(!G.waveActive){
+    G.waveDelay -= dt;
+    if(G.waveDelay <= 0) startWave();
+  }
+
+  // Spawn
+  if(G.waveActive && G.spawned < G.toSpawn){
+    G.spawnTimer -= dt;
+    if(G.spawnTimer <= 0){ spawnZombie(); G.spawnTimer = G.spawnInterval; }
+  }
+
+  // Wave end
+  if(G.waveActive && G.spawned >= G.toSpawn && G.zombies.length === 0){
+    G.waveActive = false;
+    G.wave++;
+    G.waveDelay = 3;
+    showWaveAnn();
+    updateHUD();
+  }
+
+  // Update arrows
+  for(var i = G.arrows.length-1; i >= 0; i--){
+    var ar = G.arrows[i];
+    ar.x += Math.cos(ar.angle)*ar.spd*dt;
+    ar.y += Math.sin(ar.angle)*ar.spd*dt;
+    ar.life -= dt;
+    if(ar.life <= 0){ G.arrows.splice(i,1); continue; }
+    // hit zombie
+    var hit = false;
+    for(var j=0; j<G.zombies.length; j++){
+      var z = G.zombies[j];
+      var dx = z.x-ar.x, dy = z.y-ar.y;
+      if(dx*dx+dy*dy < (z.r+5)*(z.r+5)){
+        z.hp -= ar.dmg;
+        spawnParticles(ar.x, ar.y, '#ff9966', 5);
+        G.arrows.splice(i,1); hit=true; break;
+      }
+    }
+  }
+
+  // Update zombies
+  for(var i = G.zombies.length-1; i >= 0; i--){
+    var z = G.zombies[i];
+    if(z.hp <= 0){
+      spawnParticles(z.x, z.y, z.color, 10);
+      G.killed++;
+      G.zombies.splice(i,1);
+      updateHUD(); continue;
+    }
+    updateZombie(z, dt);
+    if(z.reached){
+      G.zombies.splice(i,1);
+      G.invaded++;
+      updateHUD();
+      if(G.invaded >= 10){ endGame(); return; }
+    }
+  }
+
+  // Archers shoot
+  G.archers.forEach(function(a){ updateArcher(a, dt); });
+
+  // Walls take zombie damage
+  G.zombies.forEach(function(z){
+    z.blocked = false;
+    G.walls.forEach(function(w){
+      if(w.hp <= 0) return;
+      var dx = Math.abs(z.x - w.x), dy = Math.abs(z.y - w.y);
+      if(dx < w.bw/2+z.r && dy < w.bh/2){
+        w.hp -= z.atkDmg*dt;
+        z.blocked = true;
+      }
+    });
+  });
+
+  // Particles
+  for(var i = G.particles.length-1; i >= 0; i--){
+    var p = G.particles[i];
+    p.x+=p.vx*dt; p.y+=p.vy*dt; p.vy+=100*dt; p.life-=dt;
+    if(p.life<=0) G.particles.splice(i,1);
+  }
+
+  // Float texts
+  for(var i = G.floats.length-1; i >= 0; i--){
+    var f = G.floats[i];
+    f.y -= 45*dt; f.life -= dt;
+    if(f.life<=0) G.floats.splice(i,1);
+  }
+}
+
+function updateZombie(z, dt){
+  z.animT = (z.animT||0)+dt;
+  if(z.blocked) return;
+  var dx = CX - z.x, dy = GY - z.y;
+  var dist = Math.sqrt(dx*dx+dy*dy);
+  if(dist < TS*0.55+z.r){ z.reached=true; return; }
+  z.x += (dx/dist)*z.spd*dt;
+  z.y += (dy/dist)*z.spd*dt;
+}
+
+// ─── INPUT STATE ────────────────────────────────────
+var INPUT = { selectedIdx: -1, cursorX: -9999, cursorY: -9999 };
+
+function toCanvas(px, py){
+  var rect = cv.getBoundingClientRect();
+  return { x: px - rect.left, y: py - rect.top };
+}
+function archerHitTest(px, py, idx){
+  var pos = getArcherPos(idx);
+  var dx = px-pos.x, dy = py-pos.y;
+  return dx*dx+dy*dy < 30*30;
+}
+
+cv.addEventListener('mousemove', function(e){
+  var c = toCanvas(e.clientX, e.clientY);
+  INPUT.cursorX = c.x; INPUT.cursorY = c.y;
+});
+cv.addEventListener('click', function(e){
+  if(G.paused||G.over) return;
+  var c = toCanvas(e.clientX, e.clientY);
+  INPUT.cursorX = c.x; INPUT.cursorY = c.y;
+  handleTap(c.x, c.y);
+});
+cv.addEventListener('touchstart', function(e){
+  if(G.paused||G.over) return;
+  e.preventDefault();
+  var t = e.changedTouches[0];
+  var c = toCanvas(t.clientX, t.clientY);
+  INPUT.cursorX = c.x; INPUT.cursorY = c.y;
+  handleTap(c.x, c.y);
+},{passive:false});
+cv.addEventListener('touchmove', function(e){
+  if(G.paused||G.over) return;
+  e.preventDefault();
+  var t = e.changedTouches[0];
+  var c = toCanvas(t.clientX, t.clientY);
+  INPUT.cursorX = c.x; INPUT.cursorY = c.y;
+},{passive:false});
+
+function handleTap(px, py){
+  // tap on an archer → select/deselect
+  for(var i=0; i<G.archers.length; i++){
+    if(archerHitTest(px, py, i)){
+      INPUT.selectedIdx = (INPUT.selectedIdx===i) ? -1 : i;
+      return;
+    }
+  }
+  // tap on canvas with archer selected → set manual direction
+  if(INPUT.selectedIdx >= 0 && INPUT.selectedIdx < G.archers.length){
+    var a = G.archers[INPUT.selectedIdx];
+    var pos = getArcherPos(INPUT.selectedIdx);
+    a.manualAngle = Math.atan2(py-pos.y, px-pos.x);
+    a.manualAim = true; a.manualTimer = 5;
+  }
+}
+// ────────────────────────────────────────────────────
+
+function updateArcher(a, dt){
+  var idx = G.archers.indexOf(a);
+  var pos = getArcherPos(idx);
+
+  // Selected archer follows cursor/finger live
+  if(INPUT.selectedIdx === idx && INPUT.cursorX > -1000){
+    a.angle = Math.atan2(INPUT.cursorY - pos.y, INPUT.cursorX - pos.x);
+    a.manualAim = true; a.manualTimer = 0.6;
+  }
+
+  // Countdown manual override
+  if(a.manualAim){
+    a.manualTimer -= dt;
+    if(a.manualTimer <= 0){
+      a.manualAim = false;
+      if(INPUT.selectedIdx === idx) INPUT.selectedIdx = -1;
+    } else if(INPUT.selectedIdx !== idx && a.manualAngle !== undefined){
+      a.angle = a.manualAngle;
+    }
+  }
+
+  // Auto-aim when not manually controlled
+  if(!a.manualAim){
+    var nearest=null, nearD=Infinity;
+    G.zombies.forEach(function(z){
+      var dx=z.x-pos.x, dy=z.y-pos.y;
+      var d=dx*dx+dy*dy;
+      if(d<nearD){ nearD=d; nearest=z; }
+    });
+    if(nearest) a.angle = Math.atan2(nearest.y-pos.y, nearest.x-pos.x);
+  }
+
+  // Shoot
+  if(G.zombies.length > 0){
+    a.shootTimer -= dt;
+    if(a.shootTimer <= 0){
+      shoot(a, idx);
+      var base = a.type==='sniper' ? 2.2 : 1.0;
+      a.shootTimer = Math.max(base - a.lvl*0.08, 0.35);
+    }
+  }
+}
+
+function shoot(a, idx){
+  var pos = getArcherPos(idx !== undefined ? idx : G.archers.indexOf(a));
+  G.arrows.push({
+    x: pos.x, y: pos.y,
+    angle: a.angle,
+    spd: a.type==='sniper' ? 650 : 480,
+    dmg: a.type==='sniper' ? 3+a.lvl*2 : 1+a.lvl,
+    life: 2.2,
+    type: a.type
+  });
+}
+
+// ═══════════════════════════════════════════════════
+// WAVE / SPAWN
+// ═══════════════════════════════════════════════════
+function startWave(){
+  G.waveActive = true;
+  G.spawned = 0;
+  // Start from wave 3 difficulty equivalent: base count boosted, spawn faster
+  G.toSpawn = 6 + G.wave*3;
+  G.spawnInterval = Math.max(0.5, 2.2 - G.wave*0.08);
+  G.spawnTimer = 0.5;
+}
+
+var ZOMBIE_TYPES = {
+  normal: {hpM:3,  spd:48,  r:16, color:'#5cb85c', reward:1, atkDmg:5},
+  fast:   {hpM:2,  spd:95,  r:13, color:'#f39c12', reward:1, atkDmg:3},
+  armored:{hpM:7,  spd:32,  r:19, color:'#7f8c8d', reward:2, atkDmg:10},
+  giant:  {hpM:13, spd:24,  r:27, color:'#e74c3c', reward:3, atkDmg:18},
+  boss:   {hpM:25, spd:26,  r:33, color:'#9b59b6', reward:5, atkDmg:25},
+};
+
+function spawnZombie(){
+  G.spawned++;
+  var isBoss = (G.wave%5===0) && (G.spawned===G.toSpawn);
+  // Level floor starts at 3 (equivalent to old wave 5+)
+  var lvl = Math.min(10, 1 + Math.ceil(G.wave/2) + Math.floor(Math.random()*2));
+
+  var typeKey = 'normal';
+  if(isBoss){ typeKey='boss'; }
+  else if(G.wave>=6 && Math.random()<0.1){ typeKey='giant'; }
+  else if(G.wave>=4 && Math.random()<0.18){ typeKey='armored'; }
+  else if(G.wave>=2 && Math.random()<0.22){ typeKey='fast'; }
+
+  var cfg = ZOMBIE_TYPES[typeKey];
+
+  // Spawn from edges
+  var side = Math.floor(Math.random()*4);
+  var x, y;
+  if(side===0){ x=Math.random()*W; y=-50; }
+  else if(side===1){ x=W+50; y=Math.random()*H; }
+  else if(side===2){ x=Math.random()*W; y=H+50; }
+  else{ x=-50; y=Math.random()*H; }
+
+  var hp = cfg.hpM * lvl;
+  G.zombies.push({
+    x:x, y:y, hp:hp, maxHp:hp,
+    spd:cfg.spd + lvl*2, r:cfg.r, color:cfg.color,
+    reward:cfg.reward, atkDmg:cfg.atkDmg,
+    type:typeKey, lvl:lvl,
+    reached:false, blocked:false, animT:0
+  });
+}
+
+// ═══════════════════════════════════════════════════
+// RENDER
+// ═══════════════════════════════════════════════════
+function render(){
+  // Update selection hint
+  var hint = document.getElementById('archerHint');
+  if(INPUT.selectedIdx >= 0 && !G.over){
+    var a = G.archers[INPUT.selectedIdx];
+    var emoji = a.type==='sniper'?'🎯':'🏹';
+    hint.textContent = emoji + ' ' + (LANG==='ar' ? 'رامٍ محدد — حرّك الإصبع/الماوس لتوجيهه' : 'Archer selected — move cursor/finger to aim');
+    hint.style.display = 'block';
+  } else {
+    hint.textContent = LANG==='ar' ? '👆 اضغط على رامٍ لتوجيهه' : '👆 Tap an archer to control it';
+    hint.style.display = G.zombies.length > 0 ? 'block' : 'none';
+  }
+  // Sky (forest dawn/dusk)
+  var sky = ctx.createLinearGradient(0,0,0,H);
+  sky.addColorStop(0,'#0a1a0a');
+  sky.addColorStop(0.4,'#1a3d1a');
+  sky.addColorStop(1,'#2d5a1b');
+  ctx.fillStyle = sky;
+  ctx.fillRect(0,0,W,H);
+
+  drawMoon();
+  drawForestBackground();
+  drawGround();
+  drawForestForeground();
+  drawWalls();
+  drawTower();
+  drawZombies();
+  drawArrows();
+  drawParticles();
+  drawFloats();
+
+  // Red vignette when invaded
+  if(G.invaded >= 7){
+    var vig = ctx.createRadialGradient(CX,GY,50,CX,H/2,Math.max(W,H)*0.7);
+    vig.addColorStop(0,'rgba(231,76,60,0)');
+    vig.addColorStop(1,'rgba(231,76,60,'+(0.08+Math.sin(G.gameTime*5)*0.04)+')');
+    ctx.fillStyle=vig; ctx.fillRect(0,0,W,H);
+  }
+}
+
+function drawMoon(){
+  // Moon / fireflies atmosphere
+  ctx.save();
+  ctx.fillStyle='rgba(255,255,220,0.85)';
+  ctx.shadowColor='rgba(255,255,200,0.6)';
+  ctx.shadowBlur=25;
+  ctx.beginPath(); ctx.arc(W*0.8, H*0.12, 28, 0, Math.PI*2); ctx.fill();
+  ctx.shadowBlur=0;
+  // Stars
+  ctx.fillStyle='rgba(255,255,255,0.7)';
+  for(var i=0;i<50;i++){
+    var sx = (Math.sin(i*127.1)*0.5+0.5)*W;
+    var sy = (Math.sin(i*311.7)*0.5+0.5)*GY*0.85;
+    var sr = Math.sin(i*43.5+G.gameTime*(i%3+0.5))*0.5+1;
+    ctx.beginPath(); ctx.arc(sx,sy,sr,0,Math.PI*2); ctx.fill();
+  }
+  // Fireflies
+  for(var i=0;i<12;i++){
+    var fx = (Math.sin(G.gameTime*0.7+i*1.3)*0.4+0.5)*W;
+    var fy = GY - 20 - (Math.sin(G.gameTime*0.5+i*0.9)*0.3+0.5)*150;
+    var alpha = Math.max(0, Math.sin(G.gameTime*2+i*0.8));
+    ctx.fillStyle='rgba(180,255,100,'+alpha*0.8+')';
+    ctx.shadowColor='rgba(180,255,100,'+alpha+')';
+    ctx.shadowBlur=8;
+    ctx.beginPath(); ctx.arc(fx,fy,2,0,Math.PI*2); ctx.fill();
+  }
+  ctx.shadowBlur=0;
+  ctx.restore();
+}
+
+function drawForestBackground(){
+  // Far background trees (darker, smaller)
+  G.trees.filter(function(t){return t.y < GY-30;}).forEach(function(t){
+    drawTree(t, 0.5+t.shade);
+  });
+}
+
+function drawForestForeground(){
+  // Front trees
+  G.trees.filter(function(t){return t.y >= GY-30;}).forEach(function(t){
+    drawTree(t, t.shade);
+  });
+}
+
+function drawTree(t, darkFactor){
+  ctx.save();
+  var alpha = 0.55 + darkFactor*0.3;
+  // Trunk
+  var trunkW = t.w*0.18;
+  var trunkH = t.h*0.3;
+  ctx.fillStyle='rgba(60,35,15,'+alpha+')';
+  ctx.fillRect(t.x - trunkW/2, t.y - trunkH, trunkW, trunkH);
+
+  if(t.variant===0){ // Pine
+    var layers = 3;
+    for(var l=0;l<layers;l++){
+      var layerY = t.y - trunkH - l*(t.h*0.25);
+      var layerW = t.w*(1 - l*0.25);
+      var g2 = 22+Math.floor(darkFactor*30);
+      ctx.fillStyle='rgba(10,'+g2+',10,'+alpha+')';
+      ctx.beginPath();
+      ctx.moveTo(t.x, layerY - t.h*0.35);
+      ctx.lineTo(t.x - layerW/2, layerY);
+      ctx.lineTo(t.x + layerW/2, layerY);
+      ctx.closePath(); ctx.fill();
+    }
+  } else if(t.variant===1){ // Round
+    var g3 = 30+Math.floor(darkFactor*25);
+    ctx.fillStyle='rgba(15,'+g3+',15,'+alpha+')';
+    ctx.beginPath();
+    ctx.arc(t.x, t.y-trunkH-t.h*0.35, t.w*0.45, 0, Math.PI*2);
+    ctx.fill();
+    ctx.fillStyle='rgba(20,'+(g3+10)+',20,'+alpha*0.7+')';
+    ctx.beginPath();
+    ctx.arc(t.x-t.w*0.15, t.y-trunkH-t.h*0.25, t.w*0.35, 0, Math.PI*2);
+    ctx.fill();
+  } else { // Tall thin
+    var g4 = 25+Math.floor(darkFactor*20);
+    ctx.fillStyle='rgba(8,'+g4+',8,'+alpha+')';
+    ctx.beginPath();
+    ctx.moveTo(t.x, t.y-trunkH-t.h*0.7);
+    ctx.lineTo(t.x - t.w*0.38, t.y-trunkH);
+    ctx.lineTo(t.x + t.w*0.38, t.y-trunkH);
+    ctx.closePath(); ctx.fill();
+  }
+  ctx.restore();
+}
+
+function drawGround(){
+  // Ground gradient
+  var gg = ctx.createLinearGradient(0, GY, 0, H);
+  gg.addColorStop(0,'#2d5a1b');
+  gg.addColorStop(0.3,'#1e3f12');
+  gg.addColorStop(1,'#0f2008');
+  ctx.fillStyle = gg;
+  ctx.fillRect(0, GY, W, H-GY);
+
+  // Grass tuft detail
+  ctx.strokeStyle = '#3d6a20';
+  ctx.lineWidth = 2;
+  for(var i=0; i<W; i+=14){
+    ctx.beginPath();
+    ctx.moveTo(i+2, GY);
+    ctx.lineTo(i+6, GY-7);
+    ctx.moveTo(i+8, GY);
+    ctx.lineTo(i+12, GY-5);
+    ctx.stroke();
+  }
+
+  // Path to tower
+  ctx.save();
+  ctx.globalAlpha = 0.3;
+  ctx.fillStyle = '#8b6914';
+  ctx.beginPath();
+  ctx.ellipse(CX, GY, 60, 15, 0, 0, Math.PI*2);
+  ctx.fill();
+  ctx.globalAlpha = 1;
+  ctx.restore();
+}
+
+function drawTower(){
+  var tx=CX, ty=GY;
+
+  // Shadow
+  ctx.save();
+  ctx.globalAlpha=0.35;
+  ctx.fillStyle='#000';
+  ctx.beginPath(); ctx.ellipse(tx, ty+5, TS*0.65, 13, 0, 0, Math.PI*2); ctx.fill();
+  ctx.globalAlpha=1;
+
+  // Base body
+  var tg = ctx.createLinearGradient(tx-TS/2,0,tx+TS/2,0);
+  tg.addColorStop(0,'#7a5c12');
+  tg.addColorStop(0.35,'#c4a35a');
+  tg.addColorStop(0.65,'#d4b36a');
+  tg.addColorStop(1,'#7a5c12');
+  ctx.fillStyle=tg;
+  ctx.fillRect(tx-TS/2, ty-TS*1.85, TS, TS*1.85);
+
+  // Battlements
+  ctx.fillStyle='#c4a35a';
+  for(var i=0;i<5;i++){
+    if(i%2===0) ctx.fillRect(tx-TS/2+i*(TS/4.5), ty-TS*2, TS/5.5, TS*0.28);
+  }
+
+  // Mossy stones
+  ctx.strokeStyle='rgba(0,0,0,0.18)';
+  ctx.lineWidth=1;
+  for(var row=0;row<5;row++){
+    for(var col=0;col<2;col++){
+      var offX=(row%2)*TS/4;
+      ctx.strokeRect(tx-TS/2+offX+col*TS/2, ty-TS*1.85+row*TS*0.34, TS/2, TS*0.34);
+    }
+  }
+  // Moss patches
+  ctx.fillStyle='rgba(40,120,30,0.22)';
+  for(var m=0;m<8;m++){
+    var mx=tx-TS/2+Math.sin(m*2.3)*TS*0.45;
+    var my=ty-TS*0.5-m*TS*0.15;
+    ctx.beginPath(); ctx.ellipse(mx,my,6,4,0,0,Math.PI*2); ctx.fill();
+  }
+
+  // Glowing window
+  ctx.fillStyle='rgba(255,200,80,0.9)';
+  ctx.shadowColor='rgba(255,200,80,0.9)';
+  ctx.shadowBlur=18;
+  ctx.beginPath(); ctx.arc(tx, ty-TS*1.1, TS*0.14, 0, Math.PI*2); ctx.fill();
+  ctx.shadowBlur=0;
+
+  // Door arch
+  ctx.fillStyle='#4a2e08';
+  ctx.beginPath();
+  ctx.rect(tx-TS*0.14, ty-TS*0.42, TS*0.28, TS*0.42);
+  ctx.fill();
+  ctx.beginPath();
+  ctx.arc(tx, ty-TS*0.42, TS*0.14, Math.PI, 0);
+  ctx.fill();
+
+  // Ivy
+  ctx.strokeStyle='rgba(30,140,20,0.4)';
+  ctx.lineWidth=2;
+  for(var v=0;v<3;v++){
+    ctx.beginPath();
+    var vx=tx-TS/2+(v+0.5)*TS/3.5;
+    ctx.moveTo(vx, ty);
+    for(var seg=0;seg<8;seg++){
+      ctx.quadraticCurveTo(vx+Math.sin(seg*1.2)*8,ty-seg*TS*0.2-10,vx+Math.sin((seg+1)*1.2)*5,ty-(seg+1)*TS*0.2);
+    }
+    ctx.stroke();
+  }
+
+  // Archers on tower
+  G.archers.forEach(function(a, idx){
+    var pos = getArcherPos(idx);
+    var isSelected = (INPUT.selectedIdx === idx);
+    // Selection ring
+    if(isSelected){
+      ctx.save();
+      ctx.strokeStyle = '#ffd700';
+      ctx.lineWidth = 3;
+      ctx.shadowColor = '#ffd700';
+      ctx.shadowBlur = 15;
+      ctx.setLineDash([4, 4]);
+      ctx.lineDashOffset = -G.gameTime*20;
+      ctx.beginPath(); ctx.arc(pos.x, pos.y, 32, 0, Math.PI*2); ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.shadowBlur = 0;
+      // Aim line from archer to cursor
+      if(INPUT.cursorX > -1000){
+        ctx.strokeStyle = 'rgba(255,215,0,0.35)';
+        ctx.lineWidth = 1.5;
+        ctx.setLineDash([6, 6]);
+        ctx.lineDashOffset = -G.gameTime*30;
+        ctx.beginPath(); ctx.moveTo(pos.x, pos.y);
+        ctx.lineTo(INPUT.cursorX, INPUT.cursorY);
+        ctx.stroke();
+        ctx.setLineDash([]);
+      }
+      ctx.restore();
+    }
+    drawArcherFig(pos.x, pos.y, a.angle, a.lvl, a.type, isSelected);
+  });
+  ctx.restore();
+}
+
+function getArcherPos(idx){
+  var pos = [
+    {x:CX, y:GY-TS*1.65},
+    {x:CX-TS*0.32, y:GY-TS*0.85},
+    {x:CX+TS*0.32, y:GY-TS*0.85},
+    {x:CX, y:GY-TS*0.45},
+    {x:CX-TS*0.35, y:GY-TS*1.3},
+  ];
+  return pos[idx % pos.length];
+}
+
+function drawArcherFig(x, y, angle, lvl, type, isSelected){
+  var sc = 0.9 + lvl*0.06;
+  ctx.save();
+  ctx.translate(x, y);
+
+  // ── glow ring for high-level or selected archers ──
+  if(lvl >= 5 || isSelected){
+    ctx.shadowColor = isSelected ? '#ffd700' : (type==='sniper'?'#00d4ff':'#ffd700');
+    ctx.shadowBlur = isSelected ? 20 : (12 + lvl*1.5);
+  }
+
+  // rotate everything so archer faces the target
+  ctx.save();
+  ctx.rotate(angle + Math.PI/2); // +90° because we draw "up"
+  ctx.scale(sc, sc);
+
+  var isSniper = type==='sniper';
+  var tunicColor   = isSniper ? '#1a5276' : '#5a3a0a';
+  var tunicLight   = isSniper ? '#2e86c1' : '#8b5e1a';
+  var skinColor    = '#f5c69a';
+  var hairColor    = isSniper ? '#1c1c1c' : '#3d1c00';
+  var bowColor     = isSniper ? '#0a2840' : '#6b3a0a';
+  var stringColor  = isSniper ? '#80d4ff' : '#f0e0b0';
+
+  // ── LEGS (walking bob) ──
+  var legSwing = Math.sin((G.gameTime||0)*8) * 4;
+  // left leg
+  ctx.fillStyle = tunicColor;
+  ctx.beginPath();
+  ctx.moveTo(-3, 8);
+  ctx.lineTo(-5+legSwing, 18);
+  ctx.lineTo(-2+legSwing, 18);
+  ctx.lineTo(0, 8);
+  ctx.fill();
+  // right leg
+  ctx.beginPath();
+  ctx.moveTo(3, 8);
+  ctx.lineTo(5-legSwing, 18);
+  ctx.lineTo(2-legSwing, 18);
+  ctx.lineTo(0, 8);
+  ctx.fill();
+  // boots
+  ctx.fillStyle = '#2c1a00';
+  ctx.beginPath(); ctx.ellipse(-4+legSwing, 18, 4, 2.5, 0, 0, Math.PI*2); ctx.fill();
+  ctx.beginPath(); ctx.ellipse(4-legSwing, 18, 4, 2.5, 0, 0, Math.PI*2); ctx.fill();
+
+  // ── BODY / TUNIC ──
+  var bg = ctx.createLinearGradient(-6,0,6,0);
+  bg.addColorStop(0, tunicColor);
+  bg.addColorStop(0.5, tunicLight);
+  bg.addColorStop(1, tunicColor);
+  ctx.fillStyle = bg;
+  ctx.beginPath();
+  ctx.moveTo(-6, 8);
+  ctx.lineTo(-7, -2);
+  ctx.lineTo(0, -5);
+  ctx.lineTo(7, -2);
+  ctx.lineTo(6, 8);
+  ctx.closePath();
+  ctx.fill();
+
+  // Belt
+  ctx.fillStyle = '#2c1a00';
+  ctx.fillRect(-7, 4, 14, 3);
+  // Belt buckle
+  ctx.fillStyle = '#ffd700';
+  ctx.fillRect(-2, 4, 4, 3);
+
+  // ── QUIVER (on back) ──
+  ctx.fillStyle = '#3d1c00';
+  ctx.fillRect(4, -8, 5, 12);
+  ctx.fillStyle = '#c4a35a';
+  for(var qi=0; qi<3; qi++){
+    ctx.fillRect(5+qi*1.2, -10-qi*0.5, 1.2, 5);
+  }
+
+  // ── DRAW ARM (left, holding bow) ──
+  ctx.fillStyle = skinColor;
+  ctx.beginPath();
+  ctx.moveTo(-6, -2);
+  ctx.quadraticCurveTo(-12, -6, -14, -12);
+  ctx.lineTo(-12, -12);
+  ctx.quadraticCurveTo(-10, -7, -4, -2);
+  ctx.fill();
+
+  // ── PULL ARM (right, drawing string) ──
+  ctx.fillStyle = skinColor;
+  ctx.beginPath();
+  ctx.moveTo(6, -2);
+  ctx.quadraticCurveTo(10, -5, 9, -9);
+  ctx.lineTo(7, -8);
+  ctx.quadraticCurveTo(8, -5, 4, -2);
+  ctx.fill();
+
+  // ── BOW ──
+  ctx.save();
+  ctx.translate(-13, -12);
+  // bow arc
+  ctx.strokeStyle = bowColor;
+  ctx.lineWidth = isSniper ? 3 : 2.5;
+  ctx.beginPath();
+  ctx.arc(0, 0, 10, -Math.PI*0.65, Math.PI*0.65);
+  ctx.stroke();
+  // bow string (pulled back)
+  ctx.strokeStyle = stringColor;
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  var topX = 10*Math.cos(-Math.PI*0.65), topY = 10*Math.sin(-Math.PI*0.65);
+  var botX = 10*Math.cos(Math.PI*0.65),  botY = 10*Math.sin(Math.PI*0.65);
+  ctx.moveTo(topX, topY);
+  ctx.lineTo(6, 0); // pulled back
+  ctx.lineTo(botX, botY);
+  ctx.stroke();
+  // nocked arrow
+  ctx.strokeStyle = '#c4a35a';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.moveTo(topX*0.3, topY*0.3);
+  ctx.lineTo(8, 0);
+  ctx.stroke();
+  // arrowhead
+  ctx.fillStyle = '#aaa';
+  ctx.beginPath(); ctx.moveTo(8,0); ctx.lineTo(11,-1.5); ctx.lineTo(11,1.5); ctx.fill();
+  // feather
+  ctx.fillStyle = '#e74c3c';
+  ctx.beginPath(); ctx.moveTo(topX*0.3,topY*0.3); ctx.lineTo(topX*0.3-3,-2); ctx.lineTo(topX*0.3-3,2); ctx.fill();
+  ctx.restore();
+
+  // ── HEAD ──
+  // helmet / hood
+  ctx.fillStyle = isSniper ? '#1a3a52' : '#3d1c00';
+  ctx.beginPath();
+  ctx.arc(0, -10, 7, Math.PI, 0);
+  ctx.fill();
+  // face
+  ctx.fillStyle = skinColor;
+  ctx.beginPath();
+  ctx.arc(0, -9, 5.5, 0, Math.PI*2);
+  ctx.fill();
+  // eyes
+  ctx.fillStyle = '#1a0a00';
+  ctx.beginPath(); ctx.arc(-2, -9.5, 1.2, 0, Math.PI*2); ctx.fill();
+  ctx.beginPath(); ctx.arc(2, -9.5, 1.2, 0, Math.PI*2); ctx.fill();
+  // eye shine
+  ctx.fillStyle = 'white';
+  ctx.beginPath(); ctx.arc(-1.5, -10, 0.5, 0, Math.PI*2); ctx.fill();
+  ctx.beginPath(); ctx.arc(2.5, -10, 0.5, 0, Math.PI*2); ctx.fill();
+  // sniper scope / headband
+  if(isSniper){
+    ctx.strokeStyle='#00d4ff'; ctx.lineWidth=1.5;
+    ctx.beginPath(); ctx.moveTo(-6,-10); ctx.lineTo(6,-10); ctx.stroke();
+    ctx.fillStyle='#00d4ff';
+    ctx.beginPath(); ctx.arc(3,-10,2,0,Math.PI*2); ctx.fill();
+  } else {
+    ctx.fillStyle = '#5a3a0a';
+    ctx.fillRect(-6, -12, 12, 3);
+    // feather in hat
+    ctx.strokeStyle='#e74c3c'; ctx.lineWidth=1.5;
+    ctx.beginPath(); ctx.moveTo(4,-12); ctx.quadraticCurveTo(7,-17,5,-20); ctx.stroke();
+  }
+
+  // ── LEVEL BADGE ──
+  if(lvl > 1){
+    ctx.fillStyle='rgba(0,0,0,0.6)';
+    ctx.beginPath(); ctx.arc(0, -20, 6, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle='#ffd700';
+    ctx.font='bold 7px Fredoka One';
+    ctx.textAlign='center'; ctx.textBaseline='middle';
+    ctx.fillText('Lv'+lvl, 0, -20);
+  }
+
+  ctx.restore(); // unrotate
+  ctx.shadowBlur = 0;
+  ctx.restore(); // untranslate
+}
+
+function drawWalls(){
+  G.walls.forEach(function(w){
+    if(w.hp<=0) return;
+    var r = w.hp/w.maxHp;
+    ctx.save();
+    ctx.globalAlpha = 0.5+r*0.5;
+    // Wall body
+    ctx.fillStyle='rgba(90,100,110,'+r+')';
+    ctx.strokeStyle='rgba(140,155,170,0.9)';
+    ctx.lineWidth=2;
+    ctx.fillRect(w.x-w.bw/2, w.y-w.bh/2, w.bw, w.bh);
+    ctx.strokeRect(w.x-w.bw/2, w.y-w.bh/2, w.bw, w.bh);
+    // Bricks
+    ctx.strokeStyle='rgba(60,70,80,0.6)';
+    ctx.lineWidth=1;
+    for(var rr=0;rr<3;rr++){
+      var off=(rr%2)*w.bw*0.25;
+      for(var cc=0;cc<2;cc++){
+        ctx.strokeRect(w.x-w.bw/2+off+cc*w.bw/2, w.y-w.bh/2+rr*w.bh/3, w.bw/2, w.bh/3);
+      }
+    }
+    // HP bar
+    ctx.globalAlpha=1;
+    ctx.fillStyle='#333'; ctx.fillRect(w.x-w.bw/2, w.y-w.bh/2-9, w.bw, 5);
+    ctx.fillStyle=r>0.5?'#2ecc71':r>0.25?'#f39c12':'#e74c3c';
+    ctx.fillRect(w.x-w.bw/2, w.y-w.bh/2-9, w.bw*r, 5);
+    ctx.restore();
+  });
+}
+
+function drawZombies(){
+  G.zombies.forEach(function(z){
+    var wobble = Math.sin(z.animT*5)*2.5;
+    var lean   = Math.sin(z.animT*5)*4; // body leans
+    // direction zombie faces (toward tower)
+    var dx = CX - z.x, dy = GY - z.y;
+    var faceAngle = Math.atan2(dy, dx); // angle toward tower
+
+    ctx.save();
+    ctx.translate(z.x, z.y + wobble);
+
+    // ── SHADOW ──
+    ctx.fillStyle='rgba(0,0,0,0.3)';
+    ctx.beginPath(); ctx.ellipse(0, z.r*0.7+4, z.r*0.75, 5, 0, 0, Math.PI*2); ctx.fill();
+
+    // ── rotate entire zombie to face tower ──
+    ctx.rotate(faceAngle - Math.PI/2); // -90° so "up" faces target
+
+    // size scale per zombie type
+    var sc = z.r / 16;
+    ctx.scale(sc, sc);
+
+    // Color palette per type
+    var skinMain, skinDark, eyeColor, outlineC;
+    if(z.type==='normal'){  skinMain='#4a7c35'; skinDark='#2d4d1e'; eyeColor='#ff3300'; outlineC='rgba(30,60,10,0.6)'; }
+    else if(z.type==='fast'){ skinMain='#b8860b'; skinDark='#7a5800'; eyeColor='#ffff00'; outlineC='rgba(100,60,0,0.6)'; }
+    else if(z.type==='armored'){ skinMain='#555f6b'; skinDark='#2d3540'; eyeColor='#00ffff'; outlineC='rgba(20,30,40,0.7)'; }
+    else if(z.type==='giant'){ skinMain='#8b1a1a'; skinDark='#5a0a0a'; eyeColor='#ff6600'; outlineC='rgba(60,0,0,0.7)'; }
+    else { skinMain='#6a2a8a'; skinDark='#3d0a5a'; eyeColor='#ff00ff'; outlineC='rgba(50,0,70,0.8)'; } // boss
+
+    var walkCycle = Math.sin(z.animT*7);
+
+    // ── LEGS ──
+    // left leg
+    ctx.fillStyle = skinDark;
+    ctx.beginPath();
+    ctx.moveTo(-5, 10);
+    ctx.lineTo(-7+walkCycle*5, 22);
+    ctx.lineTo(-3+walkCycle*5, 22);
+    ctx.lineTo(-1, 10);
+    ctx.fill();
+    // right leg
+    ctx.beginPath();
+    ctx.moveTo(5, 10);
+    ctx.lineTo(7-walkCycle*5, 22);
+    ctx.lineTo(3-walkCycle*5, 22);
+    ctx.lineTo(1, 10);
+    ctx.fill();
+    // torn pants / rags on legs
+    ctx.strokeStyle = outlineC; ctx.lineWidth=1;
+    ctx.beginPath(); ctx.moveTo(-6+walkCycle*4,16); ctx.lineTo(-4+walkCycle*4,20); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(6-walkCycle*4,16); ctx.lineTo(4-walkCycle*4,20); ctx.stroke();
+
+    // ── BODY ──
+    var bodyGrad = ctx.createLinearGradient(-10,-8,10,10);
+    bodyGrad.addColorStop(0, skinMain);
+    bodyGrad.addColorStop(1, skinDark);
+    ctx.fillStyle = bodyGrad;
+    // rounded rect body
+    ctx.beginPath();
+    ctx.moveTo(-8, 10);
+    ctx.lineTo(-10, -2);
+    ctx.quadraticCurveTo(-10,-8, -4,-10);
+    ctx.lineTo(4,-10);
+    ctx.quadraticCurveTo(10,-8, 10,-2);
+    ctx.lineTo(8, 10);
+    ctx.closePath();
+    ctx.fill();
+    // torn shirt texture
+    ctx.strokeStyle = outlineC; ctx.lineWidth=1.5;
+    ctx.beginPath(); ctx.moveTo(-8,2); ctx.lineTo(-5,6); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(5,-4); ctx.lineTo(9,0); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(-3,-6); ctx.lineTo(2,-2); ctx.stroke();
+    // ribs hint (scary)
+    ctx.strokeStyle='rgba(0,0,0,0.25)'; ctx.lineWidth=1;
+    for(var rb=0; rb<3; rb++){
+      ctx.beginPath(); ctx.moveTo(-6, -6+rb*4); ctx.lineTo(6,-6+rb*4); ctx.stroke();
+    }
+
+    // ── ARMS (outstretched forward = toward tower) ──
+    // left arm reaching forward
+    ctx.fillStyle = skinMain;
+    ctx.beginPath();
+    ctx.moveTo(-10, -4);
+    ctx.quadraticCurveTo(-18, -8, -20, -16);
+    ctx.lineTo(-17, -17);
+    ctx.quadraticCurveTo(-15, -10, -7, -5);
+    ctx.fill();
+    // left hand (clawed)
+    ctx.fillStyle = skinDark;
+    ctx.beginPath(); ctx.arc(-20, -17, 4, 0, Math.PI*2); ctx.fill();
+    // claws
+    ctx.strokeStyle = '#222'; ctx.lineWidth=1.5;
+    for(var cl=0;cl<3;cl++){
+      ctx.beginPath();
+      ctx.moveTo(-20+cl*2-2, -17);
+      ctx.lineTo(-21+cl*2-2, -23);
+      ctx.stroke();
+    }
+
+    // right arm reaching forward
+    ctx.fillStyle = skinMain;
+    ctx.beginPath();
+    ctx.moveTo(10, -4);
+    ctx.quadraticCurveTo(18, -8, 20, -16);
+    ctx.lineTo(17, -17);
+    ctx.quadraticCurveTo(15, -10, 7, -5);
+    ctx.fill();
+    // right hand
+    ctx.fillStyle = skinDark;
+    ctx.beginPath(); ctx.arc(20, -17, 4, 0, Math.PI*2); ctx.fill();
+    ctx.strokeStyle = '#222'; ctx.lineWidth=1.5;
+    for(var cl=0;cl<3;cl++){
+      ctx.beginPath();
+      ctx.moveTo(18+cl*2, -17);
+      ctx.lineTo(17+cl*2, -23);
+      ctx.stroke();
+    }
+
+    // ── NECK ──
+    ctx.fillStyle = skinMain;
+    ctx.fillRect(-4, -13, 8, 5);
+    // neck bolt (Frankenstein style)
+    if(z.type!=='fast'){
+      ctx.fillStyle='#888';
+      ctx.beginPath(); ctx.rect(-7,-11,3,4); ctx.fill();
+      ctx.beginPath(); ctx.rect(4,-11,3,4); ctx.fill();
+    }
+
+    // ── HEAD ──
+    var headGrad = ctx.createRadialGradient(-3,-22,0,0,-20,12);
+    headGrad.addColorStop(0, skinMain);
+    headGrad.addColorStop(1, skinDark);
+    ctx.fillStyle = headGrad;
+    // lumpy skull shape
+    ctx.beginPath();
+    ctx.moveTo(-9, -14);
+    ctx.quadraticCurveTo(-12, -20, -10, -28);
+    ctx.quadraticCurveTo(-6, -34, 0, -33);
+    ctx.quadraticCurveTo(7, -34, 10, -28);
+    ctx.quadraticCurveTo(12, -20, 9, -14);
+    ctx.closePath();
+    ctx.fill();
+    // skull cracks
+    ctx.strokeStyle='rgba(0,0,0,0.35)'; ctx.lineWidth=1;
+    ctx.beginPath(); ctx.moveTo(-4,-28); ctx.lineTo(-2,-23); ctx.lineTo(-5,-20); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(3,-30); ctx.lineTo(5,-25); ctx.stroke();
+
+    // ── GLOWING EYES ──
+    ctx.shadowColor = eyeColor;
+    ctx.shadowBlur = 10;
+    ctx.fillStyle = eyeColor;
+    ctx.beginPath(); ctx.ellipse(-4, -22, 3, 2.5, -0.2, 0, Math.PI*2); ctx.fill();
+    ctx.beginPath(); ctx.ellipse(4, -22, 3, 2.5, 0.2, 0, Math.PI*2); ctx.fill();
+    ctx.shadowBlur = 0;
+    // pupils (black slit)
+    ctx.fillStyle='rgba(0,0,0,0.8)';
+    ctx.beginPath(); ctx.ellipse(-4,-22,1,2,0,0,Math.PI*2); ctx.fill();
+    ctx.beginPath(); ctx.ellipse(4,-22,1,2,0,0,Math.PI*2); ctx.fill();
+
+    // ── MOUTH (scary jagged) ──
+    ctx.fillStyle='#1a0000';
+    ctx.beginPath();
+    ctx.moveTo(-6,-15);
+    ctx.lineTo(-4,-17); ctx.lineTo(-2,-15);
+    ctx.lineTo(0,-17); ctx.lineTo(2,-15);
+    ctx.lineTo(4,-17); ctx.lineTo(6,-15);
+    ctx.closePath();
+    ctx.fill();
+    // teeth
+    ctx.fillStyle='rgba(230,220,180,0.9)';
+    for(var t=0;t<3;t++){
+      ctx.beginPath(); ctx.moveTo(-4+t*3,-15); ctx.lineTo(-3+t*3,-17.5); ctx.lineTo(-2+t*3,-15); ctx.fill();
+    }
+
+    // ── ARMOR PLATE (armored type) ──
+    if(z.type==='armored'){
+      ctx.fillStyle='rgba(120,140,160,0.85)';
+      ctx.strokeStyle='#9aa8b5'; ctx.lineWidth=1.5;
+      ctx.beginPath();
+      ctx.moveTo(-9,-2); ctx.lineTo(-11,8); ctx.lineTo(11,8); ctx.lineTo(9,-2); ctx.closePath();
+      ctx.fill(); ctx.stroke();
+      // rivets
+      ctx.fillStyle='#ccd'; [[-7,2],[7,2],[0,6]].forEach(function(p){ ctx.beginPath(); ctx.arc(p[0],p[1],1.5,0,Math.PI*2); ctx.fill(); });
+    }
+
+    // ── CROWN (boss type) ──
+    if(z.type==='boss'){
+      ctx.fillStyle='#ffd700';
+      ctx.strokeStyle='#b8860b'; ctx.lineWidth=1.5;
+      ctx.beginPath();
+      ctx.moveTo(-10,-32); ctx.lineTo(-10,-38); ctx.lineTo(-6,-34);
+      ctx.lineTo(0,-40); ctx.lineTo(6,-34); ctx.lineTo(10,-38); ctx.lineTo(10,-32);
+      ctx.closePath(); ctx.fill(); ctx.stroke();
+      // gems
+      ctx.fillStyle='#e74c3c'; ctx.beginPath(); ctx.arc(0,-37,2,0,Math.PI*2); ctx.fill();
+      ctx.fillStyle='#3498db'; ctx.beginPath(); ctx.arc(-7,-35,1.5,0,Math.PI*2); ctx.fill();
+      ctx.fillStyle='#2ecc71'; ctx.beginPath(); ctx.arc(7,-35,1.5,0,Math.PI*2); ctx.fill();
+    }
+
+    // ── HP BAR (above head) ──
+    var hpr = z.hp/z.maxHp;
+    ctx.fillStyle='rgba(0,0,0,0.6)'; ctx.fillRect(-14,-42,28,5);
+    var hpC = hpr>0.6?'#2ecc71':hpr>0.3?'#f39c12':'#e74c3c';
+    ctx.fillStyle=hpC; ctx.fillRect(-14,-42,28*hpr,5);
+    // level badge
+    ctx.fillStyle='rgba(0,0,0,0.75)';
+    ctx.beginPath(); ctx.arc(16,-40,7,0,Math.PI*2); ctx.fill();
+    ctx.fillStyle='white'; ctx.font='bold 7px Nunito';
+    ctx.textAlign='center'; ctx.textBaseline='middle';
+    ctx.fillText('L'+z.lvl, 16, -40);
+
+    ctx.restore();
+  });
+}
+
+function drawArrows(){
+  G.arrows.forEach(function(ar){
+    ctx.save();
+    ctx.translate(ar.x, ar.y);
+    ctx.rotate(ar.angle);
+    if(ar.type==='sniper'){
+      ctx.fillStyle='#3498db';
+      ctx.shadowColor='#3498db'; ctx.shadowBlur=8;
+      ctx.fillRect(-9,-2,18,4);
+    } else {
+      ctx.fillStyle='#c4a35a';
+      ctx.shadowColor='#ffd700'; ctx.shadowBlur=5;
+      ctx.fillRect(-7,-1.5,14,3);
+      // Arrow tip
+      ctx.fillStyle='#888';
+      ctx.beginPath(); ctx.moveTo(7,-3); ctx.lineTo(12,0); ctx.lineTo(7,3); ctx.fill();
+    }
+    ctx.shadowBlur=0;
+    ctx.restore();
+  });
+}
+
+function drawParticles(){
+  G.particles.forEach(function(p){
+    ctx.globalAlpha = p.life/p.maxLife;
+    ctx.fillStyle = p.color;
+    ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill();
+  });
+  ctx.globalAlpha=1;
+}
+
+function drawFloats(){
+  G.floats.forEach(function(f){
+    ctx.globalAlpha = Math.min(f.life,1);
+    ctx.fillStyle = f.color;
+    ctx.font = 'bold 18px "Fredoka One",cursive';
+    ctx.textAlign='center'; ctx.textBaseline='middle';
+    ctx.shadowColor='rgba(0,0,0,0.8)'; ctx.shadowBlur=4;
+    ctx.fillText(f.text, f.x, f.y);
+    ctx.shadowBlur=0;
+  });
+  ctx.globalAlpha=1;
+}
+
+// ═══════════════════════════════════════════════════
+// HELPERS
+// ═══════════════════════════════════════════════════
+function lighten(hex, amt){
+  var r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16);
+  return 'rgb('+Math.min(255,r+amt)+','+Math.min(255,g+amt)+','+Math.min(255,b+amt)+')';
+}
+
+function spawnParticles(x,y,color,n){
+  for(var i=0;i<n;i++){
+    var a=Math.random()*Math.PI*2, s=50+Math.random()*150;
+    G.particles.push({x:x,y:y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,color:color,r:2+Math.random()*4,life:0.6+Math.random()*0.5,maxLife:1.1});
+  }
+}
+
+function addFloat(x,y,text,color){
+  G.floats.push({x:x,y:y,text:text,color:color,life:1.5});
+}
+
+// ═══════════════════════════════════════════════════
+// BUY
+// ═══════════════════════════════════════════════════
+function buy(type){
+  var cost = COSTS[type];
+  if(G.coins < cost){ addFloat(CX, H/2, T('notEnough'), '#ff6b6b'); return; }
+
+  if(type==='archer'){
+    if(G.archers.length>=5){ addFloat(CX,H/2,T('maxArch'),'#ff6b6b'); return; }
+    G.archers.push({lvl:1,type:'archer',angle:0,shootTimer:0});
+    G.coins-=cost;
+    addFloat(CX,GY-TS*1.8,T('archAdded'),'#3498db');
+  }
+  else if(type==='upgrade'){
+    var a=G.archers[0];
+    if(a.lvl>=10){ addFloat(CX,H/2,T('maxLvl'),'#ff6b6b'); return; }
+    a.lvl++;
+    G.coins-=cost;
+    addFloat(CX,GY-TS*1.8,T('upgraded'),'#9b59b6');
+  }
+  else if(type==='wall'){
+    if(G.walls.length>=4){ addFloat(CX,H/2,T('maxWall'),'#ff6b6b'); return; }
+    var wps=[
+      {x:CX-115,y:GY-25},{x:CX+115,y:GY-25},
+      {x:CX-65,y:GY-25},{x:CX+65,y:GY-25}
+    ];
+    var wp=wps[G.walls.length];
+    G.walls.push({x:wp.x,y:wp.y,bw:28,bh:55,hp:100,maxHp:100});
+    G.coins-=cost;
+    addFloat(wp.x,wp.y-40,T('wallBuilt'),'#95a5a6');
+  }
+  else if(type==='sniper'){
+    if(G.archers.length>=5){ addFloat(CX,H/2,T('maxArch'),'#ff6b6b'); return; }
+    G.archers.push({lvl:1,type:'sniper',angle:0,shootTimer:0});
+    G.coins-=cost;
+    addFloat(CX,GY-TS*1.8,T('sniperAdded'),'#1abc9c');
+  }
+  updateHUD();
+}
+
+// ═══════════════════════════════════════════════════
+// QUIZ
+// ═══════════════════════════════════════════════════
+var QS = {};
+
+function openQuiz(){
+  G.paused=true;
+  QS={subj:null,diff:null};
+  document.getElementById('qS1').style.display='block';
+  document.getElementById('qS2').style.display='none';
+  document.getElementById('qS3').style.display='none';
+  document.getElementById('qModal').classList.remove('hidden');
+}
+
+function closeQuiz(){
+  document.getElementById('qModal').classList.add('hidden');
+  G.paused=false;
+}
+
+function pickSubj(s){
+  QS.subj=s;
+  document.getElementById('qS1').style.display='none';
+  document.getElementById('qS2').style.display='block';
+}
+
+function pickDiff(d){
+  QS.diff=d;
+  QS.reward=REWARDS[d];
+  var q=getQ(QS.subj,d);
+  QS.question=q;
+
+  document.getElementById('qS2').style.display='none';
+  document.getElementById('qS3').style.display='block';
+  document.getElementById('qTxt').textContent=q.q;
+
+  var grid=document.getElementById('aGrid');
+  grid.innerHTML='';
+  q.a.forEach(function(ans,idx){
+    var btn=document.createElement('button');
+    btn.className='abtn';
+    btn.textContent=ans;
+    btn.onclick=function(){ checkAns(idx, btn); };
+    grid.appendChild(btn);
+  });
+}
+
+function checkAns(idx, btn){
+  var all=document.querySelectorAll('.abtn');
+  all.forEach(function(b){b.onclick=null;});
+  if(idx===QS.question.c){
+    btn.classList.add('correct');
+    var earned=QS.reward;
+    G.coins+=earned; G.questionsOk++;
+    updateHUD();
+    setTimeout(function(){
+      closeQuiz();
+      showCoinPop(earned);
+      addFloat(CX,GY-TS*2,'+'+earned+'🪙','#ffd700');
+    },800);
+  } else {
+    btn.classList.add('wrong');
+    all[QS.question.c].classList.add('correct');
+    setTimeout(function(){
+      document.getElementById('qS3').style.display='none';
+      document.getElementById('qS1').style.display='block';
+    },1300);
+  }
+}
+
+function showCoinPop(n){
+  var el=document.getElementById('coinPop');
+  el.textContent='+'+n+' 🪙';
+  el.style.display='block';
+  el.style.animation='none';
+  void el.offsetWidth;
+  el.style.animation='cpopA 1.5s forwards';
+  setTimeout(function(){el.style.display='none';},1500);
+}
+
+// ═══════════════════════════════════════════════════
+// WAVE ANNOUNCE
+// ═══════════════════════════════════════════════════
+var annTimer;
+function showWaveAnn(){
+  var el=document.getElementById('waveAnn');
+  var isBoss=G.wave%5===0;
+  el.textContent = isBoss ? TX[LANG].bann(G.wave) : TX[LANG].wann(G.wave);
+  el.style.display='block';
+  el.style.animation='none';
+  void el.offsetWidth;
+  el.style.animation='wann 2s forwards';
+  clearTimeout(annTimer);
+  annTimer=setTimeout(function(){el.style.display='none';},2000);
+}
+
+// ═══════════════════════════════════════════════════
+// HUD
+// ═══════════════════════════════════════════════════
+function updateHUD(){
+  document.getElementById('hCoins').textContent=G.coins;
+  document.getElementById('hWave').textContent=G.wave;
+  document.getElementById('hInv').textContent=G.invaded+'/10';
+  document.getElementById('hArch').textContent=G.archers.length;
+  var btns={archer:'bArcher',upgrade:'bUpgrade',wall:'bWall',sniper:'bSniper'};
+  Object.keys(COSTS).forEach(function(k){
+    var el=document.getElementById(btns[k]);
+    if(el) el.disabled=(G.coins<COSTS[k]);
+  });
+}
+
+// ═══════════════════════════════════════════════════
+// END GAME
+// ═══════════════════════════════════════════════════
+function endGame(){
+  G.over=true; G.paused=true;
+  setTimeout(function(){
+    document.getElementById('gScreen').classList.add('hidden');
+    var rs=document.getElementById('rScreen');
+    rs.classList.remove('hidden');
+    document.getElementById('rEmo').textContent='💀';
+    document.getElementById('rTitle').textContent=T('loseTitle');
+    document.getElementById('rTitle').style.color='#e74c3c';
+    document.getElementById('rStats').innerHTML=TX[LANG].stats(G.wave,G.killed,G.questionsOk);
+    document.getElementById('lRestart').textContent=TX[LANG].restart;
+  }, 400);
+}
+
+// ═══════════════════════════════════════════════════
+// START / RESTART
+// ═══════════════════════════════════════════════════
+function startGame(){
+  document.getElementById('sScreen').classList.add('hidden');
+  document.getElementById('gScreen').classList.remove('hidden');
+  resize();
+  initState();
+  showWaveAnn();
+  if(RAF) cancelAnimationFrame(RAF);
+  prevT=performance.now();
+  RAF=requestAnimationFrame(loop);
+}
+
+function restartGame(){
+  document.getElementById('rScreen').classList.add('hidden');
+  document.getElementById('gScreen').classList.remove('hidden');
+  resize();
+  initState();
+  showWaveAnn();
+  G.paused=false; G.over=false;
+  prevT=performance.now();
+  if(RAF) cancelAnimationFrame(RAF);
+  RAF=requestAnimationFrame(loop);
+}
+
+// ═══════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════
+resize();
+</script>
+</body>
+</html>
