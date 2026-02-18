@@ -3,6 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JC7JMKPQJD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JC7JMKPQJD');
+</script>
 <title>Tower of Knowledge | برج المعرفة</title>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@700;800&family=Tajawal:wght@700;800&display=swap" rel="stylesheet">
 <style>
@@ -96,7 +105,25 @@ body{font-family:'Nunito','Tajawal',sans-serif;background:#1a3d1a;overflow:hidde
 .rbtn{padding:15px 48px;background:linear-gradient(135deg,#f39c12,#e74c3c);color:#fff;font-family:'Fredoka One','Tajawal',cursive;font-size:1.35rem;border:none;border-radius:50px;cursor:pointer;transition:all .2s}
 .rbtn:hover{transform:scale(1.06)}
 
-/* ── OVERLAYS ── */
+/* ── VICTORY ── */
+#vScreen{background:linear-gradient(180deg,#0a1f0a 0%,#1a4d1a 50%,#2d6b1b 100%);z-index:200}
+.vemo{font-size:clamp(3.5rem,12vw,6rem);animation:vbounce .7s cubic-bezier(.34,1.56,.64,1)}
+@keyframes vbounce{from{transform:scale(0) rotate(-15deg);opacity:0}to{transform:scale(1) rotate(0deg);opacity:1}}
+.vtitle{font-family:'Fredoka One','Tajawal',cursive;font-size:clamp(1.6rem,6vw,2.8rem);text-align:center;color:#ffd700;text-shadow:0 0 30px rgba(255,215,0,.8)}
+.vstars{font-size:clamp(1.8rem,7vw,3rem);letter-spacing:8px;animation:starPop .5s .3s both}
+@keyframes starPop{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
+.vstats{background:rgba(255,255,255,.07);border:2px solid rgba(255,215,0,.25);border-radius:18px;padding:16px 28px;text-align:center;color:rgba(255,255,255,.85);font-size:1rem;line-height:2.1;margin:10px 0}
+.vreward{background:rgba(255,215,0,.12);border:2px solid rgba(255,215,0,.4);border-radius:14px;padding:12px 24px;color:#ffd700;font-family:'Fredoka One','Tajawal',cursive;font-size:1.1rem;text-align:center;animation:glow 1.5s ease-in-out infinite alternate}
+@keyframes glow{from{box-shadow:0 0 10px rgba(255,215,0,.3)}to{box-shadow:0 0 25px rgba(255,215,0,.7)}}
+.vbtns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:6px}
+.vbtn-cont{padding:14px 36px;background:linear-gradient(135deg,#27ae60,#2ecc71);color:#fff;font-family:'Fredoka One','Tajawal',cursive;font-size:1.2rem;border:none;border-radius:50px;cursor:pointer;transition:all .2s;box-shadow:0 6px 20px rgba(46,204,113,.4)}
+.vbtn-cont:hover{transform:scale(1.06) translateY(-2px)}
+.vbtn-back{padding:14px 36px;background:rgba(255,255,255,.1);border:2px solid rgba(255,255,255,.25);color:rgba(255,255,255,.8);font-family:'Fredoka One','Tajawal',cursive;font-size:1.1rem;border-radius:50px;cursor:pointer;transition:all .2s}
+.vbtn-back:hover{background:rgba(255,255,255,.2)}
+/* confetti particles */
+.confetti-wrap{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:hidden}
+.conf{position:absolute;width:10px;height:10px;animation:fall linear forwards}
+@keyframes fall{0%{transform:translateY(-20px) rotate(0deg);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
 #waveAnn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Fredoka One','Tajawal',cursive;font-size:clamp(1.4rem,5.5vw,2.8rem);color:#fff;text-shadow:0 0 25px rgba(100,255,100,.7);background:rgba(10,50,10,.85);border:3px solid rgba(100,255,100,.5);border-radius:18px;padding:14px 38px;text-align:center;pointer-events:none;z-index:50;display:none;animation:wann 2s forwards}
 @keyframes wann{0%{opacity:0;transform:translate(-50%,-50%) scale(.5)}20%{opacity:1;transform:translate(-50%,-50%) scale(1.1)}80%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-50%) scale(.8)}}
 #coinPop{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Fredoka One',cursive;font-size:clamp(1.4rem,5vw,2.4rem);color:#ffd700;text-shadow:0 0 20px rgba(255,215,0,.8);pointer-events:none;z-index:50;display:none;animation:cpopA 1.5s forwards}
@@ -118,14 +145,22 @@ body{font-family:'Nunito','Tajawal',sans-serif;background:#1a3d1a;overflow:hidde
   </div>
   <button class="startBtn" id="sBtnMain" onclick="startGame()">🎮 Play Now!</button>
   <div class="howTo" id="howToTxt">Defend your tower from zombies!<br>Earn coins by answering questions!</div>
-  <div style="margin-top:18px;text-align:center;opacity:0.55;font-size:0.78rem;color:#a8e6a0;line-height:1.8">
-    <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:0.12em;color:rgba(168,230,160,0.5);margin-bottom:2px">Developed by</div>
-    <div style="font-family:'Fredoka One',cursive;font-size:1rem;color:#a8e6a0;letter-spacing:0.04em">Kosay Alassaf</div>
-    <a href="https://kosayalassaf.github.io/" target="_blank" rel="noopener"
-       style="color:rgba(168,230,160,0.6);text-decoration:none;font-size:0.72rem;border-bottom:1px solid rgba(168,230,160,0.3);padding-bottom:1px;transition:color .2s"
-       onmouseover="this.style.color='#a8e6a0'" onmouseout="this.style.color='rgba(168,230,160,0.6)'">
-      Kosay Alassaf | Portfolio
-    </a>
+  <div style="margin-top:18px;text-align:center;display:flex;gap:28px;justify-content:center;flex-wrap:wrap">
+    <div style="opacity:0.6;font-size:0.78rem;color:#a8e6a0;line-height:1.9">
+      <div style="font-size:0.6rem;text-transform:uppercase;letter-spacing:0.13em;color:rgba(168,230,160,0.45);margin-bottom:2px">Programmed by</div>
+      <div style="font-family:'Fredoka One',cursive;font-size:0.95rem;color:#a8e6a0">Kosay Alassaf</div>
+      <a href="https://kosayalassaf.github.io/" target="_blank" rel="noopener"
+         style="color:rgba(168,230,160,0.55);text-decoration:none;font-size:0.68rem;border-bottom:1px solid rgba(168,230,160,0.25);padding-bottom:1px"
+         onmouseover="this.style.color='#a8e6a0'" onmouseout="this.style.color='rgba(168,230,160,0.55)'">
+        Portfolio ↗
+      </a>
+    </div>
+    <div style="width:1px;background:rgba(168,230,160,0.15);margin:4px 0"></div>
+    <div style="opacity:0.6;font-size:0.78rem;color:#a8e6a0;line-height:1.9">
+      <div style="font-size:0.6rem;text-transform:uppercase;letter-spacing:0.13em;color:rgba(168,230,160,0.45);margin-bottom:2px">Scenario & Design</div>
+      <div style="font-family:'Fredoka One',cursive;font-size:0.95rem;color:#a8e6a0">Shakoup Alrezk</div>
+      <div style="font-family:'Fredoka One',cursive;font-size:0.95rem;color:#a8e6a0">Augusten Alrezk</div>
+    </div>
   </div>
 </div>
 
@@ -209,6 +244,20 @@ body{font-family:'Nunito','Tajawal',sans-serif;background:#1a3d1a;overflow:hidde
   <button class="rbtn" onclick="restartGame()">🔄 <span id="lRestart">Play Again</span></button>
 </div>
 
+<!-- VICTORY SCREEN -->
+<div class="screen hidden" id="vScreen">
+  <div class="confetti-wrap" id="confettiWrap"></div>
+  <div class="vemo">🏆</div>
+  <div class="vstars" id="vStars">⭐⭐⭐</div>
+  <div class="vtitle" id="vTitle">Checkpoint Cleared!</div>
+  <div class="vstats" id="vStats"></div>
+  <div class="vreward" id="vReward">🪙 +15 Bonus Coins!</div>
+  <div class="vbtns">
+    <button class="vbtn-cont" onclick="continueGame()" id="vContinueBtn">▶ Continue</button>
+    <button class="vbtn-back" onclick="restartGame()">🔄 <span id="vRestart">Restart</span></button>
+  </div>
+</div>
+
 <script>
 // ═══════════════════════════════════════════════════
 // LANGUAGE
@@ -231,6 +280,10 @@ var TX = {
     maxLvl:'Already at max level!', maxWall:'No more wall space!',
     upgraded:'Upgraded! ⬆️', wallBuilt:'Wall built! 🧱',
     archAdded:'Archer added! 🏹', sniperAdded:'Sniper added! 🎯',
+    vcTitle:function(w){return '🏆 Waves 1–'+w+' Cleared!'},
+    vcStats:function(k,q,c){return 'Zombies defeated: '+k+'<br>Questions answered: '+q+'<br>Coins earned: '+c},
+    vcReward:function(b){return '🪙 +'+b+' Bonus Coins!'},
+    vcContinue:'▶ Continue',
   },
   ar:{
     startBtn:'🎮 العب الآن!', howTo:'دافع عن برجك ضد الزومبي!<br>اربح كوينز بالإجابة على الأسئلة!',
@@ -248,6 +301,10 @@ var TX = {
     maxLvl:'وصلت للمستوى الأعلى!', maxWall:'لا يوجد مكان لجدار آخر!',
     upgraded:'تمت الترقية! ⬆️', wallBuilt:'جدار جديد! 🧱',
     archAdded:'تمت إضافة رامٍ! 🏹', sniperAdded:'تمت إضافة قناص! 🎯',
+    vcTitle:function(w){return '🏆 اجتزت الموجات 1–'+w+'!'},
+    vcStats:function(k,q,c){return 'الزومبي المقتولون: '+k+'<br>الأسئلة المجابة: '+q+'<br>الكوينز المكتسبة: '+c},
+    vcReward:function(b){return '🪙 +'+b+' كوينز مكافأة!'},
+    vcContinue:'▶ استمر',
   }
 };
 function T(k){return TX[LANG][k]||k;}
@@ -320,6 +377,23 @@ var QDB = {
       {q:"0.75 as a fraction:",ar:"0.75 كسراً:",a:["3/4","7/5","5/8","3/5"],c:0},
       {q:"Sum of angles in a triangle = ?",ar:"مجموع زوايا المثلث = ؟",a:["180°","360°","90°","270°"],c:0},
       {q:"144 ÷ 12 = ?",ar:"144 ÷ 12 = ؟",a:["12","11","13","14"],c:0},
+      {q:"7 × 8 = ?",ar:"7 × 8 = ؟",a:["56","54","58","48"],c:0},
+      {q:"What is 50% of 200?",ar:"ما هو 50% من 200؟",a:["100","50","150","25"],c:0},
+      {q:"Which is an even number?",ar:"أي من التالي عدد زوجي؟",a:["38","37","41","53"],c:0},
+      {q:"5³ = ?",ar:"5³ = ؟",a:["125","15","25","625"],c:0},
+      {q:"Perimeter of square, side=9?",ar:"محيط مربع طول ضلعه 9؟",a:["36","18","81","27"],c:0},
+      {q:"How many minutes in 3 hours?",ar:"كم دقيقة في 3 ساعات؟",a:["180","120","240","60"],c:0},
+      {q:"0.1 + 0.9 = ?",ar:"0.1 + 0.9 = ؟",a:["1.0","0.10","1.9","0.19"],c:0},
+      {q:"Largest of: 2/3, 3/4, 1/2?",ar:"أكبر قيمة: 2/3، 3/4، 1/2؟",a:["3/4","2/3","1/2","Equal"],c:0},
+      {q:"What is the square root of 49?",ar:"ما هو الجذر التربيعي لـ 49؟",a:["7","6","8","9"],c:0},
+      {q:"200 × 0 = ?",ar:"200 × 0 = ؟",a:["0","200","1","20"],c:0},
+      {q:"Which shape has 3 sides?",ar:"أي شكل له 3 أضلاع؟",a:["Triangle|مثلث","Square|مربع","Pentagon|خماسي","Circle|دائرة"],c:0},
+      {q:"35 ÷ 5 = ?",ar:"35 ÷ 5 = ؟",a:["7","6","8","9"],c:0},
+      {q:"What is 10% of 500?",ar:"ما هو 10% من 500؟",a:["50","100","5","500"],c:0},
+      {q:"Next number: 2, 4, 8, 16, ___?",ar:"العدد التالي: 2، 4، 8، 16، ___؟",a:["32","20","24","30"],c:0},
+      {q:"How many sides does a hexagon have?",ar:"كم ضلعاً في الشكل السداسي؟",a:["6","5","7","8"],c:0},
+      {q:"1/2 + 1/4 = ?",ar:"1/2 + 1/4 = ؟",a:["3/4","2/6","1/6","2/4"],c:0},
+      {q:"456 rounded to nearest hundred?",ar:"456 مقرّبة لأقرب مئة؟",a:["500","400","450","460"],c:0},
     ],
     medium:[
       {q:"Solve: 3x + 9 = 24",ar:"حل: 3س + 9 = 24",a:["x=5","x=4","x=6","x=3"],c:0},
@@ -344,6 +418,20 @@ var QDB = {
       {q:"1.5 × 1.5 = ?",ar:"1.5 × 1.5 = ؟",a:["2.25","3.0","1.75","2.5"],c:0},
       {q:"If 3y = 21, y = ?",ar:"إذا كان 3ص = 21، ص = ؟",a:["7","6","8","9"],c:0},
       {q:"Convert 2.5 hours to minutes?",ar:"حوّل 2.5 ساعة إلى دقائق؟",a:["150","125","200","100"],c:0},
+      {q:"Solve: 7x - 3 = 25",ar:"حل: 7س - 3 = 25",a:["x=4","x=3","x=5","x=6"],c:0},
+      {q:"What is 15% of 80?",ar:"ما هو 15% من 80؟",a:["12","15","10","8"],c:0},
+      {q:"Area of rectangle: 12cm × 7cm?",ar:"مساحة مستطيل: 12سم × 7سم؟",a:["84 cm²","38 cm²","96 cm²","19 cm²"],c:0},
+      {q:"Average of: 10, 20, 30, 40?",ar:"متوسط: 10، 20، 30، 40؟",a:["25","20","30","100"],c:0},
+      {q:"5! (5 factorial) = ?",ar:"5! = ؟",a:["120","60","24","25"],c:0},
+      {q:"Angles in quadrilateral sum to:",ar:"مجموع زوايا الرباعي = ؟",a:["360°","180°","270°","720°"],c:0},
+      {q:"Distance = Speed × Time. s=45, t=3. d=?",ar:"مسافة = سرعة × زمن. س=45، ز=3. م=؟",a:["135","48","15","108"],c:0},
+      {q:"Two numbers sum=50, difference=10. Larger?",ar:"عددان مجموعهما 50 وفرقهما 10. الأكبر؟",a:["30","20","40","25"],c:0},
+      {q:"Median of: 3, 7, 9, 12, 15?",ar:"الوسيط لـ: 3، 7، 9، 12، 15؟",a:["9","7","12","3"],c:0},
+      {q:"√144 = ?",ar:"√144 = ؟",a:["12","11","13","14"],c:0},
+      {q:"If a rectangle area = 60 and width = 5, length = ?",ar:"إذا كانت مساحة مستطيل = 60 وعرضه = 5، الطول = ؟",a:["12","10","15","55"],c:0},
+      {q:"3x + 2y = 20 and x = 4. Find y.",ar:"3س + 2ص = 20 وس = 4. أوجد ص.",a:["4","8","6","2"],c:0},
+      {q:"What is 20% increase of 150?",ar:"زيادة 20% على 150 تعطي؟",a:["180","170","200","160"],c:0},
+      {q:"How many diagonals in a pentagon?",ar:"كم قطراً في الخماسي؟",a:["5","3","4","10"],c:0},
     ],
     hard:[
       {q:"x² - 5x + 6 = 0. Sum of solutions?",ar:"س² - 5س + 6 = 0. مجموع الحلول؟",a:["5","6","3","2"],c:0},
@@ -362,6 +450,20 @@ var QDB = {
       {q:"If log₁₀(1000) = ?",ar:"ما هو log₁₀(1000)؟",a:["3","100","10","1000"],c:0},
       {q:"Solve: |2x - 4| = 10. One solution?",ar:"حل: |2س - 4| = 10. أحد الحلول؟",a:["7","3","5","8"],c:0},
       {q:"Arithmetic sequence: 3,7,11... 10th term?",ar:"متتالية حسابية: 3،7،11... الحد العاشر؟",a:["39","35","43","40"],c:0},
+      {q:"x² + 4x + 4 = 0. Solution?",ar:"س² + 4س + 4 = 0. الحل؟",a:["x=-2","x=2","x=4","x=0"],c:0},
+      {q:"log₂(32) = ?",ar:"log₂(32) = ؟",a:["5","4","6","3"],c:0},
+      {q:"Geometric sequence: 3, 6, 12... 6th term?",ar:"متتالية هندسية: 3، 6، 12... الحد السادس؟",a:["96","48","192","64"],c:0},
+      {q:"Circle area = 154. r = ? (π≈22/7)",ar:"مساحة دائرة = 154. نصف القطر = ؟ (π≈22/7)",a:["7","11","14","3.5"],c:0},
+      {q:"If sin(30°) = 0.5, find sin²(30°) + cos²(30°).",ar:"إذا sin(30°) = 0.5، أوجد sin²(30°) + cos²(30°).",a:["1","0.5","1.5","0.75"],c:0},
+      {q:"Vertex of y = x² - 6x + 5?",ar:"رأس القطع المكافئ y = س² - 6س + 5؟",a:["(3,-4)","(6,5)","(0,5)","(-3,4)"],c:0},
+      {q:"Sum of first 10 natural numbers?",ar:"مجموع أول 10 أعداد طبيعية؟",a:["55","45","50","100"],c:0},
+      {q:"Probability of rolling 6 on a die?",ar:"احتمال ظهور 6 على نرد؟",a:["1/6","1/3","1/2","1/4"],c:0},
+      {q:"Volume of sphere r=3? (π≈3.14)",ar:"حجم كرة نصف قطرها 3؟ (π≈3.14)",a:["113.04","37.68","150","28.26"],c:0},
+      {q:"(2x - 3)² expanded = ?",ar:"(2س - 3)² بعد التوسيع = ؟",a:["4x²-12x+9","4x²-6x+9","4x²+9","2x²-9"],c:0},
+      {q:"If P(A)=0.3, P(not A) = ?",ar:"إذا P(A)=0.3، فـ P(ليس A) = ؟",a:["0.7","0.3","1.3","0"],c:0},
+      {q:"Slope between (2,3) and (6,11)?",ar:"الميل بين النقطتين (2،3) و(6،11)؟",a:["2","4","0.5","8"],c:0},
+      {q:"4! ÷ 2! = ?",ar:"4! ÷ 2! = ؟",a:["12","4","6","24"],c:0},
+      {q:"tan(45°) = ?",ar:"tan(45°) = ؟",a:["1","0","√2","0.5"],c:0},
     ]
   },
   science:{
@@ -392,6 +494,17 @@ var QDB = {
       {q:"Which planet is known as the Red Planet?",ar:"أي كوكب يُعرف بالكوكب الأحمر؟",a:["Mars|المريخ","Jupiter|المشتري","Venus|الزهرة","Saturn|زحل"],c:0},
       {q:"Roots of a plant absorb:",ar:"جذور النبات تمتص:",a:["Water & minerals|ماء ومعادن","Sunlight|ضوء شمس","CO₂|ثاني أكسيد الكربون","Oxygen|أكسجين"],c:0},
       {q:"Blood color is red due to:",ar:"لون الدم أحمر بسبب:",a:["Hemoglobin|الهيموغلوبين","Iron only|الحديد فقط","Red cells only|الخلايا الحمراء فقط","Plasma|البلازما"],c:0},
+      {q:"Which animal lays eggs?",ar:"أي حيوان يضع بيضاً؟",a:["Crocodile|تمساح","Dog|كلب","Cow|بقرة","Rabbit|أرنب"],c:0},
+      {q:"How many legs does a spider have?",ar:"كم رجلاً للعنكبوت؟",a:["8","6","4","10"],c:0},
+      {q:"The brain is protected by:",ar:"الدماغ محمي بواسطة:",a:["Skull|الجمجمة","Spine|العمود الفقري","Ribs|الأضلاع","Skin|الجلد"],c:0},
+      {q:"Which is the longest bone in the body?",ar:"أطول عظمة في الجسم؟",a:["Femur|عظم الفخذ","Spine|العمود الفقري","Humerus|عظم العضد","Tibia|عظم القصبة"],c:0},
+      {q:"Tadpoles grow into:",ar:"الشراغيف تنمو لتصبح:",a:["Frogs|ضفادع","Fish|أسماك","Lizards|سحالي","Turtles|سلاحف"],c:0},
+      {q:"Which part of plant makes food?",ar:"أي جزء من النبات يصنع الغذاء؟",a:["Leaves|الأوراق","Roots|الجذور","Stem|الساق","Flower|الزهرة"],c:0},
+      {q:"Salt water is found in:",ar:"الماء المالح يوجد في:",a:["Oceans|المحيطات","Rivers|الأنهار","Lakes|البحيرات","Rain|المطر"],c:0},
+      {q:"Day and night are caused by:",ar:"النهار والليل سببهما:",a:["Earth's rotation|دوران الأرض","Moon's orbit|مدار القمر","Sun's movement|حركة الشمس","Earth's orbit|مدار الأرض"],c:0},
+      {q:"Which vitamin helps heal wounds?",ar:"أي فيتامين يساعد على شفاء الجروح؟",a:["Vitamin C|فيتامين ج","Vitamin D|فيتامين د","Vitamin A|فيتامين أ","Vitamin B|فيتامين ب"],c:0},
+      {q:"Ice melts when:",ar:"يذوب الجليد عندما:",a:["Temperature rises|ترتفع الحرارة","Pressure drops|ينخفض الضغط","Light hits it|يسقط الضوء عليه","Wind blows|تهب الريح"],c:0},
+      {q:"Lungs are used for:",ar:"الرئتان تُستخدمان من أجل:",a:["Breathing|التنفس","Digestion|الهضم","Pumping blood|ضخ الدم","Filtering blood|تصفية الدم"],c:0},
     ],
     medium:[
       {q:"Osmosis: water moves from ___ to ___ concentration.",ar:"التناضح: الماء ينتقل من تركيز ___ إلى ___.",a:["Low→High|منخفض→مرتفع","High→Low|مرتفع→منخفض","Equal→Equal","None"],c:0},
@@ -414,6 +527,20 @@ var QDB = {
       {q:"An ecosystem includes:",ar:"النظام البيئي يشمل:",a:["Living & non-living|حيّ وغير حيّ","Only animals|الحيوانات فقط","Only plants|النباتات فقط","Only soil|التربة فقط"],c:0},
       {q:"The process of water changing to vapour is:",ar:"تحوّل الماء إلى بخار يُسمى:",a:["Evaporation|التبخر","Condensation|التكثف","Freezing|التجمد","Melting|الانصهار"],c:0},
       {q:"Which organ produces insulin?",ar:"أي عضو ينتج الأنسولين؟",a:["Pancreas|البنكرياس","Liver|الكبد","Kidney|الكلية","Stomach|المعدة"],c:0},
+      {q:"The food chain starts with:",ar:"السلسلة الغذائية تبدأ بـ:",a:["Producers|المنتجون","Herbivores|آكلات العشب","Carnivores|آكلات اللحوم","Decomposers|المحللون"],c:0},
+      {q:"Which metal is liquid at room temperature?",ar:"أي معدن سائل عند درجة الحرارة العادية؟",a:["Mercury|الزئبق","Iron|الحديد","Gold|الذهب","Copper|النحاس"],c:0},
+      {q:"Veins carry blood ___ the heart.",ar:"الأوردة تحمل الدم ___ القلب.",a:["Toward|نحو","Away from|بعيداً عن","Around|حول","Through|عبر"],c:0},
+      {q:"Sound cannot travel through:",ar:"الصوت لا يستطيع السفر في:",a:["Vacuum|الفراغ","Water|الماء","Air|الهواء","Steel|الصلب"],c:0},
+      {q:"Photosynthesis requires:",ar:"التمثيل الضوئي يحتاج إلى:",a:["Sunlight + CO₂ + Water|ضوء+ثاني أكسيد الكربون+ماء","Oxygen only|أكسجين فقط","Glucose only|جلوكوز فقط","Nitrogen|النيتروجين"],c:0},
+      {q:"Earthquakes are measured by:",ar:"الزلازل تُقاس بـ:",a:["Richter scale|مقياس ريختر","Barometer|البارومتر","Thermometer|الحرارة","Altimeter|مقياس الارتفاع"],c:0},
+      {q:"Fungi reproduce by:",ar:"الفطريات تتكاثر عن طريق:",a:["Spores|الأبواغ","Seeds|البذور","Eggs|البيض","Division|الانقسام"],c:0},
+      {q:"Which element has symbol Fe?",ar:"أي عنصر رمزه Fe؟",a:["Iron|الحديد","Fluorine|الفلور","Francium|الفرانسيوم","Gold|الذهب"],c:0},
+      {q:"The largest organ of the human body:",ar:"أكبر عضو في جسم الإنسان:",a:["Skin|الجلد","Liver|الكبد","Lung|الرئة","Brain|الدماغ"],c:0},
+      {q:"What is the pH of pure water?",ar:"ما هو الرقم الهيدروجيني للماء النقي؟",a:["7","0","14","1"],c:0},
+      {q:"Stars appear to twinkle because of:",ar:"النجوم تبدو متلألئة بسبب:",a:["Atmosphere|الغلاف الجوي","Their size|حجمها","Distance|المسافة","Their temperature|حرارتها"],c:0},
+      {q:"Newton discovered gravity when:",ar:"اكتشف نيوتن الجاذبية عندما:",a:["Apple fell from tree|سقطت تفاحة","He looked at moon|نظر للقمر","He was swimming|كان يسبح","He read a book|قرأ كتاباً"],c:0},
+      {q:"Which organ stores bile?",ar:"أي عضو يخزن العصارة الصفراوية؟",a:["Gallbladder|المرارة","Liver|الكبد","Pancreas|البنكرياس","Stomach|المعدة"],c:0},
+      {q:"Rain is part of the ___ cycle.",ar:"المطر جزء من دورة ___.",a:["Water|الماء","Carbon|الكربون","Nitrogen|النيتروجين","Oxygen|الأكسجين"],c:0},
     ],
     hard:[
       {q:"Cellular respiration equation products:",ar:"نواتج معادلة التنفس الخلوي:",a:["CO₂+H₂O+ATP","Glucose+O₂","O₂+H₂O","ATP only"],c:0},
@@ -429,6 +556,20 @@ var QDB = {
       {q:"Photosynthesis light reaction produces:",ar:"التفاعل الضوئي في التمثيل الضوئي ينتج:",a:["ATP & NADPH","Glucose","CO₂","Starch"],c:0},
       {q:"A mutation is a change in:",ar:"الطفرة هي تغيير في:",a:["DNA sequence|تسلسل DNA","Cell shape|شكل الخلية","Cell size|حجم الخلية","Protein amount|كمية البروتين"],c:0},
       {q:"Which blood cells fight infection?",ar:"أي خلايا دم تحارب العدوى؟",a:["White blood cells|كريات الدم البيضاء","Red blood cells|كريات الدم الحمراء","Platelets|الصفائح الدموية","Plasma cells|خلايا البلازما"],c:0},
+      {q:"The powerhouse of the cell produces:",ar:"محطة طاقة الخلية تنتج:",a:["ATP","DNA","RNA","Glucose"],c:0},
+      {q:"Which process converts glucose to ethanol?",ar:"أي عملية تحوّل الجلوكوز إلى كحول؟",a:["Fermentation|التخمر","Photosynthesis|التمثيل الضوئي","Transpiration|النتح","Osmosis|التناضح"],c:0},
+      {q:"The CRISPR technology is used to:",ar:"تقنية CRISPR تُستخدم في:",a:["Edit genes|تعديل الجينات","Clone animals|استنساخ الحيوانات","Grow organs|زراعة الأعضاء","Create vaccines|إنتاج اللقاحات"],c:0},
+      {q:"Nerve cells are called:",ar:"خلايا الجهاز العصبي تُسمى:",a:["Neurons|خلايا عصبية","Nephrons|نيفرونات","Alveoli|حويصلات","Villi|زغابات"],c:0},
+      {q:"Acid rain is caused mainly by:",ar:"المطر الحمضي ينتج أساساً من:",a:["SO₂ & NOₓ|ثاني أكسيد الكبريت وأكاسيد النيتروجين","CO₂","Methane|الميثان","Ozone|الأوزون"],c:0},
+      {q:"Which organelle is called the cell's post office?",ar:"أي عضية تُسمى مكتب بريد الخلية؟",a:["Golgi apparatus|جهاز جولجي","Ribosome|الريبوسوم","Vacuole|الفجوة","Nucleus|النواة"],c:0},
+      {q:"DNA double helix was discovered by:",ar:"اكتشف بنية DNA الحلزونية المزدوجة:",a:["Watson & Crick","Darwin","Mendel","Pasteur"],c:0},
+      {q:"Insulin regulates blood:",ar:"الأنسولين ينظّم مستوى ___ في الدم.",a:["Glucose|الجلوكوز","Calcium|الكالسيوم","Iron|الحديد","Sodium|الصوديوم"],c:0},
+      {q:"The trachea connects throat to:",ar:"القصبة الهوائية تصل الحلق بـ:",a:["Lungs|الرئتين","Stomach|المعدة","Heart|القلب","Kidney|الكلية"],c:0},
+      {q:"Hardy-Weinberg principle applies when:",ar:"مبدأ هاردي-واينبرغ ينطبق عند:",a:["No evolution occurring|عدم حدوث تطور","Mutation rate is high|معدل الطفرات عالٍ","Small population|مجتمع صغير","Natural selection active|الانتقاء الطبيعي نشط"],c:0},
+      {q:"Which type of RNA carries amino acids?",ar:"أي نوع من RNA يحمل الأحماض الأمينية؟",a:["tRNA","mRNA","rRNA","snRNA"],c:0},
+      {q:"The greenhouse effect is mainly caused by:",ar:"ظاهرة الاحتباس الحراري تسببها رئيسياً:",a:["CO₂ & methane|ثاني أكسيد الكربون والميثان","Oxygen|الأكسجين","Nitrogen|النيتروجين","Ozone|الأوزون"],c:0},
+      {q:"Osmotic pressure increases when solute concentration:",ar:"الضغط الأسموزي يزيد عند ___ تركيز المذاب.",a:["Increases|يزداد","Decreases|يقل","Stays same|يبقى ثابتاً","Becomes zero|يصبح صفراً"],c:0},
+      {q:"NADH is produced during:",ar:"NADH يُنتج خلال:",a:["Glycolysis & Krebs cycle|التحلل السكري ودورة كريبس","Photosynthesis only","Fermentation only|التخمر فقط","Transcription|النسخ"],c:0},
     ]
   },
   physics:{
@@ -453,6 +594,20 @@ var QDB = {
       {q:"Which state of matter has no fixed shape?",ar:"أي حالة من المادة ليس لها شكل ثابت؟",a:["Liquid & Gas|سائل وغاز","Solid|صلب","Liquid only|سائل فقط","Gas only|غاز فقط"],c:0},
       {q:"Boiling creates ___ from liquid.",ar:"الغليان يحوّل السائل إلى ___.",a:["Gas|غاز","Solid|صلب","Plasma|بلازما","Ice|جليد"],c:0},
       {q:"The unit of voltage is:",ar:"وحدة الجهد الكهربائي هي:",a:["Volt|فولت","Ampere|أمبير","Ohm|أوم","Watt|واط"],c:0},
+      {q:"Which form of energy does the Sun give us?",ar:"أي شكل من الطاقة يعطينا الشمس؟",a:["Light & heat|ضوء وحرارة","Electrical|كهربائية","Chemical|كيميائية","Mechanical|ميكانيكية"],c:0},
+      {q:"A ball thrown upward will eventually:",ar:"كرة مرمية للأعلى ستعود للأسفل بسبب:",a:["Fall due to gravity|تسقط بالجاذبية","Stay in air|تبقى في الهواء","Go to space|تذهب للفضاء","Stop mid-air|تتوقف في الهواء"],c:0},
+      {q:"Pushing a heavy box uses ___ energy.",ar:"دفع صندوق ثقيل يستخدم طاقة ___.",a:["Mechanical|ميكانيكية","Chemical|كيميائية","Electrical|كهربائية","Nuclear|نووية"],c:0},
+      {q:"Which material is a good conductor?",ar:"أي مادة موصل جيد للكهرباء؟",a:["Copper|نحاس","Wood|خشب","Plastic|بلاستيك","Glass|زجاج"],c:0},
+      {q:"Rainbow colors appear due to light:",ar:"ألوان قوس قزح تظهر بسبب ___ الضوء.",a:["Refraction|الانكسار","Reflection|الانعكاس","Absorption|الامتصاص","Emission|الانبعاث"],c:0},
+      {q:"A pendulum swings back and forth due to:",ar:"البندول يتأرجح بسبب:",a:["Gravity|الجاذبية","Magnetism|المغناطيسية","Friction|الاحتكاك","Air pressure|ضغط الهواء"],c:0},
+      {q:"Which tool measures temperature?",ar:"أي أداة تقيس درجة الحرارة؟",a:["Thermometer|الحرارة","Barometer|البارومتر","Voltmeter|الفولتميتر","Ammeter|الأميتر"],c:0},
+      {q:"What happens to gas when cooled?",ar:"ماذا يحدث للغاز عند تبريده؟",a:["It contracts|ينكمش","It expands|يتمدد","It explodes|ينفجر","Nothing|لا شيء"],c:0},
+      {q:"Electricity flows through a:",ar:"الكهرباء تتدفق عبر:",a:["Circuit|دائرة كهربائية","Battery alone|البطارية وحدها","Wire alone|السلك وحده","Switch alone|المفتاح وحده"],c:0},
+      {q:"Echo is caused by ___ of sound.",ar:"الصدى ينتج عن ___ الصوت.",a:["Reflection|انعكاس","Refraction|انكسار","Absorption|امتصاص","Diffraction|حيود"],c:0},
+      {q:"Which planet has the strongest gravity?",ar:"أي كوكب له أقوى جاذبية؟",a:["Jupiter|المشتري","Earth|الأرض","Mars|المريخ","Saturn|زحل"],c:0},
+      {q:"Astronauts float in space because:",ar:"رواد الفضاء يطفون لأن:",a:["Microgravity|الجاذبية الدقيقة","No air|لا هواء","Cold temperature|برودة الفضاء","No friction|لا احتكاك"],c:0},
+      {q:"The colour of the sky is blue because:",ar:"لون السماء أزرق بسبب:",a:["Light scattering|تشتت الضوء","Reflection of ocean|انعكاس المحيط","Ozone colour|لون الأوزون","Nitrogen colour|لون النيتروجين"],c:0},
+      {q:"A car braking uses ___ force.",ar:"إيقاف السيارة يستخدم قوة ___.",a:["Friction|الاحتكاك","Gravity|الجاذبية","Magnetic|مغناطيسية","Nuclear|نووية"],c:0},
     ],
     medium:[
       {q:"F = m×a. m=5kg, a=4m/s². F=?",ar:"ق = ك×ع. ك=5كغ، ع=4م/ث². ق=؟",a:["20 N","9 N","1.25 N","45 N"],c:0},
@@ -472,6 +627,20 @@ var QDB = {
       {q:"Mechanical advantage of lever = ?",ar:"المزية الآلية للرافعة = ؟",a:["Effort arm ÷ Load arm","Load ÷ Effort","Force × distance","Mass × speed"],c:0},
       {q:"Weight of 5kg object on Earth? (g=10)",ar:"وزن جسم كتلته 5كغ على الأرض؟ (g=10)",a:["50 N","5 N","500 N","0.5 N"],c:0},
       {q:"Two like poles of magnets:",ar:"قطبان متماثلان من المغناطيس:",a:["Repel|يتنافران","Attract|يتجاذبان","No force","Spin"],c:0},
+      {q:"v = u + at. u=0, a=5, t=6. v=?",ar:"س = س₀ + ع×ز. س₀=0، ع=5، ز=6. س=؟",a:["30 m/s","11 m/s","1 m/s","56 m/s"],c:0},
+      {q:"Half-life means radioactive material loses ___ of activity.",ar:"العمر النصفي يعني فقدان ___ من النشاط الإشعاعي.",a:["Half|النصف","All|الكل","Quarter|الربع","None|لا شيء"],c:0},
+      {q:"Snell's Law relates to:",ar:"قانون سنيل يتعلق بـ:",a:["Refraction|الانكسار","Reflection|الانعكاس","Diffraction|الحيود","Interference|التداخل"],c:0},
+      {q:"I = V ÷ R. V=24V, R=8Ω. I=?",ar:"ت = ج ÷ م. ج=24فولت، م=8أوم. ت=؟",a:["3 A","192 A","16 A","0.33 A"],c:0},
+      {q:"Specific heat capacity unit is:",ar:"وحدة السعة الحرارية النوعية هي:",a:["J/kg·°C","J/kg","W/m","kg·°C"],c:0},
+      {q:"Terminal velocity occurs when drag equals:",ar:"السرعة النهائية تحدث عندما تساوي قوة المقاومة:",a:["Weight|الوزن","Acceleration|التسارع","Momentum|الزخم","Friction|الاحتكاك"],c:0},
+      {q:"Lens focal length 20cm. Object at 60cm. Image at?",ar:"عدسة بعدها البؤري 20سم. جسم على بُعد 60سم. الصورة على بُعد؟",a:["30 cm","40 cm","20 cm","60 cm"],c:0},
+      {q:"Hooke's Law: F = k×x. k=200, x=0.05. F=?",ar:"قانون هوك: ق = ث×ش. ث=200، ش=0.05. ق=؟",a:["10 N","4000 N","0.25 N","200.05 N"],c:0},
+      {q:"The SI unit of pressure is:",ar:"وحدة الضغط في النظام الدولي هي:",a:["Pascal|باسكال","Newton|نيوتن","Bar|بار","Atmosphere|ضغط جوي"],c:0},
+      {q:"Total internal reflection occurs when angle exceeds:",ar:"الانعكاس الداخلي الكلي يحدث عندما يتجاوز الزاوية:",a:["Critical angle|الزاوية الحرجة","90°","45°","0°"],c:0},
+      {q:"Work done against gravity lifting 3kg by 4m? (g=10)",ar:"الشغل ضد الجاذبية لرفع 3كغ ارتفاع 4م؟ (g=10)",a:["120 J","34 J","7 J","40 J"],c:0},
+      {q:"Electromagnetic spectrum: which has most energy?",ar:"الطيف الكهرومغناطيسي: أي موجة لها أعلى طاقة؟",a:["Gamma rays|أشعة غاما","Radio waves|موجات راديو","Infrared|تحت حمراء","Visible light|ضوء مرئي"],c:0},
+      {q:"Power = Work ÷ Time. W=600J, t=30s. P=?",ar:"القدرة = الشغل ÷ الزمن. ش=600جول، ز=30ث. ق=؟",a:["20 W","18000 W","0.05 W","570 W"],c:0},
+      {q:"Archimedes principle relates to:",ar:"مبدأ أرخميدس يتعلق بـ:",a:["Buoyancy|الطفو","Gravity|الجاذبية","Friction|الاحتكاك","Pressure|الضغط"],c:0},
     ],
     hard:[
       {q:"KE = ½mv². m=2kg, v=4m/s. KE=?",ar:"الطاقة الحركية = ½ك·ع². ك=2كغ، ع=4م/ث. KE=؟",a:["16 J","8 J","32 J","4 J"],c:0},
@@ -487,6 +656,20 @@ var QDB = {
       {q:"Object dropped from rest after 3s, speed? (g=10)",ar:"جسم سقط من السكون بعد 3ث، السرعة؟ (g=10)",a:["30 m/s","3 m/s","10 m/s","90 m/s"],c:0},
       {q:"Efficiency = useful output ÷ total input × 100. Input=500J, output=400J. Efficiency=?",ar:"الكفاءة = الطاقة المفيدة ÷ الطاقة الكلية × 100. ٪Efficiency=؟ (400/500)",a:["80%","60%","40%","20%"],c:0},
       {q:"Refraction occurs when light passes between:",ar:"الانكسار يحدث عندما يمر الضوء بين:",a:["Two different media|وسطين مختلفين","Two mirrors|مرآتين","Two lenses","Vacuum & vacuum"],c:0},
+      {q:"Einstein's E=mc². c=3×10⁸. m=1kg. E=?",ar:"أينشتاين E=mc². c=3×10⁸. m=1كغ. E=؟",a:["9×10¹⁶ J","3×10⁸ J","6×10⁸ J","9×10⁸ J"],c:0},
+      {q:"De Broglie wavelength λ = h/mv. This shows particles have:",ar:"طول موجة دي بروي λ = h/mv يُظهر أن الجسيمات لها:",a:["Wave properties|خصائص موجية","Zero mass|كتلة صفرية","Infinite speed|سرعة لانهائية","Negative charge|شحنة سالبة"],c:0},
+      {q:"Faraday's law of induction relates to:",ar:"قانون فاراداي للحث الكهرومغناطيسي يتعلق بـ:",a:["Changing magnetic flux|تغير الفيض المغناطيسي","Constant current","Temperature change|تغير الحرارة","Pressure change|تغير الضغط"],c:0},
+      {q:"Entropy in a closed system tends to:",ar:"الإنتروبيا في نظام مغلق تميل إلى:",a:["Increase|الازدياد","Decrease|التناقص","Remain constant|البقاء ثابتة","Oscillate|التذبذب"],c:0},
+      {q:"Photoelectric effect: if frequency doubles, KE of electrons:",ar:"تأثير كهروضوئي: إذا تضاعف التردد، الطاقة الحركية للإلكترونات:",a:["More than doubles|تزيد أكثر من ضعف","Doubles exactly|تتضاعف بالضبط","Stays same|تبقى ثابتة","Halves|تتنصف"],c:0},
+      {q:"Capacitors in series: C1=4μF, C2=4μF. Total C=?",ar:"مكثفان على التوالي: م1=4μF، م2=4μF. الكلي=؟",a:["2 μF","8 μF","16 μF","4 μF"],c:0},
+      {q:"Which law states energy cannot be created or destroyed?",ar:"أي قانون ينص على أن الطاقة لا تُخلق ولا تُفنى؟",a:["Conservation of energy|حفظ الطاقة","Newton's 2nd|نيوتن الثاني","Ohm's law|قانون أوم","Hooke's law|قانون هوك"],c:0},
+      {q:"Gravitational PE between objects depends on:",ar:"الطاقة الكامنة الجاذبية بين الأجسام تعتمد على:",a:["Mass & distance|الكتلة والمسافة","Speed only|السرعة فقط","Temperature|الحرارة","Colour|اللون"],c:0},
+      {q:"Wien's displacement law relates peak wavelength to:",ar:"قانون إزاحة فين يربط الطول الموجي الأعظمي بـ:",a:["Temperature|درجة الحرارة","Mass|الكتلة","Pressure|الضغط","Frequency|التردد"],c:0},
+      {q:"A proton has charge:",ar:"البروتون له شحنة:",a:["+1.6×10⁻¹⁹ C","-1.6×10⁻¹⁹ C","0","2×10⁻¹⁹ C"],c:0},
+      {q:"Hubble's law implies the universe is:",ar:"قانون هابل يدل على أن الكون:",a:["Expanding|يتمدد","Contracting|يتقلص","Static|ثابت","Rotating|يدور"],c:0},
+      {q:"In nuclear fission, heavy nucleus splits into:",ar:"في الانشطار النووي، النواة الثقيلة تنقسم إلى:",a:["Lighter nuclei + energy|نوى أخف + طاقة","Protons only|بروتونات فقط","Neutrons only|نيوترونات فقط","Electrons|إلكترونات"],c:0},
+      {q:"The uncertainty principle was proposed by:",ar:"مبدأ الشك اقترحه:",a:["Heisenberg","Einstein","Bohr","Planck"],c:0},
+      {q:"Escape velocity from Earth ≈",ar:"سرعة الإفلات من الأرض ≈",a:["11.2 km/s","7.9 km/s","3 km/s","30 km/s"],c:0},
     ]
   }
 };
@@ -508,13 +691,13 @@ function getQ(subj, diff){
 var cv = document.getElementById('gc');
 var ctx = cv.getContext('2d');
 var W, H, CX, GY;
-var TS = 80; // tower size
+var TS = 80; // base tower size — actual size = TS + wave bonus (see drawTower)
 
 function resize(){
   W = cv.width = window.innerWidth;
   H = cv.height = window.innerHeight;
   CX = W/2;
-  GY = H - 160;
+  GY = H - 200;
 }
 window.addEventListener('resize', resize);
 
@@ -533,9 +716,9 @@ function initState(){
     gameTime:0,
     archers:[{lvl:1, type:'archer', angle:0, shootTimer:0}],
     walls:[], zombies:[], arrows:[], particles:[], floats:[],
-    trees:[],
+    trees:[], wallLevel:0,
     waveActive:false, toSpawn:0, spawned:0, spawnTimer:0, spawnInterval:2,
-    waveDelay:1,
+    waveDelay:1, redFlash:0,
   };
   INPUT.selectedIdx = -1;
   INPUT.cursorX = -9999; INPUT.cursorY = -9999;
@@ -607,7 +790,13 @@ function update(dt){
     G.waveActive = false;
     G.wave++;
     G.waveDelay = 3;
-    showWaveAnn();
+
+    // Victory checkpoint every 4 waves (after wave 4, 8, 12 ...)
+    if((G.wave - 1) % 5 === 0 && G.wave > 1){
+      showVictory(G.wave - 1);
+    } else {
+      showWaveAnn();
+    }
     updateHUD();
   }
 
@@ -644,10 +833,14 @@ function update(dt){
     if(z.reached){
       G.zombies.splice(i,1);
       G.invaded++;
+      G.redFlash = 0.55; // trigger red flash
       updateHUD();
       if(G.invaded >= 10){ endGame(); return; }
     }
   }
+
+  // Flash timer
+  if(G.redFlash > 0) G.redFlash -= dt;
 
   // Archers shoot
   G.archers.forEach(function(a){ updateArcher(a, dt); });
@@ -685,7 +878,8 @@ function updateZombie(z, dt){
   if(z.blocked) return;
   var dx = CX - z.x, dy = GY - z.y;
   var dist = Math.sqrt(dx*dx+dy*dy);
-  if(dist < TS*0.55+z.r){ z.reached=true; return; }
+  var ts = Math.min(TS * 2, TS + Math.max(0, (G.wave||1) - 1) * 4);
+  if(dist < ts*0.55+z.r){ z.reached=true; return; }
   z.x += (dx/dist)*z.spd*dt;
   z.y += (dy/dist)*z.spd*dt;
 }
@@ -888,7 +1082,18 @@ function render(){
   drawParticles();
   drawFloats();
 
-  // Red vignette when invaded
+  // Red flash on invasion
+  if(G.redFlash > 0){
+    var flashAlpha = Math.min(G.redFlash, 0.5) * 1.2;
+    ctx.fillStyle = 'rgba(220,20,20,' + flashAlpha + ')';
+    ctx.fillRect(0, 0, W, H);
+    // pulsing border
+    ctx.strokeStyle = 'rgba(255,0,0,' + flashAlpha * 1.5 + ')';
+    ctx.lineWidth = 18;
+    ctx.strokeRect(0, 0, W, H);
+  }
+
+  // Persistent red vignette when invaded count is high
   if(G.invaded >= 7){
     var vig = ctx.createRadialGradient(CX,GY,50,CX,H/2,Math.max(W,H)*0.7);
     vig.addColorStop(0,'rgba(231,76,60,0)');
@@ -1018,28 +1223,30 @@ function drawGround(){
 }
 
 function drawTower(){
+  // Tower grows by 4px per wave, capped at double base size
+  var towerSize = Math.min(TS * 2, TS + Math.max(0, (G.wave||1) - 1) * 4);
   var tx=CX, ty=GY;
 
   // Shadow
   ctx.save();
   ctx.globalAlpha=0.35;
   ctx.fillStyle='#000';
-  ctx.beginPath(); ctx.ellipse(tx, ty+5, TS*0.65, 13, 0, 0, Math.PI*2); ctx.fill();
+  ctx.beginPath(); ctx.ellipse(tx, ty+5, towerSize*0.65, 13, 0, 0, Math.PI*2); ctx.fill();
   ctx.globalAlpha=1;
 
   // Base body
-  var tg = ctx.createLinearGradient(tx-TS/2,0,tx+TS/2,0);
+  var tg = ctx.createLinearGradient(tx-towerSize/2,0,tx+towerSize/2,0);
   tg.addColorStop(0,'#7a5c12');
   tg.addColorStop(0.35,'#c4a35a');
   tg.addColorStop(0.65,'#d4b36a');
   tg.addColorStop(1,'#7a5c12');
   ctx.fillStyle=tg;
-  ctx.fillRect(tx-TS/2, ty-TS*1.85, TS, TS*1.85);
+  ctx.fillRect(tx-towerSize/2, ty-towerSize*1.85, towerSize, towerSize*1.85);
 
   // Battlements
   ctx.fillStyle='#c4a35a';
   for(var i=0;i<5;i++){
-    if(i%2===0) ctx.fillRect(tx-TS/2+i*(TS/4.5), ty-TS*2, TS/5.5, TS*0.28);
+    if(i%2===0) ctx.fillRect(tx-towerSize/2+i*(towerSize/4.5), ty-towerSize*2, towerSize/5.5, towerSize*0.28);
   }
 
   // Mossy stones
@@ -1047,15 +1254,15 @@ function drawTower(){
   ctx.lineWidth=1;
   for(var row=0;row<5;row++){
     for(var col=0;col<2;col++){
-      var offX=(row%2)*TS/4;
-      ctx.strokeRect(tx-TS/2+offX+col*TS/2, ty-TS*1.85+row*TS*0.34, TS/2, TS*0.34);
+      var offX=(row%2)*towerSize/4;
+      ctx.strokeRect(tx-towerSize/2+offX+col*towerSize/2, ty-towerSize*1.85+row*towerSize*0.34, towerSize/2, towerSize*0.34);
     }
   }
   // Moss patches
   ctx.fillStyle='rgba(40,120,30,0.22)';
   for(var m=0;m<8;m++){
-    var mx=tx-TS/2+Math.sin(m*2.3)*TS*0.45;
-    var my=ty-TS*0.5-m*TS*0.15;
+    var mx=tx-towerSize/2+Math.sin(m*2.3)*towerSize*0.45;
+    var my=ty-towerSize*0.5-m*towerSize*0.15;
     ctx.beginPath(); ctx.ellipse(mx,my,6,4,0,0,Math.PI*2); ctx.fill();
   }
 
@@ -1063,16 +1270,16 @@ function drawTower(){
   ctx.fillStyle='rgba(255,200,80,0.9)';
   ctx.shadowColor='rgba(255,200,80,0.9)';
   ctx.shadowBlur=18;
-  ctx.beginPath(); ctx.arc(tx, ty-TS*1.1, TS*0.14, 0, Math.PI*2); ctx.fill();
+  ctx.beginPath(); ctx.arc(tx, ty-towerSize*1.1, towerSize*0.14, 0, Math.PI*2); ctx.fill();
   ctx.shadowBlur=0;
 
   // Door arch
   ctx.fillStyle='#4a2e08';
   ctx.beginPath();
-  ctx.rect(tx-TS*0.14, ty-TS*0.42, TS*0.28, TS*0.42);
+  ctx.rect(tx-towerSize*0.14, ty-towerSize*0.42, towerSize*0.28, towerSize*0.42);
   ctx.fill();
   ctx.beginPath();
-  ctx.arc(tx, ty-TS*0.42, TS*0.14, Math.PI, 0);
+  ctx.arc(tx, ty-towerSize*0.42, towerSize*0.14, Math.PI, 0);
   ctx.fill();
 
   // Ivy
@@ -1080,10 +1287,10 @@ function drawTower(){
   ctx.lineWidth=2;
   for(var v=0;v<3;v++){
     ctx.beginPath();
-    var vx=tx-TS/2+(v+0.5)*TS/3.5;
+    var vx=tx-towerSize/2+(v+0.5)*towerSize/3.5;
     ctx.moveTo(vx, ty);
     for(var seg=0;seg<8;seg++){
-      ctx.quadraticCurveTo(vx+Math.sin(seg*1.2)*8,ty-seg*TS*0.2-10,vx+Math.sin((seg+1)*1.2)*5,ty-(seg+1)*TS*0.2);
+      ctx.quadraticCurveTo(vx+Math.sin(seg*1.2)*8,ty-seg*towerSize*0.2-10,vx+Math.sin((seg+1)*1.2)*5,ty-(seg+1)*towerSize*0.2);
     }
     ctx.stroke();
   }
@@ -1123,12 +1330,13 @@ function drawTower(){
 }
 
 function getArcherPos(idx){
+  var ts = Math.min(TS * 2, TS + Math.max(0, (G.wave||1) - 1) * 4);
   var pos = [
-    {x:CX, y:GY-TS*1.65},
-    {x:CX-TS*0.32, y:GY-TS*0.85},
-    {x:CX+TS*0.32, y:GY-TS*0.85},
-    {x:CX, y:GY-TS*0.45},
-    {x:CX-TS*0.35, y:GY-TS*1.3},
+    {x:CX, y:GY-ts*1.65},
+    {x:CX-ts*0.32, y:GY-ts*0.85},
+    {x:CX+ts*0.32, y:GY-ts*0.85},
+    {x:CX, y:GY-ts*0.45},
+    {x:CX-ts*0.35, y:GY-ts*1.3},
   ];
   return pos[idx % pos.length];
 }
@@ -1639,15 +1847,34 @@ function buy(type){
     addFloat(CX,GY-TS*1.8,T('upgraded'),'#9b59b6');
   }
   else if(type==='wall'){
-    if(G.walls.length>=4){ addFloat(CX,H/2,T('maxWall'),'#ff6b6b'); return; }
-    var wps=[
-      {x:CX-115,y:GY-25},{x:CX+115,y:GY-25},
-      {x:CX-65,y:GY-25},{x:CX+65,y:GY-25}
-    ];
-    var wp=wps[G.walls.length];
-    G.walls.push({x:wp.x,y:wp.y,bw:28,bh:55,hp:100,maxHp:100});
-    G.coins-=cost;
-    addFloat(wp.x,wp.y-40,T('wallBuilt'),'#95a5a6');
+    // First 2 presses: build left & right walls
+    // After that: upgrade all existing walls to be taller (max 2 upgrades)
+    var builtCount = G.walls.filter(function(w){ return w.hp > 0; }).length;
+    var wallLvl = G.wallLevel || 0;
+
+    if(builtCount < 2){
+      // Build new wall
+      var wps = [{x:CX-115, y:GY-25}, {x:CX+115, y:GY-25}];
+      var wp = wps[builtCount];
+      G.walls.push({x:wp.x, y:wp.y, bw:28, bh:55, hp:100, maxHp:100});
+      G.coins -= cost;
+      addFloat(wp.x, wp.y-40, T('wallBuilt'), '#95a5a6');
+    } else if(wallLvl < 2){
+      // Upgrade existing walls: make them taller
+      G.wallLevel = wallLvl + 1;
+      G.walls.forEach(function(w){
+        var newBh = 55 + G.wallLevel * 35;
+        var newY = GY - 25 - (newBh - 55) / 2;
+        w.bh = newBh;
+        w.y = newY;
+        w.maxHp = 100 + G.wallLevel * 60;
+        w.hp = Math.min(w.hp + 60, w.maxHp);
+      });
+      G.coins -= cost;
+      addFloat(CX, GY-80, LANG==='ar'?'الجدار أطول! 🧱':'Wall upgraded! 🧱', '#95a5a6');
+    } else {
+      addFloat(CX, H/2, T('maxWall'), '#ff6b6b'); return;
+    }
   }
   else if(type==='sniper'){
     if(G.archers.length>=5){ addFloat(CX,H/2,T('maxArch'),'#ff6b6b'); return; }
@@ -1768,6 +1995,56 @@ function updateHUD(){
   });
 }
 
+function showVictory(completedWave){
+  G.paused = true;
+
+  setTimeout(function(){
+    document.getElementById('gScreen').classList.add('hidden');
+    var vs = document.getElementById('vScreen');
+    vs.classList.remove('hidden');
+
+    var stars = G.invaded === 0 ? '⭐⭐⭐' : G.invaded <= 3 ? '⭐⭐' : '⭐';
+    document.getElementById('vStars').textContent = stars;
+    document.getElementById('vTitle').textContent = TX[LANG].vcTitle(completedWave);
+    document.getElementById('vStats').innerHTML = TX[LANG].vcStats(G.killed, G.questionsOk, G.coins);
+    document.getElementById('vReward').style.display = 'none';
+    document.getElementById('vContinueBtn').textContent = TX[LANG].vcContinue;
+    document.getElementById('vRestart').textContent = TX[LANG].restart;
+
+    // Confetti
+    var wrap = document.getElementById('confettiWrap');
+    wrap.innerHTML = '';
+    var colors = ['#ffd700','#ff6b6b','#4ecdc4','#a8e6a0','#fff'];
+    for(var i = 0; i < 60; i++){
+      var c = document.createElement('div');
+      c.className = 'conf';
+      c.style.cssText = [
+        'left:' + Math.random()*100 + '%',
+        'background:' + colors[Math.floor(Math.random()*colors.length)],
+        'width:' + (6+Math.random()*10) + 'px',
+        'height:' + (6+Math.random()*10) + 'px',
+        'border-radius:' + (Math.random() > 0.5 ? '50%' : '2px'),
+        'animation-duration:' + (1.5+Math.random()*2) + 's',
+        'animation-delay:' + Math.random()*1 + 's',
+      ].join(';');
+      wrap.appendChild(c);
+    }
+    updateHUD();
+  }, 300);
+}
+
+function continueGame(){
+  document.getElementById('vScreen').classList.add('hidden');
+  document.getElementById('confettiWrap').innerHTML = '';
+  document.getElementById('gScreen').classList.remove('hidden');
+  G.paused = false;
+  G.waveDelay = 2;
+  showWaveAnn();
+  prevT = performance.now();
+  if(RAF) cancelAnimationFrame(RAF);
+  RAF = requestAnimationFrame(loop);
+}
+
 // ═══════════════════════════════════════════════════
 // END GAME
 // ═══════════════════════════════════════════════════
@@ -1775,6 +2052,7 @@ function endGame(){
   G.over=true; G.paused=true;
   setTimeout(function(){
     document.getElementById('gScreen').classList.add('hidden');
+    document.getElementById('vScreen').classList.add('hidden');
     var rs=document.getElementById('rScreen');
     rs.classList.remove('hidden');
     document.getElementById('rEmo').textContent='💀';
@@ -1801,6 +2079,8 @@ function startGame(){
 
 function restartGame(){
   document.getElementById('rScreen').classList.add('hidden');
+  document.getElementById('vScreen').classList.add('hidden');
+  document.getElementById('confettiWrap').innerHTML = '';
   document.getElementById('gScreen').classList.remove('hidden');
   resize();
   initState();
