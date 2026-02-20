@@ -77,6 +77,8 @@ body{font-family:'Nunito','Tajawal',sans-serif;background:#1a3d1a;overflow:hidde
 .s-math{background:linear-gradient(135deg,#1a5276,#2980b9)}
 .s-sci{background:linear-gradient(135deg,#1e8449,#27ae60)}
 .s-phy{background:linear-gradient(135deg,#5b2c6f,#8e44ad)}
+.s-hist{background:linear-gradient(135deg,#7d5a1e,#c0932a)}
+.s-logic{background:linear-gradient(135deg,#1a3a5c,#2e86c1)}
 .diffgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:18px}
 .dbtn{padding:11px;border-radius:13px;border:2px solid transparent;color:#fff;font-family:'Fredoka One','Tajawal',cursive;font-size:.88rem;cursor:pointer;text-align:center;transition:all .2s;display:flex;flex-direction:column;align-items:center;gap:4px}
 .dbtn:hover{transform:translateY(-3px)}
@@ -106,13 +108,13 @@ body{font-family:'Nunito','Tajawal',sans-serif;background:#1a3d1a;overflow:hidde
 .rbtn:hover{transform:scale(1.06)}
 
 /* ── VICTORY ── */
-#vScreen{background:linear-gradient(180deg,#0a1f0a 0%,#1a4d1a 50%,#2d6b1b 100%);z-index:200}
+#vScreen{background:linear-gradient(180deg,rgba(5,20,5,0.82) 0%,rgba(15,55,15,0.80) 50%,rgba(25,75,15,0.78) 100%);backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);z-index:200}
 .vemo{font-size:clamp(3.5rem,12vw,6rem);animation:vbounce .7s cubic-bezier(.34,1.56,.64,1)}
 @keyframes vbounce{from{transform:scale(0) rotate(-15deg);opacity:0}to{transform:scale(1) rotate(0deg);opacity:1}}
 .vtitle{font-family:'Fredoka One','Tajawal',cursive;font-size:clamp(1.6rem,6vw,2.8rem);text-align:center;color:#ffd700;text-shadow:0 0 30px rgba(255,215,0,.8)}
 .vstars{font-size:clamp(1.8rem,7vw,3rem);letter-spacing:8px;animation:starPop .5s .3s both}
 @keyframes starPop{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
-.vstats{background:rgba(255,255,255,.07);border:2px solid rgba(255,215,0,.25);border-radius:18px;padding:16px 28px;text-align:center;color:rgba(255,255,255,.85);font-size:1rem;line-height:2.1;margin:10px 0}
+.vstats{background:rgba(0,0,0,.25);border:2px solid rgba(255,215,0,.35);border-radius:18px;padding:16px 28px;text-align:center;color:rgba(255,255,255,.85);font-size:1rem;line-height:2.1;margin:10px 0}
 .vreward{background:rgba(255,215,0,.12);border:2px solid rgba(255,215,0,.4);border-radius:14px;padding:12px 24px;color:#ffd700;font-family:'Fredoka One','Tajawal',cursive;font-size:1.1rem;text-align:center;animation:glow 1.5s ease-in-out infinite alternate}
 @keyframes glow{from{box-shadow:0 0 10px rgba(255,215,0,.3)}to{box-shadow:0 0 25px rgba(255,215,0,.7)}}
 .vbtns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:6px}
@@ -124,12 +126,154 @@ body{font-family:'Nunito','Tajawal',sans-serif;background:#1a3d1a;overflow:hidde
 .confetti-wrap{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:hidden}
 .conf{position:absolute;width:10px;height:10px;animation:fall linear forwards}
 @keyframes fall{0%{transform:translateY(-20px) rotate(0deg);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
-#waveAnn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Fredoka One','Tajawal',cursive;font-size:clamp(1.4rem,5.5vw,2.8rem);color:#fff;text-shadow:0 0 25px rgba(100,255,100,.7);background:rgba(10,50,10,.85);border:3px solid rgba(100,255,100,.5);border-radius:18px;padding:14px 38px;text-align:center;pointer-events:none;z-index:50;display:none;animation:wann 2s forwards}
-@keyframes wann{0%{opacity:0;transform:translate(-50%,-50%) scale(.5)}20%{opacity:1;transform:translate(-50%,-50%) scale(1.1)}80%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-50%) scale(.8)}}
+#waveAnn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Fredoka One','Tajawal',cursive;font-size:clamp(1.4rem,5.5vw,2.8rem);color:#fff;text-shadow:0 0 25px rgba(100,255,100,.7);background:rgba(10,50,10,.85);border:3px solid rgba(100,255,100,.5);border-radius:18px;padding:14px 38px;text-align:center;pointer-events:none;z-index:50;display:none;animation:wann 3.5s forwards}
+@keyframes wann{0%{opacity:0;transform:translate(-50%,-50%) scale(.5)}15%{opacity:1;transform:translate(-50%,-50%) scale(1.1)}75%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-50%) scale(.8)}}
 #coinPop{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Fredoka One',cursive;font-size:clamp(1.4rem,5vw,2.4rem);color:#ffd700;text-shadow:0 0 20px rgba(255,215,0,.8);pointer-events:none;z-index:50;display:none;animation:cpopA 1.5s forwards}
 @keyframes cpopA{0%{opacity:0;transform:translate(-50%,-50%) scale(.5)}30%{opacity:1;transform:translate(-50%,-50%) scale(1.2)}80%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-55%) translateY(-40px)}}
 
+/* ── FIREWORKS CELEBRATION ── */
+#fireworksOverlay{
+  position:absolute;top:0;left:0;width:100%;height:100%;
+  z-index:200;display:none;pointer-events:none;
+}
+#fireworksOverlay canvas{width:100%;height:100%;}
+#fireworksMsg{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  font-family:'Fredoka One','Tajawal',cursive;
+  font-size:clamp(2rem,7vw,3.8rem);
+  color:#fff;
+  text-shadow:0 0 40px rgba(255,220,50,1),0 0 80px rgba(255,100,50,0.8);
+  text-align:center;pointer-events:none;z-index:201;
+  display:none;animation:fwMsg 7s forwards;
+  line-height:1.3;
+}
+@keyframes fwMsg{
+  0%{opacity:0;transform:translate(-50%,-50%) scale(0.5)}
+  15%{opacity:1;transform:translate(-50%,-50%) scale(1.15)}
+  80%{opacity:1;transform:translate(-50%,-50%) scale(1)}
+  100%{opacity:0;transform:translate(-50%,-50%) scale(0.9)}
+}
+
+/* ── CITY SLOGAN OVERLAY ── */
+#citySlogan{
+  position:absolute;
+  bottom:30%;
+  left:50%;
+  transform:translateX(-50%);
+  font-family:'Fredoka One','Tajawal',cursive;
+  font-size:clamp(1.6rem,6vw,3.4rem);
+  color:#FFD6B0;
+  text-shadow:0 0 40px rgba(255,180,100,0.9), 0 0 80px rgba(255,180,100,0.4);
+  text-align:center;
+  pointer-events:none;
+  z-index:48;
+  display:none;
+  white-space:nowrap;
+  letter-spacing:0.04em;
+}
+@keyframes sloganRise{
+  0%  {opacity:0; transform:translateX(-50%) translateY(40px) scale(0.8);}
+  15% {opacity:1; transform:translateX(-50%) translateY(0px)  scale(1.05);}
+  70% {opacity:1; transform:translateX(-50%) translateY(0px)  scale(1);}
+  100%{opacity:0; transform:translateX(-50%) translateY(-60px) scale(0.95);}
+}
+
+/* ── GRADE SELECTOR ── */
+.grade-row{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:10px 0}
+.gradeBtn{padding:8px 14px;background:rgba(255,255,255,.1);border:2px solid rgba(255,255,255,.2);border-radius:12px;color:rgba(255,255,255,.75);font-family:'Fredoka One','Tajawal',cursive;font-size:.9rem;cursor:pointer;transition:all .2s;min-width:46px}
+.gradeBtn:hover{background:rgba(255,255,255,.2)}
+.gradeBtn.active{background:linear-gradient(135deg,#f39c12,#e74c3c);border-color:#f39c12;color:#fff;transform:scale(1.08)}
+.grade-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(168,230,160,0.5);margin-bottom:4px;text-align:center}
+/* ── DRAGON BUTTON ── */
+.b-dragon{background:linear-gradient(135deg,rgba(180,30,10,.35),rgba(120,20,5,.25));border-color:rgba(255,80,20,.5);color:#ff6030}
+.b-dragon:hover:not(:disabled){background:linear-gradient(135deg,rgba(220,50,10,.5),rgba(160,30,5,.4))}
+.b-dragon-up{background:linear-gradient(135deg,rgba(150,20,150,.35),rgba(100,10,100,.25));border-color:rgba(200,50,255,.5);color:#dd44ff}
+.b-dragon-up:hover:not(:disabled){background:linear-gradient(135deg,rgba(180,30,180,.5),rgba(130,10,130,.4))}
+.d-hard.coins-locked{opacity:0.5;cursor:not-allowed;position:relative}
+.hard-lock-msg{display:none;position:absolute;bottom:-28px;left:50%;transform:translateX(-50%);background:rgba(200,0,0,0.9);color:#fff;font-size:0.65rem;border-radius:8px;padding:3px 8px;white-space:nowrap;pointer-events:none;z-index:10}
+
 @media(max-width:480px){.cbtn{min-width:54px;padding:7px 9px}.cbtn .cico{font-size:1.1rem}#ctrls{gap:5px;padding:8px 6px}}
+
+/* ── HIGH SCORE CORNER BADGE ── */
+#hsDisplay{
+  position:fixed;
+  bottom:14px;
+  left:14px;
+  z-index:50;
+  font-family:'Fredoka One','Tajawal',cursive;
+  background:rgba(20,20,0,0.82);
+  border:1px solid rgba(255,215,0,0.35);
+  border-radius:10px;
+  padding:5px 12px;
+  text-align:left;
+  pointer-events:none;
+  backdrop-filter:blur(6px);
+  white-space:nowrap;
+  max-width:180px;
+}
+@media(max-width:480px){
+  #hsDisplay{
+    bottom:8px;
+    left:8px;
+    padding:3px 8px;
+    max-width:130px;
+    border-radius:8px;
+  }
+  #hsDisplay span:first-child{ font-size:0.48rem !important; }
+  #hsWave{ font-size:0.72rem !important; }
+}
+
+/* ── HOW TO PLAY PANEL ── */
+#howToPanel{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:400;
+  background:rgba(0,0,0,0.82);
+  overflow-y:auto;
+  padding:20px 16px 40px;
+}
+.htp-inner{
+  max-width:520px;
+  margin:0 auto;
+  background:linear-gradient(160deg,#0a1f0a,#0d2d18);
+  border:2px solid rgba(100,220,100,0.2);
+  border-radius:20px;
+  padding:24px 22px;
+  font-family:'Tajawal','Fredoka One',sans-serif;
+  color:rgba(255,255,255,0.88);
+}
+.htp-title{font-family:'Fredoka One','Tajawal',cursive;font-size:1.55rem;color:#7dffb3;text-align:center;margin-bottom:18px;letter-spacing:.04em}
+.htp-section{margin-bottom:18px}
+.htp-section-title{font-family:'Fredoka One','Tajawal',cursive;font-size:1.05rem;color:#ffd700;border-bottom:1px solid rgba(255,215,0,0.18);padding-bottom:4px;margin-bottom:10px}
+.htp-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:8px;font-size:.9rem;line-height:1.55}
+.htp-ico{font-size:1.3rem;min-width:28px;text-align:center;flex-shrink:0}
+.htp-desc{color:rgba(255,255,255,0.78)}
+.htp-desc strong{color:#7dffb3}
+.htp-close{display:block;width:100%;margin-top:18px;padding:12px;background:linear-gradient(135deg,#1a5a1a,#2d8a2d);border:none;border-radius:12px;color:#fff;font-family:'Fredoka One','Tajawal',cursive;font-size:1.1rem;cursor:pointer;transition:all .2s}
+.htp-close:hover{background:linear-gradient(135deg,#2a7a2a,#3daa3d);transform:scale(1.02)}
+.cost-table{width:100%;border-collapse:collapse;font-size:.82rem;margin-top:6px}
+.cost-table th{color:#ffd700;text-align:left;padding:4px 8px;border-bottom:1px solid rgba(255,215,0,0.2)}
+.cost-table td{padding:4px 8px;border-bottom:1px solid rgba(255,255,255,0.06);color:rgba(255,255,255,0.75)}
+.cost-table tr:last-child td{border-bottom:none}
+
+/* ── GAME OVER BIG TEXT ── */
+.game-over-banner{
+  font-family:'Fredoka One','Tajawal',cursive;
+  font-size:clamp(2.8rem,11vw,5rem);
+  color:#e74c3c;
+  text-shadow:0 0 40px rgba(231,76,60,0.8), 0 0 80px rgba(231,76,60,0.4);
+  text-align:center;
+  letter-spacing:.06em;
+  animation:goShake .6s cubic-bezier(.36,.07,.19,.97);
+  margin-bottom:4px;
+}
+@keyframes goShake{
+  0%,100%{transform:translateX(0) scale(1)}
+  10%,30%,50%,70%,90%{transform:translateX(-8px) scale(1.02)}
+  20%,40%,60%,80%{transform:translateX(8px) scale(1.02)}
+}
 </style>
 </head>
 <body>
@@ -143,8 +287,20 @@ body{font-family:'Nunito','Tajawal',sans-serif;background:#1a3d1a;overflow:hidde
     <button class="langBtn active" onclick="setLang('en',this)">English</button>
     <button class="langBtn" onclick="setLang('ar',this)">العربية</button>
   </div>
+  <div class="grade-label" id="gradeLbl">Select your Age Group:</div>
+  <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center">
+    <div class="grade-row">
+      <button class="gradeBtn active" onclick="setGrade('8-11',this)">8–11</button>
+      <button class="gradeBtn" onclick="setGrade('12-15',this)">12–15</button>
+    </div>
+    <button onclick="document.getElementById('howToPanel').style.display='block'"
+      style="padding:8px 16px;background:rgba(100,220,100,0.12);border:2px solid rgba(100,220,100,0.35);border-radius:12px;color:#7dffb3;font-family:'Fredoka One','Tajawal',cursive;font-size:.88rem;cursor:pointer;transition:all .2s;white-space:nowrap"
+      onmouseover="this.style.background='rgba(100,220,100,0.22)'" onmouseout="this.style.background='rgba(100,220,100,0.12)'"
+      id="htpBtn">📖 How to Play</button>
+  </div>
   <button class="startBtn" id="sBtnMain" onclick="startGame()">🎮 Play Now!</button>
   <div class="howTo" id="howToTxt">Defend your tower from zombies!<br>Earn coins by answering questions!</div>
+
   <div style="margin-top:18px;text-align:center;display:flex;gap:28px;justify-content:center;flex-wrap:wrap">
     <div style="opacity:0.6;font-size:0.78rem;color:#a8e6a0;line-height:1.9">
       <div style="font-size:0.6rem;text-transform:uppercase;letter-spacing:0.13em;color:rgba(168,230,160,0.45);margin-bottom:2px">Programmed by</div>
@@ -162,6 +318,12 @@ body{font-family:'Nunito','Tajawal',sans-serif;background:#1a3d1a;overflow:hidde
       <div style="font-family:'Fredoka One',cursive;font-size:0.95rem;color:#a8e6a0">Augusten Alrezk</div>
     </div>
   </div>
+
+  <!-- High Score — fixed to bottom of screen via CSS -->
+  <div id="hsDisplay" style="display:none">
+    <span style="font-size:0.58rem;text-transform:uppercase;letter-spacing:0.14em;color:rgba(255,215,0,0.55);display:block;margin-bottom:1px">🏆 Best — Age <span id="hsGradeLbl"></span></span>
+    <span id="hsWave" style="font-size:0.9rem;color:#ffd700"></span>
+  </div>
 </div>
 
 <!-- ══════════ GAME ══════════ -->
@@ -173,6 +335,7 @@ body{font-family:'Nunito','Tajawal',sans-serif;background:#1a3d1a;overflow:hidde
     <div class="hbox"><span class="hico">💰</span><div class="hcol"><span class="hval coin-c" id="hCoins">10</span><span class="hlbl" id="lCoins">Coins</span></div></div>
     <div class="hbox"><span class="hico">🧟</span><div class="hcol"><span class="hval hp-c" id="hInv">0/10</span><span class="hlbl" id="lInv">Invaded</span></div></div>
     <div class="hbox"><span class="hico">🏹</span><div class="hcol"><span class="hval arch-c" id="hArch">1</span><span class="hlbl" id="lArch">Archers</span></div></div>
+    <div class="hbox"><span class="hico">🎯</span><div class="hcol"><span class="hval arch-c" id="hSniper">0</span><span class="hlbl" id="lSniper">Snipers</span></div></div>
   </div>
 
   <div id="ctrls">
@@ -188,13 +351,24 @@ body{font-family:'Nunito','Tajawal',sans-serif;background:#1a3d1a;overflow:hidde
     <button class="cbtn b-sniper" id="bSniper" onclick="buy('sniper')">
       <span class="cico">🎯</span><span id="lbSniper">Sniper</span><span class="ccost" id="cSniper">14🪙</span>
     </button>
+    <button class="cbtn b-dragon" id="bDragon" onclick="buy('dragon')">
+      <span class="cico">🐉</span><span id="lbDragon">Dragon</span><span class="ccost" id="cDragon">25🪙</span>
+    </button>
+    <button class="cbtn b-dragon-up" id="bDragonUp" onclick="buy('dragonUpgrade')" style="display:none">
+      <span class="cico">🔥</span><span id="lbDragonUp">Upgrade Dragon</span><span class="ccost" id="cDragonUp">20🪙</span>
+    </button>
     <button class="cbtn b-coins" onclick="openQuiz()">
       <span class="cico">💡</span><span id="lbCoins">+Coins</span><span class="ccost">Quiz!</span>
     </button>
   </div>
 
   <div id="waveAnn"></div>
+
+  <!-- FIREWORKS CELEBRATION -->
+  <div id="fireworksOverlay"><canvas id="fwCanvas"></canvas></div>
+  <div id="fireworksMsg"></div>
   <div id="coinPop"></div>
+  <div id="citySlogan"></div>
   <div id="archerHint" style="position:absolute;top:70px;left:50%;transform:translateX(-50%);background:rgba(255,215,0,0.15);border:2px solid rgba(255,215,0,0.5);border-radius:12px;padding:6px 18px;color:#ffd700;font-family:'Fredoka One','Tajawal',cursive;font-size:0.88rem;pointer-events:none;z-index:20;display:none;text-align:center;backdrop-filter:blur(4px)"></div>
 </div>
 
@@ -211,6 +385,8 @@ body{font-family:'Nunito','Tajawal',sans-serif;background:#1a3d1a;overflow:hidde
         <button class="sbtn s-math" onclick="pickSubj('math')">🔢<br><span id="lsMath">Math</span></button>
         <button class="sbtn s-sci"  onclick="pickSubj('science')">🔬<br><span id="lsSci">Science</span></button>
         <button class="sbtn s-phy"  onclick="pickSubj('physics')">⚡<br><span id="lsPhy">Physics</span></button>
+        <button class="sbtn s-hist" onclick="pickSubj('history')">🌍<br><span id="lsHist">History</span></button>
+        <button class="sbtn s-logic" onclick="pickSubj('logic')">🧩<br><span id="lsLogic">Logic</span></button>
       </div>
     </div>
 
@@ -218,26 +394,99 @@ body{font-family:'Nunito','Tajawal',sans-serif;background:#1a3d1a;overflow:hidde
     <div id="qS2" style="display:none">
       <div class="stepdots"><div class="dot"></div><div class="dot on"></div><div class="dot"></div></div>
       <p style="color:rgba(255,255,255,.65);text-align:center;margin-bottom:13px;font-size:.93rem" id="lDiffPick">Choose difficulty:</p>
+      <!-- Grade note: shown when some difficulties are locked -->
+      <div id="gradeDiffNote" style="display:none;margin-bottom:10px;background:rgba(30,100,180,0.3);border:1px solid rgba(100,180,255,0.3);border-radius:10px;padding:7px 12px;text-align:center;font-size:0.78rem;color:rgba(160,210,255,0.9)"></div>
       <div class="diffgrid">
         <button class="dbtn d-easy" onclick="pickDiff('easy')">😊<br><span id="ldEasy">Easy</span><br><span class="dreward">+1 🪙</span></button>
         <button class="dbtn d-med"  onclick="pickDiff('medium')">🤔<br><span id="ldMed">Medium</span><br><span class="dreward">+2 🪙</span></button>
-        <button class="dbtn d-hard" onclick="pickDiff('hard')">🔥<br><span id="ldHard">Hard</span><br><span class="dreward">+3 🪙</span></button>
+        <button class="dbtn d-hard" onclick="tryPickHard()">🔥<br><span id="ldHard">Hard</span><br><span class="dreward" style="color:#ffd700">+3 🪙</span><br><span style="font-size:0.6rem;color:#ff6b6b;margin-top:2px;display:block" id="hardPenalty">wrong = -1 🪙</span></button>
       </div>
+      <!-- Hard explanation — always visible below buttons -->
+      <div id="hardInfoDiff" style="margin-top:11px;background:linear-gradient(135deg,rgba(120,20,0,0.5),rgba(80,0,0,0.4));border:1px solid rgba(255,80,30,0.35);border-radius:11px;padding:9px 14px;text-align:center;font-size:0.78rem;color:rgba(255,200,160,0.9);line-height:1.6">
+        🔥 <span id="hardInfoDiffTxt">Hard question: correct = <strong style="color:#ffd700">+3 🪙</strong> &nbsp;|&nbsp; wrong = <strong style="color:#ff6b6b">-1 🪙</strong></span>
+      </div>
+      <div id="hardWarnMsg" style="display:none;margin-top:8px;background:rgba(180,0,0,0.88);color:#fff;border-radius:10px;padding:8px 14px;font-size:0.82rem;text-align:center;border:1px solid #ff4444"></div>
     </div>
 
     <!-- Step 3: Question -->
     <div id="qS3" style="display:none">
       <div class="stepdots"><div class="dot"></div><div class="dot"></div><div class="dot on"></div></div>
-      <div class="qbox"><div class="qtxt" id="qTxt"></div></div>
+      <div class="qbox" style="position:relative">
+        <div class="qtxt" id="qTxt"></div>
+        <button id="searchQBtn" onclick="searchQuestion()"
+          title="Search on Google"
+          style="position:absolute;top:6px;right:6px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);border-radius:8px;color:rgba(255,255,255,0.75);font-size:1.1rem;width:32px;height:32px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;padding:0"
+          onmouseover="this.style.background='rgba(255,255,255,0.25)'"
+          onmouseout="this.style.background='rgba(255,255,255,0.12)'">🔍</button>
+      </div>
       <div class="agrid" id="aGrid"></div>
+      <!-- Hard reminder shown only when diff=hard -->
+      <div id="hardInfoQ" style="display:none;margin-top:10px;background:linear-gradient(135deg,rgba(120,20,0,0.5),rgba(80,0,0,0.4));border:1px solid rgba(255,80,30,0.35);border-radius:11px;padding:8px 14px;text-align:center;font-size:0.78rem;color:rgba(255,200,160,0.9);line-height:1.65">
+        🔥 <span id="hardInfoQTxt">Hard question: correct = <strong style="color:#ffd700">+3 🪙</strong> &nbsp;|&nbsp; wrong = <strong style="color:#ff6b6b">-1 🪙</strong></span>
+      </div>
     </div>
 
     <button class="mclose" onclick="closeQuiz()">✕ <span id="lClose">Close</span></button>
   </div>
 </div>
 
+<!-- ══════════ HOW TO PLAY ══════════ -->
+<div id="howToPanel">
+  <div class="htp-inner">
+    <div class="htp-title" id="htpTitle">📖 How to Play</div>
+
+    <div class="htp-section">
+      <div class="htp-section-title" id="htpS1">🎯 Goal</div>
+      <div class="htp-row"><span class="htp-ico">🏰</span><span class="htp-desc" id="htpGoal">Defend your tower from zombie waves. If <strong>10 zombies</strong> reach the tower, the game ends. Survive as many waves as possible!</span></div>
+    </div>
+
+    <div class="htp-section">
+      <div class="htp-section-title" id="htpS2">💡 Earning Coins</div>
+      <div class="htp-row"><span class="htp-ico">📚</span><span class="htp-desc" id="htpCoins">Tap <strong>+Coins</strong> to open a quiz. Answer questions to earn coins. Choose a subject, then a difficulty level.</span></div>
+      <div class="htp-row"><span class="htp-ico">😊</span><span class="htp-desc">Easy: <strong style="color:#ffd700">+1 🪙</strong></span></div>
+      <div class="htp-row"><span class="htp-ico">🤔</span><span class="htp-desc">Medium: <strong style="color:#ffd700">+2 🪙</strong></span></div>
+      <div class="htp-row"><span class="htp-ico">🔥</span><span class="htp-desc">Hard: <strong style="color:#ffd700">+3 🪙</strong> — but a wrong answer costs <strong style="color:#ff6b6b">−1 🪙</strong></span></div>
+    </div>
+
+    <div class="htp-section">
+      <div class="htp-section-title" id="htpS3">🏹 Defenders</div>
+      <table class="cost-table">
+        <tr><th id="htpTUnit">Unit</th><th id="htpTCost">Buy</th><th id="htpTUpg">Upgrade</th><th id="htpTMax">Max</th><th id="htpTDesc">Notes</th></tr>
+        <tr><td>🏹 Archer</td><td>10 🪙</td><td>6→9→14…🪙</td><td>5</td><td id="htpArcher">Fast, low damage</td></tr>
+        <tr><td>🎯 Sniper</td><td>14 🪙</td><td>9→14→20…🪙</td><td>5</td><td id="htpSniper">Slow, high damage, long range</td></tr>
+        <tr><td colspan="5" style="color:rgba(255,255,255,0.4);font-size:0.78rem;padding-top:6px" id="htpUpgNote">Upgrade cost ×1.5 each level. Click a unit to select it, then press Upgrade.</td></tr>
+      </table>
+    </div>
+
+    <div class="htp-section">
+      <div class="htp-section-title" id="htpS4">🧱 Walls</div>
+      <div class="htp-row"><span class="htp-ico">🧱</span><span class="htp-desc" id="htpWall">Build up to <strong>2 walls</strong> (8 🪙 each). Walls block zombies and can be upgraded twice to become taller and stronger.</span></div>
+    </div>
+
+    <div class="htp-section">
+      <div class="htp-section-title" id="htpS5">🐉 Dragon</div>
+      <table class="cost-table">
+        <tr><th id="htpTLvl">Level</th><th id="htpTBuy">Cost</th><th id="htpTRecharge">Recharge</th><th id="htpTFire">Fire rate</th></tr>
+        <tr><td>★ Lv1</td><td>25 🪙</td><td>25 sec</td><td>4 sec</td></tr>
+        <tr><td>★★ Lv2</td><td>+35 🪙</td><td>16 sec</td><td>3.2 sec</td></tr>
+        <tr><td>★★★ Lv3</td><td>+50 🪙</td><td>10 sec</td><td>2.5 sec</td></tr>
+      </table>
+      <div class="htp-row" style="margin-top:8px"><span class="htp-ico">🔥</span><span class="htp-desc" id="htpDragon">Dragon has <strong>2 charges</strong>. It automatically targets the strongest zombie and breathes fire, killing all enemies on screen.</span></div>
+    </div>
+
+    <div class="htp-section">
+      <div class="htp-section-title" id="htpS6">🎓 Grade System</div>
+      <div class="htp-row"><span class="htp-ico">📊</span><span class="htp-desc" id="htpGrade">Choose your age group (8–11 or 12–15). Questions are tailored to your level with <strong>Easy, Medium, and Hard</strong> in all 5 subjects.</span></div>
+      <div class="htp-row"><span class="htp-ico">🔁</span><span class="htp-desc" id="htpRepeat">Questions won't repeat until 80% of the pool is used — then they shuffle again.</span></div>
+    </div>
+
+    <button class="htp-close" id="htpCloseBtn" onclick="document.getElementById('howToPanel').style.display='none'">✕ Close</button>
+  </div>
+</div>
+
 <!-- ══════════ RESULT ══════════ -->
 <div class="screen hidden" id="rScreen">
+  <div class="game-over-banner" id="gameOverBanner" style="display:none">GAME OVER</div>
   <div class="remo" id="rEmo">💀</div>
   <div class="rtitle" id="rTitle"></div>
   <div class="rstats" id="rStats"></div>
@@ -258,7 +507,54 @@ body{font-family:'Nunito','Tajawal',sans-serif;background:#1a3d1a;overflow:hidde
   </div>
 </div>
 
+<script src="questions.js"></script>
 <script>
+// ═══════════════════════════════════════════════════
+// GRADE
+// ═══════════════════════════════════════════════════
+var PLAYER_GRADE = '8-11';  // age group: '8-11' | '12-15'
+function setGrade(g, btn){
+  PLAYER_GRADE = g;
+  document.querySelectorAll('.gradeBtn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  updateHSDisplay();
+}
+
+// ═══════════════════════════════════════════════════
+// HIGH SCORE
+// ═══════════════════════════════════════════════════
+function getHSKey(){ return 'tok_hs_g' + PLAYER_GRADE; }
+
+function getHS(){
+  try { return JSON.parse(localStorage.getItem(getHSKey())) || {wave:0, killed:0}; }
+  catch(e){ return {wave:0, killed:0}; }
+}
+
+function saveHS(wave, killed){
+  try {
+    var current = getHS();
+    if(wave > current.wave || (wave === current.wave && killed > current.killed)){
+      localStorage.setItem(getHSKey(), JSON.stringify({wave:wave, killed:killed}));
+      return true; // new record
+    }
+  } catch(e){}
+  return false;
+}
+
+function updateHSDisplay(){
+  var hs = getHS();
+  var el = document.getElementById('hsDisplay');
+  var waveEl = document.getElementById('hsWave');
+  var gradeEl = document.getElementById('hsGradeLbl');
+  if(hs.wave > 0 && el && waveEl){
+    el.style.display = 'block';
+    if(gradeEl) gradeEl.textContent = PLAYER_GRADE;
+    waveEl.textContent = (LANG==='ar' ? 'الموجة ' : 'Wave ') + hs.wave + ' — ' + hs.killed + (LANG==='ar' ? ' زومبي' : ' zombies');
+  } else if(el){
+    el.style.display = 'none';
+  }
+}
+
 // ═══════════════════════════════════════════════════
 // LANGUAGE
 // ═══════════════════════════════════════════════════
@@ -266,10 +562,10 @@ var LANG = 'en';
 var TX = {
   en:{
     startBtn:'🎮 Play Now!', howTo:'Defend your tower from zombies!<br>Earn coins by answering questions!',
-    wave:'Wave', coins:'Coins', invaded:'Invaded', archers:'Archers',
+    wave:'Wave', coins:'Coins', invaded:'Invaded', archers:'Archers', snipers:'Snipers',
     addArcher:'Add Archer', upgrade:'Upgrade', wall:'Wall', sniper:'Sniper', getCoins:'+Coins',
     qTitle:'Get Coins! 💰', subjPick:'Choose a subject:', diffPick:'Choose difficulty:',
-    sMath:'Math', sSci:'Science', sPhy:'Physics',
+    sMath:'Math', sSci:'Science', sPhy:'Physics', sHist:'History & Geo', sLogic:'Logic',
     dEasy:'Easy', dMed:'Medium', dHard:'Hard',
     close:'Close', restart:'Play Again',
     wann:function(n){return '⚔️ Wave '+n+'!'},
@@ -280,6 +576,10 @@ var TX = {
     maxLvl:'Already at max level!', maxWall:'No more wall space!',
     upgraded:'Upgraded! ⬆️', wallBuilt:'Wall built! 🧱',
     archAdded:'Archer added! 🏹', sniperAdded:'Sniper added! 🎯',
+    dragonAdded:'Dragon added! 🐉', dragonReady:'Dragon ready! 🐉',
+    dragonBreath:'🔥 Dragon fire!',
+    gradeLbl:'Select your Grade:',
+    gradeLblAr:'اختر صفك الدراسي:',
     vcTitle:function(w){return '🏆 Waves 1–'+w+' Cleared!'},
     vcStats:function(k,q,c){return 'Zombies defeated: '+k+'<br>Questions answered: '+q+'<br>Coins earned: '+c},
     vcReward:function(b){return '🪙 +'+b+' Bonus Coins!'},
@@ -287,10 +587,10 @@ var TX = {
   },
   ar:{
     startBtn:'🎮 العب الآن!', howTo:'دافع عن برجك ضد الزومبي!<br>اربح كوينز بالإجابة على الأسئلة!',
-    wave:'موجة', coins:'كوينز', invaded:'اقتحم', archers:'رماة',
+    wave:'موجة', coins:'كوينز', invaded:'اقتحم', archers:'رماة', snipers:'قناصون',
     addArcher:'أضف رامياً', upgrade:'طور', wall:'جدار', sniper:'قناص', getCoins:'+كوينز',
     qTitle:'احصل على كوينز! 💰', subjPick:'اختر المادة:', diffPick:'اختر الصعوبة:',
-    sMath:'رياضيات', sSci:'علوم', sPhy:'فيزياء',
+    sMath:'رياضيات', sSci:'علوم', sPhy:'فيزياء', sHist:'تاريخ وجغرافيا', sLogic:'منطق',
     dEasy:'سهل', dMed:'متوسط', dHard:'صعب',
     close:'إغلاق', restart:'العب مجدداً',
     wann:function(n){return '⚔️ الموجة '+n+'!'},
@@ -301,6 +601,9 @@ var TX = {
     maxLvl:'وصلت للمستوى الأعلى!', maxWall:'لا يوجد مكان لجدار آخر!',
     upgraded:'تمت الترقية! ⬆️', wallBuilt:'جدار جديد! 🧱',
     archAdded:'تمت إضافة رامٍ! 🏹', sniperAdded:'تمت إضافة قناص! 🎯',
+    dragonAdded:'تمت إضافة تنين! 🐉', dragonReady:'التنين جاهز! 🐉',
+    dragonBreath:'🔥 نار التنين!',
+    gradeLbl:'اختر صفك الدراسي:',
     vcTitle:function(w){return '🏆 اجتزت الموجات 1–'+w+'!'},
     vcStats:function(k,q,c){return 'الزومبي المقتولون: '+k+'<br>الأسئلة المجابة: '+q+'<br>الكوينز المكتسبة: '+c},
     vcReward:function(b){return '🪙 +'+b+' كوينز مكافأة!'},
@@ -324,10 +627,12 @@ function refreshUI(){
   document.getElementById('lCoins').textContent=TX[l].coins;
   document.getElementById('lInv').textContent=TX[l].invaded;
   document.getElementById('lArch').textContent=TX[l].archers;
+  var lSnEl=document.getElementById('lSniper'); if(lSnEl) lSnEl.textContent=TX[l].snipers;
   document.getElementById('lbArcher').textContent=TX[l].addArcher;
   document.getElementById('lbUpgrade').textContent=TX[l].upgrade;
   document.getElementById('lbWall').textContent=TX[l].wall;
   document.getElementById('lbSniper').textContent=TX[l].sniper;
+  document.getElementById('lbDragon').textContent='Dragon';
   document.getElementById('lbCoins').textContent=TX[l].getCoins;
   document.getElementById('qTitle').textContent=TX[l].qTitle;
   document.getElementById('lSubjPick').textContent=TX[l].subjPick;
@@ -335,355 +640,159 @@ function refreshUI(){
   document.getElementById('lsMath').textContent=TX[l].sMath;
   document.getElementById('lsSci').textContent=TX[l].sSci;
   document.getElementById('lsPhy').textContent=TX[l].sPhy;
+  document.getElementById('lsHist').textContent=TX[l].sHist;
+  document.getElementById('lsLogic').textContent=TX[l].sLogic;
   document.getElementById('ldEasy').textContent=TX[l].dEasy;
   document.getElementById('ldMed').textContent=TX[l].dMed;
   document.getElementById('ldHard').textContent=TX[l].dHard;
   document.getElementById('lClose').textContent=TX[l].close;
   document.getElementById('lRestart').textContent=TX[l].restart;
+
+  // How to Play button + panel translations
+  var htpBtn = document.getElementById('htpBtn');
+  if(htpBtn) htpBtn.textContent = l==='ar' ? '📖 كيف تلعب؟' : '📖 How to Play';
+  var htpClose = document.getElementById('htpCloseBtn');
+  if(htpClose) htpClose.textContent = l==='ar' ? '✕ إغلاق' : '✕ Close';
+  if(l==='ar'){
+    var t=document.getElementById('htpTitle'); if(t) t.textContent='📖 كيف تلعب؟';
+    var s1=document.getElementById('htpS1'); if(s1) s1.textContent='🎯 الهدف';
+    var s2=document.getElementById('htpS2'); if(s2) s2.textContent='💡 كسب الكوينز';
+    var s3=document.getElementById('htpS3'); if(s3) s3.textContent='🏹 المدافعون';
+    var s4=document.getElementById('htpS4'); if(s4) s4.textContent='🧱 الجدران';
+    var s5=document.getElementById('htpS5'); if(s5) s5.textContent='🐉 التنين';
+    var s6=document.getElementById('htpS6'); if(s6) s6.textContent='🎓 نظام الصفوف';
+    var g=document.getElementById('htpGoal'); if(g) g.innerHTML='دافع عن برجك من موجات الزومبي. إذا وصل <strong>10 زومبي</strong> للبرج، تنتهي اللعبة. حاول البقاء أطول فترة ممكنة!';
+    var c=document.getElementById('htpCoins'); if(c) c.innerHTML='اضغط <strong>+كوينز</strong> لفتح اختبار. أجب على الأسئلة لكسب كوينز. اختر مادة ثم مستوى الصعوبة.';
+    var a=document.getElementById('htpArcher'); if(a) a.textContent='سريع، ضرر منخفض';
+    var sn=document.getElementById('htpSniper'); if(sn) sn.textContent='بطيء، ضرر عالٍ، مدى بعيد';
+    var un=document.getElementById('htpUpgNote'); if(un) un.textContent='تكلفة الترقية ×1.5 في كل مرحلة. انقر على مقاتل لتحديده ثم اضغط تطوير.';
+    var w=document.getElementById('htpWall'); if(w) w.innerHTML='ابنِ حتى <strong>جدارين</strong> (8 🪙 لكل منهما). الجدران تعيق الزومبي ويمكن ترقيتها مرتين لتصبح أطول وأقوى.';
+    var dr=document.getElementById('htpDragon'); if(dr) dr.innerHTML='التنين يملك <strong>شحنتين</strong>. يستهدف تلقائياً أقوى زومبي وينفث النار مما يقضي على جميع الأعداء في الشاشة.';
+    var gr=document.getElementById('htpGrade'); if(gr) gr.innerHTML='الأسئلة تتناسب مع فئتك العمرية. كل فئة تملك <strong>سهل ومتوسط وصعب</strong> في جميع المواد الخمس.';
+    var rp=document.getElementById('htpRepeat'); if(rp) rp.textContent='لن تتكرر الأسئلة حتى استخدام 80% من البنك — ثم يُعاد الخلط.';
+    var tUnit=document.getElementById('htpTUnit'); if(tUnit) tUnit.textContent='الوحدة';
+    var tCost=document.getElementById('htpTCost'); if(tCost) tCost.textContent='الشراء';
+    var tUpg=document.getElementById('htpTUpg'); if(tUpg) tUpg.textContent='الترقية';
+    var tMax=document.getElementById('htpTMax'); if(tMax) tMax.textContent='الحد';
+    var tDesc=document.getElementById('htpTDesc'); if(tDesc) tDesc.textContent='ملاحظات';
+    var tLvl=document.getElementById('htpTLvl'); if(tLvl) tLvl.textContent='المستوى';
+    var tBuy=document.getElementById('htpTBuy'); if(tBuy) tBuy.textContent='التكلفة';
+    var tRec=document.getElementById('htpTRecharge'); if(tRec) tRec.textContent='الشحن';
+    var tFire=document.getElementById('htpTFire'); if(tFire) tFire.textContent='النار كل';
+  } else {
+    var t=document.getElementById('htpTitle'); if(t) t.textContent='📖 How to Play';
+    var s1=document.getElementById('htpS1'); if(s1) s1.textContent='🎯 Goal';
+    var s2=document.getElementById('htpS2'); if(s2) s2.textContent='💡 Earning Coins';
+    var s3=document.getElementById('htpS3'); if(s3) s3.textContent='🏹 Defenders';
+    var s4=document.getElementById('htpS4'); if(s4) s4.textContent='🧱 Walls';
+    var s5=document.getElementById('htpS5'); if(s5) s5.textContent='🐉 Dragon';
+    var s6=document.getElementById('htpS6'); if(s6) s6.textContent='🎓 Grade System';
+    var g=document.getElementById('htpGoal'); if(g) g.innerHTML='Defend your tower from zombie waves. If <strong>10 zombies</strong> reach the tower, the game ends. Survive as many waves as possible!';
+    var c=document.getElementById('htpCoins'); if(c) c.innerHTML='Tap <strong>+Coins</strong> to open a quiz. Answer questions to earn coins. Choose a subject, then a difficulty level.';
+    var a=document.getElementById('htpArcher'); if(a) a.textContent='Fast, low damage';
+    var sn=document.getElementById('htpSniper'); if(sn) sn.textContent='Slow, high damage, long range';
+    var un=document.getElementById('htpUpgNote'); if(un) un.textContent='Upgrade cost ×1.5 each level. Click a unit to select it, then press Upgrade.';
+    var w=document.getElementById('htpWall'); if(w) w.innerHTML='Build up to <strong>2 walls</strong> (8 🪙 each). Walls block zombies and can be upgraded twice to become taller and stronger.';
+    var dr=document.getElementById('htpDragon'); if(dr) dr.innerHTML='Dragon has <strong>2 charges</strong>. It automatically targets the strongest zombie and breathes fire, killing all enemies on screen.';
+    var gr=document.getElementById('htpGrade'); if(gr) gr.innerHTML='Questions match your selected age group. Every group has <strong>Easy, Medium, and Hard</strong> questions in all 5 subjects.';
+    var rp=document.getElementById('htpRepeat'); if(rp) rp.textContent="Questions won't repeat until 80% of the pool is used — then they shuffle again.";
+    var tUnit=document.getElementById('htpTUnit'); if(tUnit) tUnit.textContent='Unit';
+    var tCost=document.getElementById('htpTCost'); if(tCost) tCost.textContent='Buy';
+    var tUpg=document.getElementById('htpTUpg'); if(tUpg) tUpg.textContent='Upgrade';
+    var tMax=document.getElementById('htpTMax'); if(tMax) tMax.textContent='Max';
+    var tDesc=document.getElementById('htpTDesc'); if(tDesc) tDesc.textContent='Notes';
+    var tLvl=document.getElementById('htpTLvl'); if(tLvl) tLvl.textContent='Level';
+    var tBuy=document.getElementById('htpTBuy'); if(tBuy) tBuy.textContent='Cost';
+    var tRec=document.getElementById('htpTRecharge'); if(tRec) tRec.textContent='Recharge';
+    var tFire=document.getElementById('htpTFire'); if(tFire) tFire.textContent='Fire rate';
+  }
+  document.getElementById('gradeLbl').textContent = l==='ar' ? 'اختر فئتك العمرية:' : 'Select your Age Group:';
+  document.getElementById('hardPenalty').textContent = l==='ar' ? 'خطأ = -1 🪙' : 'wrong = -1 🪙';
+  // Hard info banners (difficulty screen + question screen)
+  var hardInfoTxt = l==='ar'
+    ? 'سؤال صعب: صحيح = <strong style="color:#ffd700">+3 🪙</strong> &nbsp;|&nbsp; خطأ = <strong style="color:#ff6b6b">-1 🪙</strong>'
+    : 'Hard question: correct = <strong style="color:#ffd700">+3 🪙</strong> &nbsp;|&nbsp; wrong = <strong style="color:#ff6b6b">-1 🪙</strong>';
+  var d1 = document.getElementById('hardInfoDiffTxt');
+  var d2 = document.getElementById('hardInfoQTxt');
+  if(d1) d1.innerHTML = hardInfoTxt;
+  if(d2) d2.innerHTML = hardInfoTxt;
+  // HS grade label
+  var hsg = document.getElementById('hsGradeLbl');
+  if(hsg) hsg.textContent = PLAYER_GRADE;
+  updateHSDisplay();
 }
 
 // ═══════════════════════════════════════════════════
 // QUESTIONS
 // ═══════════════════════════════════════════════════
-var QDB = {
-  math:{
-    easy:[
-      {q:"7 × 8 = ?",ar:"7 × 8 = ؟",a:["56","54","48","63"],c:0},
-      {q:"125 ÷ 5 = ?",ar:"125 ÷ 5 = ؟",a:["20","25","30","15"],c:1},
-      {q:"What is 15% of 200?",ar:"ما هو 15% من 200؟",a:["25","30","35","40"],c:1},
-      {q:"3² + 4² = ?",ar:"3² + 4² = ؟",a:["25","7","49","20"],c:0},
-      {q:"Perimeter of square, side = 9?",ar:"محيط مربع طول ضلعه 9 = ؟",a:["36","27","18","45"],c:0},
-      {q:"1/2 + 1/4 = ?",ar:"1/2 + 1/4 = ؟",a:["3/4","2/6","1/8","2/4"],c:0},
-      {q:"50% of 80 = ?",ar:"50% من 80 = ؟",a:["40","35","45","50"],c:0},
-      {q:"What is 6³?",ar:"ما هو 6³؟",a:["216","180","144","36"],c:0},
-      {q:"Area: length=8, width=5?",ar:"المساحة: طول=8، عرض=5؟",a:["40","26","13","80"],c:0},
-      {q:"0.5 × 0.5 = ?",ar:"0.5 × 0.5 = ؟",a:["0.25","0.5","1.0","0.025"],c:0},
-      {q:"Simplify 18/24",ar:"بسّط 18/24",a:["3/4","2/3","4/6","1/2"],c:0},
-      {q:"Round 3.76 to nearest whole?",ar:"قرّب 3.76 لأقرب عدد صحيح",a:["3","4","5","6"],c:1},
-      {q:"9 × 9 = ?",ar:"9 × 9 = ؟",a:["81","72","90","63"],c:0},
-      {q:"48 ÷ 6 = ?",ar:"48 ÷ 6 = ؟",a:["8","7","9","6"],c:0},
-      {q:"What is 25% of 120?",ar:"ما هو 25% من 120؟",a:["30","25","35","40"],c:0},
-      {q:"What is π approximately?",ar:"ما هي القيمة التقريبية لـ π؟",a:["3.14","3.41","2.14","4.13"],c:0},
-      {q:"Which is a prime number?",ar:"أي من التالي عدد أولي؟",a:["17","15","21","27"],c:0},
-      {q:"120 × 5 = ?",ar:"120 × 5 = ؟",a:["600","500","700","480"],c:0},
-      {q:"3/4 of 80 = ?",ar:"3/4 من 80 = ؟",a:["60","40","70","45"],c:0},
-      {q:"What is 2⁵?",ar:"ما هو 2⁵؟",a:["32","16","64","25"],c:0},
-      {q:"Right angle = ?",ar:"الزاوية القائمة = ؟",a:["90°","45°","180°","60°"],c:0},
-      {q:"Area of triangle: base=10, height=6?",ar:"مساحة مثلث: قاعدة=10، ارتفاع=6؟",a:["30","60","16","50"],c:0},
-      {q:"1000 ÷ 25 = ?",ar:"1000 ÷ 25 = ؟",a:["40","25","50","35"],c:0},
-      {q:"Supplementary angles sum to:",ar:"الزاويتان المتتامتان مجموعهما:",a:["180°","90°","360°","45°"],c:0},
-      {q:"8² = ?",ar:"8² = ؟",a:["64","56","72","48"],c:0},
-      {q:"30 out of 150 = ?%",ar:"30 من 150 تساوي كم بالمئة؟",a:["20%","25%","15%","30%"],c:0},
-      {q:"0.75 as a fraction:",ar:"0.75 كسراً:",a:["3/4","7/5","5/8","3/5"],c:0},
-      {q:"Sum of angles in a triangle = ?",ar:"مجموع زوايا المثلث = ؟",a:["180°","360°","90°","270°"],c:0},
-      {q:"144 ÷ 12 = ?",ar:"144 ÷ 12 = ؟",a:["12","11","13","14"],c:0},
-      {q:"7 × 8 = ?",ar:"7 × 8 = ؟",a:["56","54","58","48"],c:0},
-      {q:"What is 50% of 200?",ar:"ما هو 50% من 200؟",a:["100","50","150","25"],c:0},
-      {q:"Which is an even number?",ar:"أي من التالي عدد زوجي؟",a:["38","37","41","53"],c:0},
-      {q:"5³ = ?",ar:"5³ = ؟",a:["125","15","25","625"],c:0},
-      {q:"Perimeter of square, side=9?",ar:"محيط مربع طول ضلعه 9؟",a:["36","18","81","27"],c:0},
-      {q:"How many minutes in 3 hours?",ar:"كم دقيقة في 3 ساعات؟",a:["180","120","240","60"],c:0},
-      {q:"0.1 + 0.9 = ?",ar:"0.1 + 0.9 = ؟",a:["1.0","0.10","1.9","0.19"],c:0},
-      {q:"Largest of: 2/3, 3/4, 1/2?",ar:"أكبر قيمة: 2/3، 3/4، 1/2؟",a:["3/4","2/3","1/2","Equal"],c:0},
-      {q:"What is the square root of 49?",ar:"ما هو الجذر التربيعي لـ 49؟",a:["7","6","8","9"],c:0},
-      {q:"200 × 0 = ?",ar:"200 × 0 = ؟",a:["0","200","1","20"],c:0},
-      {q:"Which shape has 3 sides?",ar:"أي شكل له 3 أضلاع؟",a:["Triangle|مثلث","Square|مربع","Pentagon|خماسي","Circle|دائرة"],c:0},
-      {q:"35 ÷ 5 = ?",ar:"35 ÷ 5 = ؟",a:["7","6","8","9"],c:0},
-      {q:"What is 10% of 500?",ar:"ما هو 10% من 500؟",a:["50","100","5","500"],c:0},
-      {q:"Next number: 2, 4, 8, 16, ___?",ar:"العدد التالي: 2، 4، 8، 16، ___؟",a:["32","20","24","30"],c:0},
-      {q:"How many sides does a hexagon have?",ar:"كم ضلعاً في الشكل السداسي؟",a:["6","5","7","8"],c:0},
-      {q:"1/2 + 1/4 = ?",ar:"1/2 + 1/4 = ؟",a:["3/4","2/6","1/6","2/4"],c:0},
-      {q:"456 rounded to nearest hundred?",ar:"456 مقرّبة لأقرب مئة؟",a:["500","400","450","460"],c:0},
-    ],
-    medium:[
-      {q:"Solve: 3x + 9 = 24",ar:"حل: 3س + 9 = 24",a:["x=5","x=4","x=6","x=3"],c:0},
-      {q:"Right triangle: legs 3 & 4. Hypotenuse?",ar:"مثلث قائم أضلاعه 3 و4. الوتر = ؟",a:["5","7","6","4"],c:0},
-      {q:"Train: 60 km/h for 2.5h. Distance?",ar:"قطار 60كم/ساعة لـ 2.5 ساعة. المسافة؟",a:["150km","120km","180km","100km"],c:0},
-      {q:"If 40% of x = 20, then x = ?",ar:"إذا كان 40% من س = 20، إذن س = ؟",a:["50","40","60","80"],c:0},
-      {q:"LCM of 12 and 18?",ar:"المضاعف المشترك الأصغر لـ 12 و18؟",a:["36","24","6","72"],c:0},
-      {q:"Area of circle, r=7? (π≈3.14)",ar:"مساحة دائرة نصف قطرها 7؟ (π≈3.14)",a:["153.86","43.96","21.98","100"],c:0},
-      {q:"-5 + 3 × (-2) = ?",ar:"-5 + 3 × (-2) = ؟",a:["-11","1","-1","11"],c:0},
-      {q:"Volume of cube, side=4?",ar:"حجم مكعب طول ضلعه 4؟",a:["64","48","16","32"],c:0},
-      {q:"4/5 ÷ 2/3 = ?",ar:"4/5 ÷ 2/3 = ؟",a:["6/5","8/15","2/3","12/10"],c:0},
-      {q:"Prime factors of 60?",ar:"العوامل الأولية لـ 60؟",a:["2²×3×5","2×3×10","4×15","2³×5"],c:0},
-      {q:"If x/4 = 7, then x = ?",ar:"إذا كان س/4 = 7، إذن س = ؟",a:["28","11","3","47"],c:0},
-      {q:"GCF of 24 and 36?",ar:"القاسم المشترك الأكبر لـ 24 و36؟",a:["12","6","18","24"],c:0},
-      {q:"Speed = 80km/h, time = 3h. Distance?",ar:"سرعة = 80 كم/ساعة، زمن = 3 ساعات. المسافة؟",a:["240km","270km","200km","300km"],c:0},
-      {q:"What is 35% of 60?",ar:"ما هو 35% من 60؟",a:["21","18","24","15"],c:0},
-      {q:"Perimeter of circle, r=5? (π≈3.14)",ar:"محيط دائرة نصف قطرها 5؟ (π≈3.14)",a:["31.4","15.7","78.5","10"],c:0},
-      {q:"Solve: 5x - 3 = 22",ar:"حل: 5س - 3 = 22",a:["x=5","x=4","x=6","x=3"],c:0},
-      {q:"Surface area of cube, side=3?",ar:"المساحة الكلية لمكعب ضلعه 3؟",a:["54","27","36","72"],c:0},
-      {q:"Ratio 4:6 simplified:",ar:"النسبة 4:6 مبسّطة:",a:["2:3","1:2","3:4","4:6"],c:0},
-      {q:"Which is NOT a multiple of 7?",ar:"أي من التالي ليس مضاعفاً لـ 7؟",a:["74","49","56","63"],c:0},
-      {q:"1.5 × 1.5 = ?",ar:"1.5 × 1.5 = ؟",a:["2.25","3.0","1.75","2.5"],c:0},
-      {q:"If 3y = 21, y = ?",ar:"إذا كان 3ص = 21، ص = ؟",a:["7","6","8","9"],c:0},
-      {q:"Convert 2.5 hours to minutes?",ar:"حوّل 2.5 ساعة إلى دقائق؟",a:["150","125","200","100"],c:0},
-      {q:"Solve: 7x - 3 = 25",ar:"حل: 7س - 3 = 25",a:["x=4","x=3","x=5","x=6"],c:0},
-      {q:"What is 15% of 80?",ar:"ما هو 15% من 80؟",a:["12","15","10","8"],c:0},
-      {q:"Area of rectangle: 12cm × 7cm?",ar:"مساحة مستطيل: 12سم × 7سم؟",a:["84 cm²","38 cm²","96 cm²","19 cm²"],c:0},
-      {q:"Average of: 10, 20, 30, 40?",ar:"متوسط: 10، 20، 30، 40؟",a:["25","20","30","100"],c:0},
-      {q:"5! (5 factorial) = ?",ar:"5! = ؟",a:["120","60","24","25"],c:0},
-      {q:"Angles in quadrilateral sum to:",ar:"مجموع زوايا الرباعي = ؟",a:["360°","180°","270°","720°"],c:0},
-      {q:"Distance = Speed × Time. s=45, t=3. d=?",ar:"مسافة = سرعة × زمن. س=45، ز=3. م=؟",a:["135","48","15","108"],c:0},
-      {q:"Two numbers sum=50, difference=10. Larger?",ar:"عددان مجموعهما 50 وفرقهما 10. الأكبر؟",a:["30","20","40","25"],c:0},
-      {q:"Median of: 3, 7, 9, 12, 15?",ar:"الوسيط لـ: 3، 7، 9، 12، 15؟",a:["9","7","12","3"],c:0},
-      {q:"√144 = ?",ar:"√144 = ؟",a:["12","11","13","14"],c:0},
-      {q:"If a rectangle area = 60 and width = 5, length = ?",ar:"إذا كانت مساحة مستطيل = 60 وعرضه = 5، الطول = ؟",a:["12","10","15","55"],c:0},
-      {q:"3x + 2y = 20 and x = 4. Find y.",ar:"3س + 2ص = 20 وس = 4. أوجد ص.",a:["4","8","6","2"],c:0},
-      {q:"What is 20% increase of 150?",ar:"زيادة 20% على 150 تعطي؟",a:["180","170","200","160"],c:0},
-      {q:"How many diagonals in a pentagon?",ar:"كم قطراً في الخماسي؟",a:["5","3","4","10"],c:0},
-    ],
-    hard:[
-      {q:"x² - 5x + 6 = 0. Sum of solutions?",ar:"س² - 5س + 6 = 0. مجموع الحلول؟",a:["5","6","3","2"],c:0},
-      {q:"a:b = 3:5 and a+b = 64. Find a.",ar:"أ:ب = 3:5 و أ+ب = 64. أوجد أ.",a:["24","40","20","32"],c:0},
-      {q:"Trapezoid: bases 6&10, height 4. Area?",ar:"شبه منحرف: قاعدتاه 6 و10، الارتفاع 4. المساحة؟",a:["32","40","24","48"],c:0},
-      {q:"Sum of interior angles of hexagon?",ar:"مجموع الزوايا الداخلية للسداسي؟",a:["720°","360°","540°","900°"],c:0},
-      {q:"2(3x - 4) = 5x + 2. Find x.",ar:"2(3س - 4) = 5س + 2. أوجد س.",a:["x=10","x=8","x=12","x=6"],c:0},
-      {q:"90 km/h converted to m/s?",ar:"90 كم/ساعة بالمتر/ثانية؟",a:["25 m/s","30 m/s","18 m/s","45 m/s"],c:0},
-      {q:"If f(x)=2x²-3, find f(4).",ar:"إذا كانت ف(س)=2س²-3، أوجد ف(4).",a:["29","13","32","16"],c:0},
-      {q:"Cylinder: r=3, h=10. Volume? (π≈3.14)",ar:"أسطوانة: نق=3، ع=10. الحجم؟ (π≈3.14)",a:["282.6","94.2","188.4","30"],c:0},
-      {q:"Diagonal of square, side=6? (√2≈1.41)",ar:"قطر مربع ضلعه 6؟ (√2≈1.41)",a:["8.46","6","12","10"],c:0},
-      {q:"(x+3)(x-2) expanded = ?",ar:"(س+3)(س-2) بعد التوسيع = ؟",a:["x²+x-6","x²-x-6","x²+5x-6","x²-6"],c:0},
-      {q:"A 40% discount on 250. Final price?",ar:"خصم 40% على 250. السعر النهائي؟",a:["150","100","175","200"],c:0},
-      {q:"3 workers finish in 8 days. 6 workers take?",ar:"3 عمال ينهون في 8 أيام. 6 عمال يحتاجون؟",a:["4 days","6 days","12 days","2 days"],c:0},
-      {q:"Sphere surface area: r=3? (π≈3.14)",ar:"مساحة سطح كرة: نق=3؟ (π≈3.14)",a:["113.04","28.26","75.36","56.52"],c:0},
-      {q:"If log₁₀(1000) = ?",ar:"ما هو log₁₀(1000)؟",a:["3","100","10","1000"],c:0},
-      {q:"Solve: |2x - 4| = 10. One solution?",ar:"حل: |2س - 4| = 10. أحد الحلول؟",a:["7","3","5","8"],c:0},
-      {q:"Arithmetic sequence: 3,7,11... 10th term?",ar:"متتالية حسابية: 3،7،11... الحد العاشر؟",a:["39","35","43","40"],c:0},
-      {q:"x² + 4x + 4 = 0. Solution?",ar:"س² + 4س + 4 = 0. الحل؟",a:["x=-2","x=2","x=4","x=0"],c:0},
-      {q:"log₂(32) = ?",ar:"log₂(32) = ؟",a:["5","4","6","3"],c:0},
-      {q:"Geometric sequence: 3, 6, 12... 6th term?",ar:"متتالية هندسية: 3، 6، 12... الحد السادس؟",a:["96","48","192","64"],c:0},
-      {q:"Circle area = 154. r = ? (π≈22/7)",ar:"مساحة دائرة = 154. نصف القطر = ؟ (π≈22/7)",a:["7","11","14","3.5"],c:0},
-      {q:"If sin(30°) = 0.5, find sin²(30°) + cos²(30°).",ar:"إذا sin(30°) = 0.5، أوجد sin²(30°) + cos²(30°).",a:["1","0.5","1.5","0.75"],c:0},
-      {q:"Vertex of y = x² - 6x + 5?",ar:"رأس القطع المكافئ y = س² - 6س + 5؟",a:["(3,-4)","(6,5)","(0,5)","(-3,4)"],c:0},
-      {q:"Sum of first 10 natural numbers?",ar:"مجموع أول 10 أعداد طبيعية؟",a:["55","45","50","100"],c:0},
-      {q:"Probability of rolling 6 on a die?",ar:"احتمال ظهور 6 على نرد؟",a:["1/6","1/3","1/2","1/4"],c:0},
-      {q:"Volume of sphere r=3? (π≈3.14)",ar:"حجم كرة نصف قطرها 3؟ (π≈3.14)",a:["113.04","37.68","150","28.26"],c:0},
-      {q:"(2x - 3)² expanded = ?",ar:"(2س - 3)² بعد التوسيع = ؟",a:["4x²-12x+9","4x²-6x+9","4x²+9","2x²-9"],c:0},
-      {q:"If P(A)=0.3, P(not A) = ?",ar:"إذا P(A)=0.3، فـ P(ليس A) = ؟",a:["0.7","0.3","1.3","0"],c:0},
-      {q:"Slope between (2,3) and (6,11)?",ar:"الميل بين النقطتين (2،3) و(6،11)؟",a:["2","4","0.5","8"],c:0},
-      {q:"4! ÷ 2! = ?",ar:"4! ÷ 2! = ؟",a:["12","4","6","24"],c:0},
-      {q:"tan(45°) = ?",ar:"tan(45°) = ؟",a:["1","0","√2","0.5"],c:0},
-    ]
-  },
-  science:{
-    easy:[
-      {q:"Plants make food through:",ar:"النباتات تصنع غذاءها عن طريق:",a:["Photosynthesis|التمثيل الضوئي","Respiration|التنفس","Digestion|الهضم","Absorption|الامتصاص"],c:0},
-      {q:"Plants absorb which gas from air?",ar:"أي غاز تمتصه النباتات من الهواء؟",a:["CO₂","O₂","N₂","H₂"],c:0},
-      {q:"The human heart has ___ chambers.",ar:"قلب الإنسان له ___ حجرات.",a:["4","2","3","6"],c:0},
-      {q:"Water boils at ___ °C.",ar:"يغلي الماء عند ___ °م.",a:["100","90","80","120"],c:0},
-      {q:"Powerhouse of the cell:",ar:"محطة الطاقة في الخلية:",a:["Mitochondria|الميتوكوندريا","Nucleus|النواة","Ribosome|الريبوسوم","Vacuole|الفجوة"],c:0},
-      {q:"Vitamin produced by sunlight:",ar:"الفيتامين الذي يُنتج بالشمس:",a:["D|د","C|ج","A|أ","B|ب"],c:0},
-      {q:"Largest planet in solar system:",ar:"أكبر كوكب في المجموعة الشمسية:",a:["Jupiter|المشتري","Saturn|زحل","Neptune|نبتون","Uranus|أورانوس"],c:0},
-      {q:"Universal donor blood type:",ar:"فصيلة الدم المانح العالمي:",a:["O-","A+","B-","AB+"],c:0},
-      {q:"Sound travels fastest through:",ar:"الصوت يسافر بأسرع ما يكون في:",a:["Solids|الصلبة","Liquids|السوائل","Gases|الغازات","Vacuum|الفراغ"],c:0},
-      {q:"Bees are important for:",ar:"النحل مهم من أجل:",a:["Pollination|التلقيح","Photosynthesis|التمثيل الضوئي","Digestion|الهضم","Erosion|التعرية"],c:0},
-      {q:"Planet closest to the Sun:",ar:"أقرب كوكب إلى الشمس:",a:["Mercury|عطارد","Venus|الزهرة","Earth|الأرض","Mars|المريخ"],c:0},
-      {q:"Solid water is called:",ar:"الماء الصلب يُسمى:",a:["Ice|جليد","Steam|بخار","Gas|غاز","Plasma|بلازما"],c:0},
-      {q:"How many bones in adult human body?",ar:"كم عظمة في جسم الإنسان البالغ؟",a:["206","208","196","220"],c:0},
-      {q:"Which organ pumps blood?",ar:"أي عضو يضخ الدم؟",a:["Heart|القلب","Lung|الرئة","Kidney|الكلية","Liver|الكبد"],c:0},
-      {q:"Plants release which gas during photosynthesis?",ar:"ما الغاز الذي تطلقه النباتات خلال التمثيل الضوئي؟",a:["O₂|الأكسجين","CO₂|ثاني أكسيد الكربون","N₂|النيتروجين","H₂|الهيدروجين"],c:0},
-      {q:"The Sun is a:",ar:"الشمس هي:",a:["Star|نجم","Planet|كوكب","Moon|قمر","Comet|مذنب"],c:0},
-      {q:"Which is NOT a mammal?",ar:"أي من التالي ليس من الثدييات؟",a:["Shark|قرش","Whale|حوت","Dolphin|دلفين","Bat|خفاش"],c:0},
-      {q:"Human body has ___ senses.",ar:"جسم الإنسان لديه ___ حواس.",a:["5","4","6","7"],c:0},
-      {q:"The moon orbits:",ar:"القمر يدور حول:",a:["Earth|الأرض","Sun|الشمس","Mars|المريخ","Jupiter|المشتري"],c:0},
-      {q:"Water chemical formula is:",ar:"الصيغة الكيميائية للماء هي:",a:["H₂O","HO₂","H₃O","HO"],c:0},
-      {q:"Which sense organ detects smell?",ar:"أي عضو حسي يكشف الروائح؟",a:["Nose|الأنف","Eye|العين","Ear|الأذن","Tongue|اللسان"],c:0},
-      {q:"Caterpillar turns into:",ar:"تتحول اليرقة إلى:",a:["Butterfly|فراشة","Bee|نحلة","Spider|عنكبوت","Ant|نملة"],c:0},
-      {q:"Humans breathe ___ from the air.",ar:"البشر يتنفسون ___ من الهواء.",a:["Oxygen|الأكسجين","Carbon dioxide|ثاني أكسيد الكربون","Nitrogen|النيتروجين","Hydrogen|الهيدروجين"],c:0},
-      {q:"Which planet is known as the Red Planet?",ar:"أي كوكب يُعرف بالكوكب الأحمر؟",a:["Mars|المريخ","Jupiter|المشتري","Venus|الزهرة","Saturn|زحل"],c:0},
-      {q:"Roots of a plant absorb:",ar:"جذور النبات تمتص:",a:["Water & minerals|ماء ومعادن","Sunlight|ضوء شمس","CO₂|ثاني أكسيد الكربون","Oxygen|أكسجين"],c:0},
-      {q:"Blood color is red due to:",ar:"لون الدم أحمر بسبب:",a:["Hemoglobin|الهيموغلوبين","Iron only|الحديد فقط","Red cells only|الخلايا الحمراء فقط","Plasma|البلازما"],c:0},
-      {q:"Which animal lays eggs?",ar:"أي حيوان يضع بيضاً؟",a:["Crocodile|تمساح","Dog|كلب","Cow|بقرة","Rabbit|أرنب"],c:0},
-      {q:"How many legs does a spider have?",ar:"كم رجلاً للعنكبوت؟",a:["8","6","4","10"],c:0},
-      {q:"The brain is protected by:",ar:"الدماغ محمي بواسطة:",a:["Skull|الجمجمة","Spine|العمود الفقري","Ribs|الأضلاع","Skin|الجلد"],c:0},
-      {q:"Which is the longest bone in the body?",ar:"أطول عظمة في الجسم؟",a:["Femur|عظم الفخذ","Spine|العمود الفقري","Humerus|عظم العضد","Tibia|عظم القصبة"],c:0},
-      {q:"Tadpoles grow into:",ar:"الشراغيف تنمو لتصبح:",a:["Frogs|ضفادع","Fish|أسماك","Lizards|سحالي","Turtles|سلاحف"],c:0},
-      {q:"Which part of plant makes food?",ar:"أي جزء من النبات يصنع الغذاء؟",a:["Leaves|الأوراق","Roots|الجذور","Stem|الساق","Flower|الزهرة"],c:0},
-      {q:"Salt water is found in:",ar:"الماء المالح يوجد في:",a:["Oceans|المحيطات","Rivers|الأنهار","Lakes|البحيرات","Rain|المطر"],c:0},
-      {q:"Day and night are caused by:",ar:"النهار والليل سببهما:",a:["Earth's rotation|دوران الأرض","Moon's orbit|مدار القمر","Sun's movement|حركة الشمس","Earth's orbit|مدار الأرض"],c:0},
-      {q:"Which vitamin helps heal wounds?",ar:"أي فيتامين يساعد على شفاء الجروح؟",a:["Vitamin C|فيتامين ج","Vitamin D|فيتامين د","Vitamin A|فيتامين أ","Vitamin B|فيتامين ب"],c:0},
-      {q:"Ice melts when:",ar:"يذوب الجليد عندما:",a:["Temperature rises|ترتفع الحرارة","Pressure drops|ينخفض الضغط","Light hits it|يسقط الضوء عليه","Wind blows|تهب الريح"],c:0},
-      {q:"Lungs are used for:",ar:"الرئتان تُستخدمان من أجل:",a:["Breathing|التنفس","Digestion|الهضم","Pumping blood|ضخ الدم","Filtering blood|تصفية الدم"],c:0},
-    ],
-    medium:[
-      {q:"Osmosis: water moves from ___ to ___ concentration.",ar:"التناضح: الماء ينتقل من تركيز ___ إلى ___.",a:["Low→High|منخفض→مرتفع","High→Low|مرتفع→منخفض","Equal→Equal","None"],c:0},
-      {q:"DNA is found in cell's:",ar:"DNA يوجد في:",a:["Nucleus|النواة","Cytoplasm|السيتوبلازم","Membrane|الغشاء","Ribosome|الريبوسوم"],c:0},
-      {q:"Rock formed from lava:",ar:"صخور تتشكل من الحمم البركانية:",a:["Igneous|النارية","Sedimentary|الرسوبية","Metamorphic|المتحولة","Limestone|الحجر الجيري"],c:0},
-      {q:"Chlorophyll gives plants ___ color.",ar:"الكلوروفيل يعطي النباتات اللون ___.",a:["Green|الأخضر","Yellow|الأصفر","Red|الأحمر","Blue|الأزرق"],c:0},
-      {q:"Mushrooms belong to kingdom:",ar:"الفطريات تنتمي لمملكة:",a:["Fungi|الفطريات","Plantae|النباتات","Animalia|الحيوانات","Protista|البروتيستا"],c:0},
-      {q:"Food is mainly digested in:",ar:"يتم هضم الطعام بشكل رئيسي في:",a:["Small intestine|الأمعاء الدقيقة","Stomach|المعدة","Large intestine|الأمعاء الغليظة","Liver|الكبد"],c:0},
-      {q:"Organ that filters blood:",ar:"العضو الذي يصفي الدم:",a:["Kidney|الكلية","Liver|الكبد","Heart|القلب","Lungs|الرئتان"],c:0},
-      {q:"Photosynthesis products:",ar:"نواتج التمثيل الضوئي:",a:["Glucose+O₂","CO₂+H₂O","ATP+NADPH","H₂+CO₂"],c:0},
-      {q:"Which planet has rings?",ar:"أي كوكب له حلقات واضحة؟",a:["Saturn|زحل","Jupiter|المشتري","Uranus|أورانوس","Neptune|نبتون"],c:0},
-      {q:"Cells divide by process called:",ar:"الخلايا تنقسم بعملية تسمى:",a:["Mitosis|الانقسام","Osmosis|التناضح","Photosynthesis|التمثيل الضوئي","Diffusion|الانتشار"],c:0},
-      {q:"Respiration in cells produces:",ar:"التنفس الخلوي ينتج:",a:["Energy|طاقة","Glucose|جلوكوز","Water only|ماء فقط","CO₂ only|ثاني أكسيد الكربون فقط"],c:0},
-      {q:"Vertebrates are animals with:",ar:"الفقاريات هي حيوانات ذات:",a:["Backbone|عمود فقري","Wings|أجنحة","Scales|قشور","6 legs|6 أرجل"],c:0},
-      {q:"The hardest substance in the human body:",ar:"أصلب مادة في جسم الإنسان:",a:["Tooth enamel|مينا الأسنان","Bone|العظم","Cartilage|الغضروف","Nail|الظفر"],c:0},
-      {q:"Plants store food as:",ar:"النباتات تخزن الغذاء على شكل:",a:["Starch|نشا","Glucose|جلوكوز","Protein|بروتين","Fat|دهون"],c:0},
-      {q:"Arteries carry blood ___ the heart.",ar:"الشرايين تحمل الدم ___ القلب.",a:["Away from|بعيداً عن","Toward|نحو","Around|حول","Into|داخل"],c:0},
-      {q:"Fossil fuels formed from:",ar:"الوقود الأحفوري تشكّل من:",a:["Ancient organisms|كائنات قديمة","Volcanic rock|صخور بركانية","Sea water|ماء البحر","Desert sand|رمال الصحراء"],c:0},
-      {q:"Which gas makes up most of Earth's atmosphere?",ar:"أي غاز يشكّل معظم الغلاف الجوي للأرض؟",a:["Nitrogen|النيتروجين","Oxygen|الأكسجين","CO₂|ثاني أكسيد الكربون","Argon|الأرغون"],c:0},
-      {q:"An ecosystem includes:",ar:"النظام البيئي يشمل:",a:["Living & non-living|حيّ وغير حيّ","Only animals|الحيوانات فقط","Only plants|النباتات فقط","Only soil|التربة فقط"],c:0},
-      {q:"The process of water changing to vapour is:",ar:"تحوّل الماء إلى بخار يُسمى:",a:["Evaporation|التبخر","Condensation|التكثف","Freezing|التجمد","Melting|الانصهار"],c:0},
-      {q:"Which organ produces insulin?",ar:"أي عضو ينتج الأنسولين؟",a:["Pancreas|البنكرياس","Liver|الكبد","Kidney|الكلية","Stomach|المعدة"],c:0},
-      {q:"The food chain starts with:",ar:"السلسلة الغذائية تبدأ بـ:",a:["Producers|المنتجون","Herbivores|آكلات العشب","Carnivores|آكلات اللحوم","Decomposers|المحللون"],c:0},
-      {q:"Which metal is liquid at room temperature?",ar:"أي معدن سائل عند درجة الحرارة العادية؟",a:["Mercury|الزئبق","Iron|الحديد","Gold|الذهب","Copper|النحاس"],c:0},
-      {q:"Veins carry blood ___ the heart.",ar:"الأوردة تحمل الدم ___ القلب.",a:["Toward|نحو","Away from|بعيداً عن","Around|حول","Through|عبر"],c:0},
-      {q:"Sound cannot travel through:",ar:"الصوت لا يستطيع السفر في:",a:["Vacuum|الفراغ","Water|الماء","Air|الهواء","Steel|الصلب"],c:0},
-      {q:"Photosynthesis requires:",ar:"التمثيل الضوئي يحتاج إلى:",a:["Sunlight + CO₂ + Water|ضوء+ثاني أكسيد الكربون+ماء","Oxygen only|أكسجين فقط","Glucose only|جلوكوز فقط","Nitrogen|النيتروجين"],c:0},
-      {q:"Earthquakes are measured by:",ar:"الزلازل تُقاس بـ:",a:["Richter scale|مقياس ريختر","Barometer|البارومتر","Thermometer|الحرارة","Altimeter|مقياس الارتفاع"],c:0},
-      {q:"Fungi reproduce by:",ar:"الفطريات تتكاثر عن طريق:",a:["Spores|الأبواغ","Seeds|البذور","Eggs|البيض","Division|الانقسام"],c:0},
-      {q:"Which element has symbol Fe?",ar:"أي عنصر رمزه Fe؟",a:["Iron|الحديد","Fluorine|الفلور","Francium|الفرانسيوم","Gold|الذهب"],c:0},
-      {q:"The largest organ of the human body:",ar:"أكبر عضو في جسم الإنسان:",a:["Skin|الجلد","Liver|الكبد","Lung|الرئة","Brain|الدماغ"],c:0},
-      {q:"What is the pH of pure water?",ar:"ما هو الرقم الهيدروجيني للماء النقي؟",a:["7","0","14","1"],c:0},
-      {q:"Stars appear to twinkle because of:",ar:"النجوم تبدو متلألئة بسبب:",a:["Atmosphere|الغلاف الجوي","Their size|حجمها","Distance|المسافة","Their temperature|حرارتها"],c:0},
-      {q:"Newton discovered gravity when:",ar:"اكتشف نيوتن الجاذبية عندما:",a:["Apple fell from tree|سقطت تفاحة","He looked at moon|نظر للقمر","He was swimming|كان يسبح","He read a book|قرأ كتاباً"],c:0},
-      {q:"Which organ stores bile?",ar:"أي عضو يخزن العصارة الصفراوية؟",a:["Gallbladder|المرارة","Liver|الكبد","Pancreas|البنكرياس","Stomach|المعدة"],c:0},
-      {q:"Rain is part of the ___ cycle.",ar:"المطر جزء من دورة ___.",a:["Water|الماء","Carbon|الكربون","Nitrogen|النيتروجين","Oxygen|الأكسجين"],c:0},
-    ],
-    hard:[
-      {q:"Cellular respiration equation products:",ar:"نواتج معادلة التنفس الخلوي:",a:["CO₂+H₂O+ATP","Glucose+O₂","O₂+H₂O","ATP only"],c:0},
-      {q:"Antibodies are produced by:",ar:"الأجسام المضادة تُنتج بواسطة:",a:["B lymphocytes|خلايا B","T lymphocytes|خلايا T","Red blood cells|كريات حمراء","Platelets|الصفائح"],c:0},
-      {q:"Ozone layer is located in:",ar:"طبقة الأوزون توجد في:",a:["Stratosphere|الستراتوسفير","Troposphere|التروبوسفير","Mesosphere|الميزوسفير","Thermosphere|الثرموسفير"],c:0},
-      {q:"Enzyme breaking starch in saliva:",ar:"إنزيم تحليل النشا في اللعاب:",a:["Amylase|الأميليز","Lipase|الليباز","Protease|البروتياز","Lactase|اللاكتاز"],c:0},
-      {q:"Which base pairs with Adenine in DNA?",ar:"أي قاعدة ترتبط بالأدينين في DNA؟",a:["Thymine|الثايمين","Guanine|الغوانين","Cytosine|السيتوزين","Uracil|اليوراسيل"],c:0},
-      {q:"Process by which plants lose water:",ar:"العملية التي تفقد بها النباتات الماء:",a:["Transpiration|النتح","Respiration|التنفس","Photosynthesis|التمثيل الضوئي","Osmosis|التناضح"],c:0},
-      {q:"Meiosis produces cells with ___ chromosomes.",ar:"الانقسام المنصف ينتج خلايا ذات ___ كروموسوم.",a:["Half|نصف العدد","Double|ضعف العدد","Same|نفس العدد","Triple|ثلاثة أضعاف"],c:0},
-      {q:"Which part of brain controls balance?",ar:"أي جزء من الدماغ يتحكم بالتوازن؟",a:["Cerebellum|المخيخ","Cerebrum|المخ","Brain stem|جذع الدماغ","Hypothalamus|المهاد"],c:0},
-      {q:"ATP stands for:",ar:"ATP اختصار لـ:",a:["Adenosine Triphosphate","Amino Tri Phosphate","Acid Tri Protein","Active Transport Protein"],c:0},
-      {q:"Endothermic reaction:",ar:"التفاعل الماص للحرارة:",a:["Absorbs heat|يمتص الحرارة","Releases heat|يطلق الحرارة","No energy change","Releases light"],c:0},
-      {q:"Photosynthesis light reaction produces:",ar:"التفاعل الضوئي في التمثيل الضوئي ينتج:",a:["ATP & NADPH","Glucose","CO₂","Starch"],c:0},
-      {q:"A mutation is a change in:",ar:"الطفرة هي تغيير في:",a:["DNA sequence|تسلسل DNA","Cell shape|شكل الخلية","Cell size|حجم الخلية","Protein amount|كمية البروتين"],c:0},
-      {q:"Which blood cells fight infection?",ar:"أي خلايا دم تحارب العدوى؟",a:["White blood cells|كريات الدم البيضاء","Red blood cells|كريات الدم الحمراء","Platelets|الصفائح الدموية","Plasma cells|خلايا البلازما"],c:0},
-      {q:"The powerhouse of the cell produces:",ar:"محطة طاقة الخلية تنتج:",a:["ATP","DNA","RNA","Glucose"],c:0},
-      {q:"Which process converts glucose to ethanol?",ar:"أي عملية تحوّل الجلوكوز إلى كحول؟",a:["Fermentation|التخمر","Photosynthesis|التمثيل الضوئي","Transpiration|النتح","Osmosis|التناضح"],c:0},
-      {q:"The CRISPR technology is used to:",ar:"تقنية CRISPR تُستخدم في:",a:["Edit genes|تعديل الجينات","Clone animals|استنساخ الحيوانات","Grow organs|زراعة الأعضاء","Create vaccines|إنتاج اللقاحات"],c:0},
-      {q:"Nerve cells are called:",ar:"خلايا الجهاز العصبي تُسمى:",a:["Neurons|خلايا عصبية","Nephrons|نيفرونات","Alveoli|حويصلات","Villi|زغابات"],c:0},
-      {q:"Acid rain is caused mainly by:",ar:"المطر الحمضي ينتج أساساً من:",a:["SO₂ & NOₓ|ثاني أكسيد الكبريت وأكاسيد النيتروجين","CO₂","Methane|الميثان","Ozone|الأوزون"],c:0},
-      {q:"Which organelle is called the cell's post office?",ar:"أي عضية تُسمى مكتب بريد الخلية؟",a:["Golgi apparatus|جهاز جولجي","Ribosome|الريبوسوم","Vacuole|الفجوة","Nucleus|النواة"],c:0},
-      {q:"DNA double helix was discovered by:",ar:"اكتشف بنية DNA الحلزونية المزدوجة:",a:["Watson & Crick","Darwin","Mendel","Pasteur"],c:0},
-      {q:"Insulin regulates blood:",ar:"الأنسولين ينظّم مستوى ___ في الدم.",a:["Glucose|الجلوكوز","Calcium|الكالسيوم","Iron|الحديد","Sodium|الصوديوم"],c:0},
-      {q:"The trachea connects throat to:",ar:"القصبة الهوائية تصل الحلق بـ:",a:["Lungs|الرئتين","Stomach|المعدة","Heart|القلب","Kidney|الكلية"],c:0},
-      {q:"Hardy-Weinberg principle applies when:",ar:"مبدأ هاردي-واينبرغ ينطبق عند:",a:["No evolution occurring|عدم حدوث تطور","Mutation rate is high|معدل الطفرات عالٍ","Small population|مجتمع صغير","Natural selection active|الانتقاء الطبيعي نشط"],c:0},
-      {q:"Which type of RNA carries amino acids?",ar:"أي نوع من RNA يحمل الأحماض الأمينية؟",a:["tRNA","mRNA","rRNA","snRNA"],c:0},
-      {q:"The greenhouse effect is mainly caused by:",ar:"ظاهرة الاحتباس الحراري تسببها رئيسياً:",a:["CO₂ & methane|ثاني أكسيد الكربون والميثان","Oxygen|الأكسجين","Nitrogen|النيتروجين","Ozone|الأوزون"],c:0},
-      {q:"Osmotic pressure increases when solute concentration:",ar:"الضغط الأسموزي يزيد عند ___ تركيز المذاب.",a:["Increases|يزداد","Decreases|يقل","Stays same|يبقى ثابتاً","Becomes zero|يصبح صفراً"],c:0},
-      {q:"NADH is produced during:",ar:"NADH يُنتج خلال:",a:["Glycolysis & Krebs cycle|التحلل السكري ودورة كريبس","Photosynthesis only","Fermentation only|التخمر فقط","Transcription|النسخ"],c:0},
-    ]
-  },
-  physics:{
-    easy:[
-      {q:"Speed = Distance ÷ ___",ar:"السرعة = المسافة ÷ ___",a:["Time|الزمن","Mass|الكتلة","Volume|الحجم","Force|القوة"],c:0},
-      {q:"Unit of force:",ar:"وحدة القوة:",a:["Newton|نيوتن","Joule|جول","Watt|واط","Pascal|باسكال"],c:0},
-      {q:"Light speed ≈ ___ km/s",ar:"سرعة الضوء ≈ ___ كم/ث",a:["300,000","3,000","3,000,000","30,000"],c:0},
-      {q:"Gravity on Earth ≈ ___ m/s²",ar:"الجاذبية الأرضية ≈ ___ م/ث²",a:["9.8","8.9","10.8","6.7"],c:0},
-      {q:"Newton's ___ law: object at rest stays at rest",ar:"القانون ___ لنيوتن: الجسم الساكن يبقى ساكناً",a:["1st|الأول","2nd|الثاني","3rd|الثالث","4th|الرابع"],c:0},
-      {q:"Which is faster: light or sound?",ar:"أيهما أسرع: الضوء أم الصوت؟",a:["Light|الضوء","Sound|الصوت","Equal|متساوٍ","Depends|يعتمد"],c:0},
-      {q:"Rubber is an:",ar:"المطاط هو:",a:["Insulator|عازل","Conductor|موصل","Semi-conductor|شبه موصل","Magnet|مغناطيس"],c:0},
-      {q:"Freezing point of water is ___ °C",ar:"نقطة تجمد الماء هي ___ °م",a:["0","-10","10","100"],c:0},
-      {q:"Which travels in straight lines?",ar:"ماذا يسير في خطوط مستقيمة؟",a:["Light|الضوء","Sound|الصوت","Wind|الريح","Water|الماء"],c:0},
-      {q:"Unit of energy is:",ar:"وحدة الطاقة هي:",a:["Joule|جول","Newton|نيوتن","Watt|واط","Ampere|أمبير"],c:0},
-      {q:"Magnets have ___ poles.",ar:"المغناطيس له ___ قطبان.",a:["2|اثنان","1|واحد","3|ثلاثة","4|أربعة"],c:0},
-      {q:"A mirror reflects ___.",ar:"المرآة تعكس ___.",a:["Light|الضوء","Sound|الصوت","Heat only|الحرارة فقط","Water|الماء"],c:0},
-      {q:"Unit of electric current:",ar:"وحدة التيار الكهربائي:",a:["Ampere|أمبير","Volt|فولت","Ohm|أوم","Watt|واط"],c:0},
-      {q:"Objects fall due to:",ar:"تسقط الأجسام بسبب:",a:["Gravity|الجاذبية","Magnetism|المغناطيسية","Friction|الاحتكاك","Air pressure|ضغط الهواء"],c:0},
-      {q:"Heat travels through metal by:",ar:"تنتقل الحرارة خلال المعدن عن طريق:",a:["Conduction|التوصيل","Convection|الحمل","Radiation|الإشعاع","Reflection|الانعكاس"],c:0},
-      {q:"Which colour bends most in a prism?",ar:"أي لون ينحرف أكثر في المنشور؟",a:["Violet|بنفسجي","Red|أحمر","Green|أخضر","Yellow|أصفر"],c:0},
-      {q:"Friction is a force that ___ motion.",ar:"الاحتكاك قوة تُبطئ ___.",a:["Opposes|تعارض","Increases|تزيد","Starts|تبدأ","Stops|تمنع"],c:0},
-      {q:"Which state of matter has no fixed shape?",ar:"أي حالة من المادة ليس لها شكل ثابت؟",a:["Liquid & Gas|سائل وغاز","Solid|صلب","Liquid only|سائل فقط","Gas only|غاز فقط"],c:0},
-      {q:"Boiling creates ___ from liquid.",ar:"الغليان يحوّل السائل إلى ___.",a:["Gas|غاز","Solid|صلب","Plasma|بلازما","Ice|جليد"],c:0},
-      {q:"The unit of voltage is:",ar:"وحدة الجهد الكهربائي هي:",a:["Volt|فولت","Ampere|أمبير","Ohm|أوم","Watt|واط"],c:0},
-      {q:"Which form of energy does the Sun give us?",ar:"أي شكل من الطاقة يعطينا الشمس؟",a:["Light & heat|ضوء وحرارة","Electrical|كهربائية","Chemical|كيميائية","Mechanical|ميكانيكية"],c:0},
-      {q:"A ball thrown upward will eventually:",ar:"كرة مرمية للأعلى ستعود للأسفل بسبب:",a:["Fall due to gravity|تسقط بالجاذبية","Stay in air|تبقى في الهواء","Go to space|تذهب للفضاء","Stop mid-air|تتوقف في الهواء"],c:0},
-      {q:"Pushing a heavy box uses ___ energy.",ar:"دفع صندوق ثقيل يستخدم طاقة ___.",a:["Mechanical|ميكانيكية","Chemical|كيميائية","Electrical|كهربائية","Nuclear|نووية"],c:0},
-      {q:"Which material is a good conductor?",ar:"أي مادة موصل جيد للكهرباء؟",a:["Copper|نحاس","Wood|خشب","Plastic|بلاستيك","Glass|زجاج"],c:0},
-      {q:"Rainbow colors appear due to light:",ar:"ألوان قوس قزح تظهر بسبب ___ الضوء.",a:["Refraction|الانكسار","Reflection|الانعكاس","Absorption|الامتصاص","Emission|الانبعاث"],c:0},
-      {q:"A pendulum swings back and forth due to:",ar:"البندول يتأرجح بسبب:",a:["Gravity|الجاذبية","Magnetism|المغناطيسية","Friction|الاحتكاك","Air pressure|ضغط الهواء"],c:0},
-      {q:"Which tool measures temperature?",ar:"أي أداة تقيس درجة الحرارة؟",a:["Thermometer|الحرارة","Barometer|البارومتر","Voltmeter|الفولتميتر","Ammeter|الأميتر"],c:0},
-      {q:"What happens to gas when cooled?",ar:"ماذا يحدث للغاز عند تبريده؟",a:["It contracts|ينكمش","It expands|يتمدد","It explodes|ينفجر","Nothing|لا شيء"],c:0},
-      {q:"Electricity flows through a:",ar:"الكهرباء تتدفق عبر:",a:["Circuit|دائرة كهربائية","Battery alone|البطارية وحدها","Wire alone|السلك وحده","Switch alone|المفتاح وحده"],c:0},
-      {q:"Echo is caused by ___ of sound.",ar:"الصدى ينتج عن ___ الصوت.",a:["Reflection|انعكاس","Refraction|انكسار","Absorption|امتصاص","Diffraction|حيود"],c:0},
-      {q:"Which planet has the strongest gravity?",ar:"أي كوكب له أقوى جاذبية؟",a:["Jupiter|المشتري","Earth|الأرض","Mars|المريخ","Saturn|زحل"],c:0},
-      {q:"Astronauts float in space because:",ar:"رواد الفضاء يطفون لأن:",a:["Microgravity|الجاذبية الدقيقة","No air|لا هواء","Cold temperature|برودة الفضاء","No friction|لا احتكاك"],c:0},
-      {q:"The colour of the sky is blue because:",ar:"لون السماء أزرق بسبب:",a:["Light scattering|تشتت الضوء","Reflection of ocean|انعكاس المحيط","Ozone colour|لون الأوزون","Nitrogen colour|لون النيتروجين"],c:0},
-      {q:"A car braking uses ___ force.",ar:"إيقاف السيارة يستخدم قوة ___.",a:["Friction|الاحتكاك","Gravity|الجاذبية","Magnetic|مغناطيسية","Nuclear|نووية"],c:0},
-    ],
-    medium:[
-      {q:"F = m×a. m=5kg, a=4m/s². F=?",ar:"ق = ك×ع. ك=5كغ، ع=4م/ث². ق=؟",a:["20 N","9 N","1.25 N","45 N"],c:0},
-      {q:"P=100W, t=5s. Energy=?",ar:"ق=100واط، ز=5ث. الطاقة=؟",a:["500 J","20 J","2000 J","105 J"],c:0},
-      {q:"Pressure = F÷A. F=50N, A=2m². P=?",ar:"الضغط = ق÷م. ق=50ن، م=2م². الضغط=؟",a:["25 Pa","100 Pa","52 Pa","48 Pa"],c:0},
-      {q:"Falling ball: what increases?",ar:"كرة تسقط: ماذا يزداد؟",a:["Kinetic energy|الطاقة الحركية","Potential energy|الطاقة الكامنة","Mass|الكتلة","Volume|الحجم"],c:0},
-      {q:"Sound frequency measured in:",ar:"تردد الصوت يُقاس بـ:",a:["Hz|هرتز","dB|ديسيبل","m/s","Watt|واط"],c:0},
-      {q:"Converging lens type:",ar:"العدسة التي تجمع الضوء:",a:["Convex|محدبة","Concave|مقعرة","Flat|مسطحة","Prism|منشور"],c:0},
-      {q:"An object moving 100m in 20s. Speed?",ar:"جسم يتحرك 100م في 20ث. السرعة؟",a:["5 m/s","20 m/s","2000 m/s","0.2 m/s"],c:0},
-      {q:"When temperature rises, resistance in metal:",ar:"عند ارتفاع الحرارة، مقاومة المعدن:",a:["Increases|تزداد","Decreases|تنقص","Stays same|تبقى","Disappears|تختفي"],c:0},
-      {q:"Car: 0→60 km/h in 10s. Acceleration?",ar:"سيارة: 0→60كم/ساعة في 10ث. التسارع؟",a:["6 km/h/s","10 km/h/s","600 km/h/s","0.6 km/h/s"],c:0},
-      {q:"Parallel resistors R1=6Ω, R2=3Ω. Total?",ar:"مقاومتان بالتوازي: 6أوم و3أوم. الكلي؟",a:["2Ω","9Ω","18Ω","4.5Ω"],c:0},
-      {q:"Which colour has highest frequency?",ar:"أي لون له أعلى تردد في الضوء المرئي؟",a:["Violet|البنفسجي","Red|الأحمر","Green|الأخضر","Yellow|الأصفر"],c:0},
-      {q:"60W bulb × 2 hours. Energy used?",ar:"مصباح 60واط × ساعتان. الطاقة المستهلكة؟",a:["120 Wh","30 Wh","62 Wh","240 Wh"],c:0},
-      {q:"Density: m=200g, v=40cm³. d=?",ar:"الكثافة: ك=200غ، ح=40سم³. الكثافة=؟",a:["5 g/cm³","8 g/cm³","160 g/cm³","0.2 g/cm³"],c:0},
-      {q:"A wave with freq=50Hz, period=?",ar:"موجة ترددها 50هرتز، الدور=؟",a:["0.02 s","50 s","2 s","0.5 s"],c:0},
-      {q:"Mechanical advantage of lever = ?",ar:"المزية الآلية للرافعة = ؟",a:["Effort arm ÷ Load arm","Load ÷ Effort","Force × distance","Mass × speed"],c:0},
-      {q:"Weight of 5kg object on Earth? (g=10)",ar:"وزن جسم كتلته 5كغ على الأرض؟ (g=10)",a:["50 N","5 N","500 N","0.5 N"],c:0},
-      {q:"Two like poles of magnets:",ar:"قطبان متماثلان من المغناطيس:",a:["Repel|يتنافران","Attract|يتجاذبان","No force","Spin"],c:0},
-      {q:"v = u + at. u=0, a=5, t=6. v=?",ar:"س = س₀ + ع×ز. س₀=0، ع=5، ز=6. س=؟",a:["30 m/s","11 m/s","1 m/s","56 m/s"],c:0},
-      {q:"Half-life means radioactive material loses ___ of activity.",ar:"العمر النصفي يعني فقدان ___ من النشاط الإشعاعي.",a:["Half|النصف","All|الكل","Quarter|الربع","None|لا شيء"],c:0},
-      {q:"Snell's Law relates to:",ar:"قانون سنيل يتعلق بـ:",a:["Refraction|الانكسار","Reflection|الانعكاس","Diffraction|الحيود","Interference|التداخل"],c:0},
-      {q:"I = V ÷ R. V=24V, R=8Ω. I=?",ar:"ت = ج ÷ م. ج=24فولت، م=8أوم. ت=؟",a:["3 A","192 A","16 A","0.33 A"],c:0},
-      {q:"Specific heat capacity unit is:",ar:"وحدة السعة الحرارية النوعية هي:",a:["J/kg·°C","J/kg","W/m","kg·°C"],c:0},
-      {q:"Terminal velocity occurs when drag equals:",ar:"السرعة النهائية تحدث عندما تساوي قوة المقاومة:",a:["Weight|الوزن","Acceleration|التسارع","Momentum|الزخم","Friction|الاحتكاك"],c:0},
-      {q:"Lens focal length 20cm. Object at 60cm. Image at?",ar:"عدسة بعدها البؤري 20سم. جسم على بُعد 60سم. الصورة على بُعد؟",a:["30 cm","40 cm","20 cm","60 cm"],c:0},
-      {q:"Hooke's Law: F = k×x. k=200, x=0.05. F=?",ar:"قانون هوك: ق = ث×ش. ث=200، ش=0.05. ق=؟",a:["10 N","4000 N","0.25 N","200.05 N"],c:0},
-      {q:"The SI unit of pressure is:",ar:"وحدة الضغط في النظام الدولي هي:",a:["Pascal|باسكال","Newton|نيوتن","Bar|بار","Atmosphere|ضغط جوي"],c:0},
-      {q:"Total internal reflection occurs when angle exceeds:",ar:"الانعكاس الداخلي الكلي يحدث عندما يتجاوز الزاوية:",a:["Critical angle|الزاوية الحرجة","90°","45°","0°"],c:0},
-      {q:"Work done against gravity lifting 3kg by 4m? (g=10)",ar:"الشغل ضد الجاذبية لرفع 3كغ ارتفاع 4م؟ (g=10)",a:["120 J","34 J","7 J","40 J"],c:0},
-      {q:"Electromagnetic spectrum: which has most energy?",ar:"الطيف الكهرومغناطيسي: أي موجة لها أعلى طاقة؟",a:["Gamma rays|أشعة غاما","Radio waves|موجات راديو","Infrared|تحت حمراء","Visible light|ضوء مرئي"],c:0},
-      {q:"Power = Work ÷ Time. W=600J, t=30s. P=?",ar:"القدرة = الشغل ÷ الزمن. ش=600جول، ز=30ث. ق=؟",a:["20 W","18000 W","0.05 W","570 W"],c:0},
-      {q:"Archimedes principle relates to:",ar:"مبدأ أرخميدس يتعلق بـ:",a:["Buoyancy|الطفو","Gravity|الجاذبية","Friction|الاحتكاك","Pressure|الضغط"],c:0},
-    ],
-    hard:[
-      {q:"KE = ½mv². m=2kg, v=4m/s. KE=?",ar:"الطاقة الحركية = ½ك·ع². ك=2كغ، ع=4م/ث. KE=؟",a:["16 J","8 J","32 J","4 J"],c:0},
-      {q:"Ohm's Law: V=12V, R=4Ω. Current=?",ar:"قانون أوم: ف=12فولت، ق=4أوم. التيار=؟",a:["3 A","8 A","48 A","16 A"],c:0},
-      {q:"Celsius = Fahrenheit at temperature:",ar:"درجة تتساوى فيها مئوية وفهرنهايت:",a:["-40°","0°","100°","32°"],c:0},
-      {q:"Work = F×d. F=10N, d=5m. Work=?",ar:"الشغل = ق×م. ق=10ن، م=5م. الشغل=؟",a:["50 J","2 J","15 J","55 J"],c:0},
-      {q:"Momentum = m×v. m=3kg, v=6m/s. p=?",ar:"الزخم = ك×س. ك=3كغ، س=6م/ث. الزخم=؟",a:["18 kg·m/s","9 kg·m/s","2 kg·m/s","36 kg·m/s"],c:0},
-      {q:"Series circuit: R1=4Ω, R2=6Ω. Total R=?",ar:"دائرة تسلسلية: م1=4أوم، م2=6أوم. المقاومة الكلية؟",a:["10Ω","2.4Ω","24Ω","1Ω"],c:0},
-      {q:"PE = mgh. m=2kg, h=10m, g=10. PE=?",ar:"الطاقة الكامنة = ك·ع·ه. ك=2كغ، ه=10م، ع=10. الطاقة=؟",a:["200 J","20 J","100 J","2000 J"],c:0},
-      {q:"Wave speed = frequency × ___",ar:"سرعة الموجة = التردد × ___",a:["Wavelength|الطول الموجي","Amplitude|السعة","Period|الدور","Energy|الطاقة"],c:0},
-      {q:"Transformer: V1=220V, N1=100, N2=50. V2=?",ar:"محول: ف1=220فولت، ل1=100، ل2=50. ف2=؟",a:["110V","440V","55V","880V"],c:0},
-      {q:"Power = V×I. V=12V, I=3A. Power=?",ar:"القدرة = ف×ت. ف=12فولت، ت=3أمبير. القدرة=؟",a:["36 W","4 W","15 W","9 W"],c:0},
-      {q:"Object dropped from rest after 3s, speed? (g=10)",ar:"جسم سقط من السكون بعد 3ث، السرعة؟ (g=10)",a:["30 m/s","3 m/s","10 m/s","90 m/s"],c:0},
-      {q:"Efficiency = useful output ÷ total input × 100. Input=500J, output=400J. Efficiency=?",ar:"الكفاءة = الطاقة المفيدة ÷ الطاقة الكلية × 100. ٪Efficiency=؟ (400/500)",a:["80%","60%","40%","20%"],c:0},
-      {q:"Refraction occurs when light passes between:",ar:"الانكسار يحدث عندما يمر الضوء بين:",a:["Two different media|وسطين مختلفين","Two mirrors|مرآتين","Two lenses","Vacuum & vacuum"],c:0},
-      {q:"Einstein's E=mc². c=3×10⁸. m=1kg. E=?",ar:"أينشتاين E=mc². c=3×10⁸. m=1كغ. E=؟",a:["9×10¹⁶ J","3×10⁸ J","6×10⁸ J","9×10⁸ J"],c:0},
-      {q:"De Broglie wavelength λ = h/mv. This shows particles have:",ar:"طول موجة دي بروي λ = h/mv يُظهر أن الجسيمات لها:",a:["Wave properties|خصائص موجية","Zero mass|كتلة صفرية","Infinite speed|سرعة لانهائية","Negative charge|شحنة سالبة"],c:0},
-      {q:"Faraday's law of induction relates to:",ar:"قانون فاراداي للحث الكهرومغناطيسي يتعلق بـ:",a:["Changing magnetic flux|تغير الفيض المغناطيسي","Constant current","Temperature change|تغير الحرارة","Pressure change|تغير الضغط"],c:0},
-      {q:"Entropy in a closed system tends to:",ar:"الإنتروبيا في نظام مغلق تميل إلى:",a:["Increase|الازدياد","Decrease|التناقص","Remain constant|البقاء ثابتة","Oscillate|التذبذب"],c:0},
-      {q:"Photoelectric effect: if frequency doubles, KE of electrons:",ar:"تأثير كهروضوئي: إذا تضاعف التردد، الطاقة الحركية للإلكترونات:",a:["More than doubles|تزيد أكثر من ضعف","Doubles exactly|تتضاعف بالضبط","Stays same|تبقى ثابتة","Halves|تتنصف"],c:0},
-      {q:"Capacitors in series: C1=4μF, C2=4μF. Total C=?",ar:"مكثفان على التوالي: م1=4μF، م2=4μF. الكلي=؟",a:["2 μF","8 μF","16 μF","4 μF"],c:0},
-      {q:"Which law states energy cannot be created or destroyed?",ar:"أي قانون ينص على أن الطاقة لا تُخلق ولا تُفنى؟",a:["Conservation of energy|حفظ الطاقة","Newton's 2nd|نيوتن الثاني","Ohm's law|قانون أوم","Hooke's law|قانون هوك"],c:0},
-      {q:"Gravitational PE between objects depends on:",ar:"الطاقة الكامنة الجاذبية بين الأجسام تعتمد على:",a:["Mass & distance|الكتلة والمسافة","Speed only|السرعة فقط","Temperature|الحرارة","Colour|اللون"],c:0},
-      {q:"Wien's displacement law relates peak wavelength to:",ar:"قانون إزاحة فين يربط الطول الموجي الأعظمي بـ:",a:["Temperature|درجة الحرارة","Mass|الكتلة","Pressure|الضغط","Frequency|التردد"],c:0},
-      {q:"A proton has charge:",ar:"البروتون له شحنة:",a:["+1.6×10⁻¹⁹ C","-1.6×10⁻¹⁹ C","0","2×10⁻¹⁹ C"],c:0},
-      {q:"Hubble's law implies the universe is:",ar:"قانون هابل يدل على أن الكون:",a:["Expanding|يتمدد","Contracting|يتقلص","Static|ثابت","Rotating|يدور"],c:0},
-      {q:"In nuclear fission, heavy nucleus splits into:",ar:"في الانشطار النووي، النواة الثقيلة تنقسم إلى:",a:["Lighter nuclei + energy|نوى أخف + طاقة","Protons only|بروتونات فقط","Neutrons only|نيوترونات فقط","Electrons|إلكترونات"],c:0},
-      {q:"The uncertainty principle was proposed by:",ar:"مبدأ الشك اقترحه:",a:["Heisenberg","Einstein","Bohr","Planck"],c:0},
-      {q:"Escape velocity from Earth ≈",ar:"سرعة الإفلات من الأرض ≈",a:["11.2 km/s","7.9 km/s","3 km/s","30 km/s"],c:0},
-    ]
-  }
-};
+// Questions loaded from questions.js
+
+// All age groups have all 3 difficulty levels
+function availableDiffs(){ return ['easy','medium','hard']; }
+
+// ─────────────────────────────────────────────────────────────
+// ANTI-REPEAT SYSTEM
+// Tracks which question IDs have been shown this session
+// per [grade][subject][difficulty] pool
+// Resets pool when 80% exhausted → seamless, never blocks
+// ─────────────────────────────────────────────────────────────
+var _seenIds = {};  // key: "grade|subj|diff" → Set of seen indices
+
+function _poolKey(grade, subj, diff){ return grade+'|'+subj+'|'+diff; }
 
 function getQ(subj, diff){
-  var pool = QDB[subj][diff];
-  var raw = pool[Math.floor(Math.random()*pool.length)];
+  var grade = PLAYER_GRADE;
+  var gradeData = QDB[grade];
+  if(!gradeData || !gradeData[subj] || !gradeData[subj][diff]){
+    console.warn('No questions for', grade, subj, diff);
+    return {q:'(No question found)',ar:'(لا يوجد سؤال)',a:['?','?','?','?'],c:0};
+  }
+
+  var pool = gradeData[subj][diff];
+  if(pool.length === 0){
+    console.warn('Empty pool for', grade, subj, diff);
+    return {q:'(No question found)',ar:'(لا يوجد سؤال)',a:['?','?','?','?'],c:0};
+  }
+
+  var key = _poolKey(grade, subj, diff);
+  if(!_seenIds[key]) _seenIds[key] = [];
+  var seen = _seenIds[key];
+
+  // Build list of unseen indices
+  var allIdx = pool.map(function(_,i){ return i; });
+  var unseen = allIdx.filter(function(i){ return seen.indexOf(i) === -1; });
+
+  // If 80%+ exhausted, reset (keep last 20% as "recently seen" buffer)
+  if(unseen.length === 0 || unseen.length < Math.max(1, Math.ceil(pool.length * 0.2))){
+    var keep = Math.ceil(pool.length * 0.2);
+    _seenIds[key] = seen.slice(-keep); // keep only most recent few
+    seen = _seenIds[key];
+    unseen = allIdx.filter(function(i){ return seen.indexOf(i) === -1; });
+  }
+
+  // Pick random from unseen
+  var pick = unseen[Math.floor(Math.random() * unseen.length)];
+  seen.push(pick);
+  var raw = pool[pick];
+
+  // Format for display
   var q = (LANG==='ar' && raw.ar) ? raw.ar : raw.q;
   var answers = raw.a.map(function(ans){
     var parts = ans.split('|');
-    return LANG==='ar' && parts.length>1 ? parts[1] : parts[0];
+    return LANG==='ar' && parts.length > 1 ? parts[1] : parts[0];
   });
-  return {q:q, a:answers, c:raw.c};
+  // Shuffle answers while tracking correct answer
+  var shuffled = answers.map(function(a, i){ return {a:a, orig:i}; });
+  for(var si=shuffled.length-1; si>0; si--){
+    var sj=Math.floor(Math.random()*(si+1));
+    var tmp=shuffled[si]; shuffled[si]=shuffled[sj]; shuffled[sj]=tmp;
+  }
+  var newCorrect = shuffled.findIndex(function(x){ return x.orig===raw.c; });
+  return {q:q, a:shuffled.map(function(x){return x.a;}), c:newCorrect};
 }
+
+// Reset anti-repeat tracker on new game
+function resetSeenQuestions(){ _seenIds = {}; }
 
 // ═══════════════════════════════════════════════════
 // CANVAS SETUP
@@ -694,10 +803,60 @@ var W, H, CX, GY;
 var TS = 80; // base tower size — actual size = TS + wave bonus (see drawTower)
 
 function resize(){
+  var oldW = W || window.innerWidth;
+  var oldH = H || window.innerHeight;
+  var oldCX = CX || window.innerWidth/2;
+  var oldGY = GY || (window.innerHeight - 200);
+
   W = cv.width = window.innerWidth;
   H = cv.height = window.innerHeight;
   CX = W/2;
   GY = H - 200;
+
+  // Recalculate positions of all placed game objects
+  if(!G || !G.walls) return;
+
+  var scaleX = W / oldW;
+  var scaleY = H / oldH;
+
+  // Walls: reposition relative to new CX/GY
+  // Walls are always at CX ± 115 and GY-based Y
+  G.walls.forEach(function(w, i){
+    // Determine which side (left or right of castle)
+    var side = (w.x < oldCX) ? -1 : 1;
+    w.x = CX + side * 115;
+    // Y: maintain relative offset from GY
+    var wallLvl = G.wallLevel || 0;
+    var newBh = 55 + wallLvl * 35;
+    w.y = GY - 25 - (newBh - 55) / 2;
+    w.bh = newBh;
+  });
+
+  // Archers/snipers: reposition relative to new CX and GY
+  if(G.archers) G.archers.forEach(function(a){
+    var relX = (a.x - oldCX) / oldW;
+    a.x = CX + relX * W;
+    var relY = (a.y - oldGY) / oldH;
+    a.y = GY + relY * H;
+  });
+
+  // Zombies: scale positions proportionally
+  if(G.zombies) G.zombies.forEach(function(z){
+    z.x = z.x * scaleX;
+    z.y = GY + (z.y - oldGY) * scaleY;
+  });
+
+  // Arrows: scale proportionally
+  if(G.arrows) G.arrows.forEach(function(ar){
+    ar.x = ar.x * scaleX;
+    ar.y = ar.y * scaleY;
+    ar.tx = ar.tx * scaleX;
+    ar.ty = ar.ty * scaleY;
+  });
+
+  // Fireworks canvas resize
+  var fwCvs = document.getElementById('fwCanvas');
+  if(fwCvs){ fwCvs.width = W; fwCvs.height = H; }
 }
 window.addEventListener('resize', resize);
 
@@ -705,8 +864,15 @@ window.addEventListener('resize', resize);
 // GAME STATE
 // ═══════════════════════════════════════════════════
 var G = {};
-var COSTS = {archer:10, upgrade:6, wall:8, sniper:14};
+var COSTS = {archer:10, upgrade:6, wall:8, sniper:14, dragon:25, dragonUpgrade:35};
 var REWARDS = {easy:1, medium:2, hard:3};
+
+// Cost for upgrading a unit to next level: base × 1.5^(lvl-1), rounded
+function upgradeCost(baseUpgCost, currentLvl){
+  return Math.round(baseUpgCost * Math.pow(1.5, currentLvl - 1));
+}
+// Dragon upgrade costs: Lv1→Lv2=35, Lv1→Lv2→Lv3=50
+var DRAGON_UPGRADE_COSTS = [0, 35, 50]; // index = current level (upgrading FROM)
 
 function initState(){
   G = {
@@ -716,10 +882,13 @@ function initState(){
     gameTime:0,
     archers:[{lvl:1, type:'archer', angle:0, shootTimer:0}],
     walls:[], zombies:[], arrows:[], particles:[], floats:[],
-    trees:[], wallLevel:0,
+    trees:[], wallLevel:0, dragons:[],
     waveActive:false, toSpawn:0, spawned:0, spawnTimer:0, spawnInterval:2,
     waveDelay:1, redFlash:0,
   };
+  // Helpers to count by type
+  G.archerCount  = function(){ return G.archers.filter(function(a){return a.type==='archer';}).length; };
+  G.sniperCount  = function(){ return G.archers.filter(function(a){return a.type==='sniper';}).length; };
   INPUT.selectedIdx = -1;
   INPUT.cursorX = -9999; INPUT.cursorY = -9999;
   buildTrees();
@@ -727,8 +896,1246 @@ function initState(){
 }
 
 // ═══════════════════════════════════════════════════
-// FOREST TREES (background)
+// CITY EVOLUTION — "As Knowledge Grows, Cities Flourish"
+// Each wave unlocks a new world element in the background
 // ═══════════════════════════════════════════════════
+
+// Seeded pseudo-random for stable positions across redraws
+function seededRand(seed){
+  var x = Math.sin(seed) * 43758.5453;
+  return x - Math.floor(x);
+}
+
+// Which elements are active (unlocked by wave number)
+var CITY_ELEMENTS = {
+  2:  'trees_flowers',
+  3:  'sky',
+  4:  'villagers',
+  5:  'children',
+  6:  'big_tent',
+  7:  'houses',
+  8:  'markets',
+  9:  'school',
+  10: 'hospital',
+  11: 'fountains',
+  12: 'horses',
+  13: 'animals',
+  14: 'windmill',
+  15: 'bridge',
+  16: 'river_wide',
+  17: 'clock_tower',
+  18: 'farm',
+  19: 'lighthouse',
+  20: 'festival',
+};
+
+function cityHas(key){
+  // Check if this element has been unlocked (wave reached)
+  for(var w in CITY_ELEMENTS){
+    if(CITY_ELEMENTS[w] === key && G.wave >= parseInt(w)) return true;
+  }
+  return false;
+}
+
+function getCityUnlockMsg(wave){
+  var msgs = {
+    2:  {en:'🌳 Trees, flowers and grass bloom around the castle!', ar:'🌳 أشجار وأزهار وعشب تزهر حول القلعة!'},
+    3:  {en:'☀️ The sun rises, clouds drift, and birds soar!',      ar:'☀️ الشمس تشرق والغيوم تسبح والطيور تحلق!'},
+    4:  {en:'🚶 Villagers appear and walk through the kingdom!',     ar:'🚶 أهالي يظهرون ويتمشون في المملكة!'},
+    5:  {en:'👨‍👩‍👧 More families with children join the town!',         ar:'👨‍👩‍👧 عائلات مع أطفال تنضم إلى المدينة!'},
+    6:  {en:'🎪 A grand circus tent rises above the trees!',         ar:'🎪 خيمة كبيرة ترتفع فوق الأشجار!'},
+    7:  {en:'🏠 Houses with warm lights — and a river flows through!',ar:'🏠 بيوت بأضواء دافئة ونهر يجري عبر المملكة!'},
+    8:  {en:'🛒 Three market stalls open with lantern lights!',      ar:'🛒 ثلاثة أسواق تفتح أبوابها بأضواء الفوانيس!'},
+    9:  {en:'🏫 A school is built on the left side!',               ar:'🏫 مدرسة تُبنى على اليسار!'},
+    10: {en:'🏥 A hospital opens to serve the people!',             ar:'🏥 مستشفى يفتح أبوابه لخدمة الناس!'},
+    11: {en:'⛲ Two fountains grace the town square!',              ar:'⛲ نافورتان تزيّنان ساحة المدينة!'},
+    12: {en:'🐴 Horses roam freely through the kingdom!',           ar:'🐴 الخيول ترتع بحرية في المملكة!'},
+    13: {en:'🐑 Sheep and cattle join the animals!',                ar:'🐑 الأغنام والماشية تنضم إلى الحيوانات!'},
+    14: {en:'💨 A windmill turns on the hill!',                     ar:'💨 طاحونة هواء تدور على التل!'},
+    15: {en:'🌉 A bridge spans the flowing stream!',                ar:'🌉 جسر يعبر الجدول الجاري!'},
+    16: {en:'🏞️ A river winds through your kingdom!',              ar:'🏞️ نهر يتعرج عبر مملكتك!'},
+    17: {en:'🕰️ A grand clock tower marks the hour!',              ar:'🕰️ برج ساعة كبير يُحدد الوقت!'},
+    18: {en:'🌾 Farm fields surround the kingdom!',                 ar:'🌾 حقول زراعية تحيط بالمملكة!'},
+    19: {en:'🗼 A lighthouse guides travelers home!',               ar:'🗼 منارة تهدي المسافرين للوطن!'},
+    20: {en:'🎉 The kingdom celebrates with festival lights!',      ar:'🎉 المملكة تحتفل بأضواء المهرجان!'},
+  };
+  return msgs[wave] || null;
+}
+
+// ─── DRAW ALL CITY ELEMENTS ────────────────────────
+function drawCityElements(){
+  if(!G || G.wave < 2) return;
+  var t = G.gameTime;
+  if(cityHas('trees_flowers')) drawCityTreesFlowers(t);
+  if(cityHas('sky'))           drawCitySky(t);
+  if(cityHas('villagers'))     drawCityVillagers(t, cityHas('children') ? 8 : 4);
+  if(cityHas('big_tent'))      drawCityBigTent(t);
+  if(cityHas('houses'))        drawCityHouses(t);
+  if(cityHas('markets'))       drawCityMarkets(t);
+  if(cityHas('children'))      drawCityChildren(t);  // drawn AFTER tent+houses so kids are in front
+  if(cityHas('school'))        drawCitySchool(t);
+  if(cityHas('hospital'))      drawCityHospital(t);
+  if(cityHas('fountains'))     drawCityFountains(t);
+  if(cityHas('horses'))        drawCityHorses(t);
+  if(cityHas('animals'))       drawCityAnimals(t);
+  if(cityHas('windmill') || G.wave >= 5) drawCityWindmill(t);
+  if(cityHas('bridge'))        drawCityBridge();
+  if(cityHas('river') || cityHas('river_wide') || G.wave >= 7) drawCityRiver(t);
+  if(cityHas('clock_tower'))   drawCityClockTower(t);
+  if(cityHas('farm'))          drawCityFarm(t);
+  if(cityHas('lighthouse'))    drawCityLighthouse(t);
+  if(cityHas('festival'))      drawCityFestival(t);
+}
+
+// ─── ELEMENT DRAW FUNCTIONS ────────────────────────
+
+// ─────────────────────────────────────────────────────────────────────────────
+// WAVE 2: Trees + flowers + grass across full scene
+// ─────────────────────────────────────────────────────────────────────────────
+function drawCityTreesFlowers(t){
+  var colors=['#ff6b9d','#ffcc00','#ff8844','#aa66ff','#ff4466','#44ddff','#ffaacc'];
+  // 10 leafy trees spread left and right of castle
+  var treePos=[
+    {x:W*0.07,s:1.0},{x:W*0.13,s:0.9},{x:W*0.20,s:1.1},{x:W*0.26,s:0.85},
+    {x:W*0.72,s:0.9},{x:W*0.78,s:1.0},{x:W*0.84,s:0.85},{x:W*0.90,s:1.05},
+    {x:W*0.04,s:0.75},{x:W*0.94,s:0.80}
+  ];
+  for(var i=0;i<treePos.length;i++){
+    var p=treePos[i], x=p.x, s=p.s, y=GY;
+    ctx.save();
+    // Trunk
+    ctx.fillStyle='#5a3a1a';
+    ctx.fillRect(x-5*s, y-42*s, 10*s, 42*s);
+    // Foliage (3 overlapping circles)
+    ctx.fillStyle='#1e5e1e';
+    ctx.beginPath(); ctx.arc(x,y-52*s,24*s,0,Math.PI*2); ctx.fill();
+    ctx.fillStyle='#258025';
+    ctx.beginPath(); ctx.arc(x-10*s,y-64*s,18*s,0,Math.PI*2); ctx.fill();
+    ctx.beginPath(); ctx.arc(x+10*s,y-64*s,18*s,0,Math.PI*2); ctx.fill();
+    ctx.fillStyle='#30a030';
+    ctx.beginPath(); ctx.arc(x,y-74*s,15*s,0,Math.PI*2); ctx.fill();
+    ctx.restore();
+  }
+  // 40 flowers spread full width
+  for(var i=0;i<40;i++){
+    var fx=seededRand(i*7)*W;
+    var fy=GY-2-seededRand(i*13)*10;
+    var bob=Math.sin(t*1.8+i*0.9)*3;
+    var sz=3+seededRand(i*19)*3;
+    var sway=Math.sin(t*1.5+i*0.7)*2;
+    ctx.save();
+    ctx.strokeStyle='#3a7a1a'; ctx.lineWidth=1.5;
+    ctx.beginPath(); ctx.moveTo(fx,fy); ctx.lineTo(fx+sway,fy-13+bob); ctx.stroke();
+    ctx.fillStyle=colors[i%colors.length];
+    ctx.beginPath(); ctx.arc(fx+sway,fy-15+bob,sz,0,Math.PI*2); ctx.fill();
+    ctx.fillStyle='#ffffaa';
+    ctx.beginPath(); ctx.arc(fx+sway,fy-15+bob,sz*0.45,0,Math.PI*2); ctx.fill();
+    ctx.restore();
+  }
+  // 60 grass tufts full width
+  for(var j=0;j<60;j++){
+    var gx=seededRand(j*17)*W;
+    var gy=GY-seededRand(j*23)*6;
+    var sw=Math.sin(t*2.2+j*0.65)*4;
+    var alpha=0.4+seededRand(j*31)*0.4;
+    ctx.strokeStyle='rgba(60,150,25,'+alpha+')'; ctx.lineWidth=1.5;
+    ctx.beginPath(); ctx.moveTo(gx,gy); ctx.lineTo(gx+sw,gy-11); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(gx+3,gy); ctx.lineTo(gx+3+sw*0.7,gy-8); ctx.stroke();
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// WAVE 3: Sun + clouds + beautiful birds
+// ─────────────────────────────────────────────────────────────────────────────
+function drawCitySky(t){
+  // ── AMBIENT SUNLIGHT OVERLAY (drawn first, behind everything) ──
+  var sx=W*0.14, sy=H*0.13;
+  var breathe = 0.5 + Math.sin(t*0.4)*0.08; // slow breathing intensity
+
+  // 1. Wide diagonal light wash from sun direction (top-left → bottom-right)
+  var ambGrd = ctx.createLinearGradient(0, 0, W*0.7, H);
+  ambGrd.addColorStop(0, 'rgba(255,230,140,'+(0.24*breathe)+')');
+  ambGrd.addColorStop(0.4,'rgba(255,215,100,'+(0.14*breathe)+')');
+  ambGrd.addColorStop(1, 'rgba(255,200,80,0)');
+  ctx.save();
+  ctx.fillStyle = ambGrd;
+  ctx.fillRect(0, 0, W, H);
+  ctx.restore();
+
+  // 2. Ground-level warm light band — sunlight hitting the earth
+  var groundGrd = ctx.createLinearGradient(0, GY-60, 0, GY+40);
+  groundGrd.addColorStop(0, 'rgba(255,220,100,0)');
+  groundGrd.addColorStop(0.5,'rgba(255,210,90,'+(0.20*breathe)+')');
+  groundGrd.addColorStop(1, 'rgba(255,200,80,0)');
+  ctx.save();
+  ctx.fillStyle = groundGrd;
+  ctx.fillRect(0, GY-60, W, 100);
+  ctx.restore();
+
+  // 3. Volumetric light shafts (3 soft diagonal beams from sun)
+  ctx.save();
+  ctx.globalCompositeOperation = 'screen';
+  var shafts = [
+    {ang: 0.42, width: 90,  alpha: 0.075},
+    {ang: 0.52, width: 140, alpha: 0.058},
+    {ang: 0.35, width: 65,  alpha: 0.065},
+  ];
+  for(var s=0;s<shafts.length;s++){
+    var sh = shafts[s];
+    var shLen = H*1.5;
+    var dx = Math.cos(sh.ang)*shLen, dy = Math.sin(sh.ang)*shLen;
+    var shGrd = ctx.createLinearGradient(sx, sy, sx+dx, sy+dy);
+    var a = sh.alpha * breathe;
+    shGrd.addColorStop(0,   'rgba(255,240,160,'+a+')');
+    shGrd.addColorStop(0.5, 'rgba(255,225,120,'+(a*0.4)+')');
+    shGrd.addColorStop(1,   'rgba(255,210,90,0)');
+    ctx.fillStyle = shGrd;
+    // Draw as a thin rotated trapezoid
+    ctx.beginPath();
+    var hw = sh.width/2;
+    var px1 = sx + Math.cos(sh.ang - Math.PI/2)*4;
+    var py1 = sy + Math.sin(sh.ang - Math.PI/2)*4;
+    var px2 = sx + Math.cos(sh.ang + Math.PI/2)*4;
+    var py2 = sy + Math.sin(sh.ang + Math.PI/2)*4;
+    var px3 = sx + dx + Math.cos(sh.ang + Math.PI/2)*hw;
+    var py3 = sy + dy + Math.sin(sh.ang + Math.PI/2)*hw;
+    var px4 = sx + dx + Math.cos(sh.ang - Math.PI/2)*hw;
+    var py4 = sy + dy + Math.sin(sh.ang - Math.PI/2)*hw;
+    ctx.moveTo(px1,py1); ctx.lineTo(px2,py2);
+    ctx.lineTo(px3,py3); ctx.lineTo(px4,py4);
+    ctx.closePath(); ctx.fill();
+  }
+  ctx.globalCompositeOperation = 'source-over';
+  ctx.restore();
+
+  // ── SUN (top left area) ──
+  var pulse=Math.sin(t*0.8)*3;
+  ctx.save();
+  // Soft glow halo
+  var grd=ctx.createRadialGradient(sx,sy,0,sx,sy,65+pulse);
+  grd.addColorStop(0,'rgba(255,235,80,0.55)');
+  grd.addColorStop(0.5,'rgba(255,200,40,0.2)');
+  grd.addColorStop(1,'rgba(255,160,0,0)');
+  ctx.fillStyle=grd; ctx.beginPath(); ctx.arc(sx,sy,70,0,Math.PI*2); ctx.fill();
+  // Rays
+  ctx.strokeStyle='rgba(255,215,50,0.4)'; ctx.lineWidth=2.5; ctx.lineCap='round';
+  for(var i=0;i<12;i++){
+    var ang=(i/12)*Math.PI*2+t*0.25;
+    var r1=30+pulse, r2=54+pulse+(i%3)*6;
+    ctx.beginPath();
+    ctx.moveTo(sx+Math.cos(ang)*r1, sy+Math.sin(ang)*r1);
+    ctx.lineTo(sx+Math.cos(ang)*r2, sy+Math.sin(ang)*r2);
+    ctx.stroke();
+  }
+  // Sun core
+  ctx.fillStyle='#ffe040';
+  ctx.shadowColor='rgba(255,220,50,0.9)'; ctx.shadowBlur=22;
+  ctx.beginPath(); ctx.arc(sx,sy,22+pulse*0.4,0,Math.PI*2); ctx.fill();
+  ctx.shadowBlur=0;
+  ctx.restore();
+
+  // ── CLOUDS (5 drifting) ──
+  var clouds=[
+    {ox:W*0.08, oy:H*0.07, s:1.1, spd:10},
+    {ox:W*0.30, oy:H*0.11, s:0.85,spd:7},
+    {ox:W*0.52, oy:H*0.06, s:1.0, spd:13},
+    {ox:W*0.72, oy:H*0.12, s:0.8, spd:9},
+    {ox:W*0.88, oy:H*0.08, s:0.95,spd:11},
+  ];
+  for(var i=0;i<clouds.length;i++){
+    var c=clouds[i];
+    var cx=((c.ox+t*c.spd)%(W+280))-140;
+    var cy=c.oy, s=c.s;
+    ctx.save();
+    ctx.fillStyle='rgba(255,255,255,0.22)';
+    ctx.beginPath(); ctx.arc(cx,     cy,   32*s,0,Math.PI*2); ctx.fill();
+    ctx.beginPath(); ctx.arc(cx+28*s,cy+6*s,24*s,0,Math.PI*2); ctx.fill();
+    ctx.beginPath(); ctx.arc(cx-26*s,cy+7*s,20*s,0,Math.PI*2); ctx.fill();
+    ctx.beginPath(); ctx.arc(cx+12*s,cy-12*s,17*s,0,Math.PI*2); ctx.fill();
+    ctx.beginPath(); ctx.arc(cx-8*s, cy-10*s,14*s,0,Math.PI*2); ctx.fill();
+    ctx.restore();
+  }
+
+  // ── BEAUTIFUL BIRDS (3 flocks, elegant swallow-style) ──
+  var flocks=[
+    {n:7, spd:48, baseY:H*0.15, offset:0,     sz:10},
+    {n:5, spd:32, baseY:H*0.22, offset:W*0.45,sz:8},
+    {n:6, spd:62, baseY:H*0.10, offset:W*0.7, sz:9},
+  ];
+  for(var f=0;f<flocks.length;f++){
+    var fl=flocks[f];
+    for(var i=0;i<fl.n;i++){
+      var bx=((t*fl.spd+fl.offset+i*(W*0.12))%(W+180))-90;
+      var by=fl.baseY+Math.sin(t*1.4+i*1.2+f)*22+i*9;
+      var wingPhase=t*5+i*0.8;
+      var wingUp=Math.sin(wingPhase)*0.5; // -0.5 to +0.5
+      var sz=fl.sz;
+      ctx.save();
+      ctx.strokeStyle='rgba(30,18,6,0.75)';
+      ctx.lineWidth=2; ctx.lineCap='round';
+      // Body line
+      ctx.beginPath(); ctx.moveTo(bx-sz*0.4,by); ctx.lineTo(bx+sz*0.6,by); ctx.stroke();
+      // Left wing (two segments — like a swallow)
+      ctx.beginPath();
+      ctx.moveTo(bx,by);
+      ctx.quadraticCurveTo(bx-sz*0.6, by-sz*wingUp, bx-sz*1.2, by-sz*wingUp*0.5);
+      ctx.stroke();
+      // Right wing
+      ctx.beginPath();
+      ctx.moveTo(bx,by);
+      ctx.quadraticCurveTo(bx+sz*0.6, by-sz*wingUp, bx+sz*1.2, by-sz*wingUp*0.5);
+      ctx.stroke();
+      // Tail fork
+      ctx.beginPath();
+      ctx.moveTo(bx-sz*0.4,by);
+      ctx.lineTo(bx-sz*0.9, by+sz*0.4);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(bx-sz*0.4,by);
+      ctx.lineTo(bx-sz*0.7, by+sz*0.6);
+      ctx.stroke();
+      ctx.restore();
+    }
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// WAVE 4+5: Villagers walking (count 4 or 8)
+// ─────────────────────────────────────────────────────────────────────────────
+function drawCityVillagers(t, count){
+  var shirts=['rgba(180,80,60,0.97)','rgba(60,120,180,0.85)','rgba(80,160,80,0.85)',
+              'rgba(180,140,60,0.85)','rgba(140,80,180,0.85)','rgba(60,160,160,0.85)',
+              'rgba(200,100,50,0.85)','rgba(100,80,180,0.85)'];
+  var speeds=[22,-16,18,-20,14,-24,20,-18];
+  var lanes=[GY-4,GY-6,GY-3,GY-5,GY-4,GY-7,GY-3,GY-5];
+  for(var i=0;i<count;i++){
+    var spd=speeds[i%speeds.length];
+    var startX=W*(0.07+(i/count)*0.86);
+    var vx=((startX+t*spd+W*2)%(W+60))-30;
+    var vy=lanes[i%lanes.length];
+    var leg=Math.sin(t*3.5+i*1.3)*10;
+    var facing=spd>0?1:-1;
+    ctx.save();
+    // Head
+    ctx.fillStyle='rgba(220,170,100,0.9)';
+    ctx.beginPath(); ctx.arc(vx,vy-25,6,0,Math.PI*2); ctx.fill();
+    // Hair
+    ctx.fillStyle='rgba(80,50,20,0.8)';
+    ctx.beginPath(); ctx.arc(vx,vy-29,5,Math.PI,Math.PI*2); ctx.fill();
+    // Body
+    ctx.fillStyle=shirts[i%shirts.length];
+    ctx.fillRect(vx-6,vy-19,12,15);
+    // Arms
+    ctx.strokeStyle=shirts[i%shirts.length]; ctx.lineWidth=3; ctx.lineCap='round';
+    ctx.beginPath(); ctx.moveTo(vx,vy-17); ctx.lineTo(vx-8*facing+leg*0.4,vy-10); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(vx,vy-17); ctx.lineTo(vx+8*facing-leg*0.4,vy-10); ctx.stroke();
+    // Legs
+    ctx.strokeStyle='rgba(60,40,20,0.95)'; ctx.lineWidth=3;
+    ctx.beginPath(); ctx.moveTo(vx-3,vy-4); ctx.lineTo(vx-4+leg*0.55,vy+8); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(vx+3,vy-4); ctx.lineTo(vx+4-leg*0.55,vy+8); ctx.stroke();
+    ctx.restore();
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// WAVE 5: Children playing
+// ─────────────────────────────────────────────────────────────────────────────
+function drawCityChildren(t){
+  var kidColors=['#e74c3c','#3498db','#2ecc71','#f39c12','#9b59b6','#1abc9c'];
+  // Group 1: 4 kids running in circle near the big tent (W*0.10)
+  var cx=W*0.11, cy=GY-6, r=25;
+  for(var i=0;i<4;i++){
+    var ang=t*1.8+i*(Math.PI/2);
+    var kx=cx+Math.cos(ang)*r, ky=cy+Math.sin(ang)*r*0.35;
+    var leg=Math.sin(t*5+i)*7;
+    ctx.save();
+    ctx.fillStyle='rgba(220,170,100,0.95)';
+    ctx.beginPath(); ctx.arc(kx,ky-14,5,0,Math.PI*2); ctx.fill();
+    ctx.fillStyle=kidColors[i];
+    ctx.fillRect(kx-4,ky-9,8,10);
+    ctx.strokeStyle='rgba(60,40,20,0.75)'; ctx.lineWidth=2.5; ctx.lineCap='round';
+    ctx.beginPath(); ctx.moveTo(kx-2,ky+1); ctx.lineTo(kx-3+leg,ky+9); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(kx+2,ky+1); ctx.lineTo(kx+3-leg,ky+9); ctx.stroke();
+    ctx.restore();
+  }
+  // Group 2: 2 kids chasing each other near the houses (W*0.19 to W*0.30)
+  for(var j=0;j<2;j++){
+    var chx=((W*0.19+t*(22+j*14))%(W*0.14))+W*0.19;
+    var chy=GY-4;
+    var cleg=Math.sin(t*5+j*2)*8;
+    ctx.save();
+    ctx.fillStyle='rgba(220,170,100,0.95)';
+    ctx.beginPath(); ctx.arc(chx,chy-14,4.5,0,Math.PI*2); ctx.fill();
+    ctx.fillStyle=kidColors[4+j];
+    ctx.fillRect(chx-3.5,chy-10,7,10);
+    ctx.strokeStyle='rgba(60,40,20,0.75)'; ctx.lineWidth=2; ctx.lineCap='round';
+    ctx.beginPath(); ctx.moveTo(chx,chy); ctx.lineTo(chx-3+cleg,chy+8); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(chx,chy); ctx.lineTo(chx+3-cleg,chy+8); ctx.stroke();
+    ctx.restore();
+  }
+  // Group 3: 2 kids near right houses (W*0.71 to W*0.83)
+  for(var k=0;k<2;k++){
+    var rhx=((W*0.71+t*(18+k*10))%(W*0.13))+W*0.71;
+    var rhy=GY-4;
+    var rleg=Math.sin(t*5+k*3)*7;
+    ctx.save();
+    ctx.fillStyle='rgba(220,170,100,0.95)';
+    ctx.beginPath(); ctx.arc(rhx,rhy-13,4.5,0,Math.PI*2); ctx.fill();
+    ctx.fillStyle=kidColors[k+2];
+    ctx.fillRect(rhx-3.5,rhy-9,7,10);
+    ctx.strokeStyle='rgba(60,40,20,0.75)'; ctx.lineWidth=2; ctx.lineCap='round';
+    ctx.beginPath(); ctx.moveTo(rhx,rhy); ctx.lineTo(rhx-3+rleg,rhy+8); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(rhx,rhy); ctx.lineTo(rhx+3-rleg,rhy+8); ctx.stroke();
+    ctx.restore();
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// WAVE 6: Big circus-style tent (taller than trees)
+// ─────────────────────────────────────────────────────────────────────────────
+function drawCityBigTent(t){
+  var tx=W*0.1, ty=GY;
+  var tw=80, th=120; // wide and very tall
+  ctx.save();
+  // Flag pole & pennants
+  ctx.strokeStyle='rgba(80,50,20,0.85)'; ctx.lineWidth=3;
+  ctx.beginPath(); ctx.moveTo(tx,ty-th-20); ctx.lineTo(tx,ty-th-50); ctx.stroke();
+  // Swaying flag
+  var flagSway=Math.sin(t*2)*8;
+  ctx.fillStyle='#e74c3c';
+  ctx.beginPath();
+  ctx.moveTo(tx,ty-th-50);
+  ctx.lineTo(tx+20+flagSway,ty-th-42);
+  ctx.lineTo(tx,ty-th-34);
+  ctx.closePath(); ctx.fill();
+
+  // Main tent body - striped circus style
+  var stripes=['#e74c3c','#fff8e7','#e74c3c','#fff8e7','#e74c3c'];
+  var segW=tw*2/stripes.length;
+  for(var s=0;s<stripes.length;s++){
+    ctx.fillStyle=stripes[s];
+    ctx.beginPath();
+    ctx.moveTo(tx-tw+s*segW, ty);
+    ctx.lineTo(tx-tw+(s+1)*segW, ty);
+    ctx.lineTo(tx-tw+(s+1)*segW-segW*0.05, ty-th*0.65);
+    ctx.lineTo(tx-tw+s*segW+segW*0.05, ty-th*0.65);
+    ctx.closePath(); ctx.fill();
+  }
+  // Tent roof (big cone)
+  ctx.fillStyle='#c0392b';
+  ctx.beginPath();
+  ctx.moveTo(tx-tw, ty-th*0.6);
+  ctx.lineTo(tx+tw, ty-th*0.6);
+  ctx.lineTo(tx, ty-th-20);
+  ctx.closePath(); ctx.fill();
+  // Roof stripes
+  ctx.strokeStyle='rgba(255,255,230,0.4)'; ctx.lineWidth=3;
+  for(var r=0;r<5;r++){
+    var rx=tx-tw+r*(tw*2/4);
+    ctx.beginPath(); ctx.moveTo(rx, ty-th*0.6); ctx.lineTo(tx, ty-th-20); ctx.stroke();
+  }
+  // Scalloped edge
+  ctx.fillStyle='#e74c3c';
+  for(var sc=0;sc<8;sc++){
+    var scx=tx-tw+sc*(tw*2/7);
+    ctx.beginPath(); ctx.arc(scx+tw*2/14, ty-th*0.63, 9, 0, Math.PI*2); ctx.fill();
+  }
+  // Door
+  ctx.fillStyle='rgba(20,10,5,0.7)';
+  ctx.beginPath(); ctx.roundRect(tx-15, ty-40, 30, 40, [8,8,0,0]); ctx.fill();
+  // Lanterns on tent
+  var lanternColors=['#ffd700','#ff9900','#ff5500'];
+  for(var l=0;l<3;l++){
+    var lx=tx-tw*0.7+l*tw*0.7, ly=ty-th*0.65;
+    var lglow=0.5+Math.sin(t*2.5+l)*0.3;
+    ctx.fillStyle='rgba(255,200,50,'+lglow+')';
+    ctx.shadowColor='rgba(255,180,0,0.8)'; ctx.shadowBlur=12;
+    ctx.beginPath(); ctx.arc(lx,ly,6,0,Math.PI*2); ctx.fill();
+    ctx.shadowBlur=0;
+    ctx.strokeStyle='rgba(80,50,10,0.7)'; ctx.lineWidth=1;
+    ctx.beginPath(); ctx.moveTo(lx,ly-tw*0.15); ctx.lineTo(lx,ly-6); ctx.stroke();
+  }
+  ctx.restore();
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// WAVE 7: 4 houses (2 left, 2 right) with warm glowing light
+// ─────────────────────────────────────────────────────────────────────────────
+function drawCityHouses(t){
+  // 2 left of castle, 2 right of castle
+  var houseData=[
+    {x:W*0.19, flip:false, wallC:'rgba(210,185,140,0.97)', roofC:'rgba(160,60,40,1.0)'},
+    {x:W*0.29, flip:false, wallC:'rgba(195,175,130,0.97)', roofC:'rgba(130,80,50,1.0)'},
+    {x:W*0.71, flip:true,  wallC:'rgba(205,180,135,0.97)', roofC:'rgba(140,55,35,1.0)'},
+    {x:W*0.81, flip:true,  wallC:'rgba(215,190,145,0.97)', roofC:'rgba(150,65,40,1.0)'},
+  ];
+  for(var h=0;h<houseData.length;h++){
+    var hd=houseData[h], hx=hd.x, hy=GY-2;
+    var glow=0.6+Math.sin(t*1.2+h*0.8)*0.25;
+    ctx.save();
+    // Ground shadow
+    ctx.fillStyle='rgba(0,0,0,0.12)';
+    ctx.beginPath(); ctx.ellipse(hx,hy,28,6,0,0,Math.PI*2); ctx.fill();
+    // Walls
+    ctx.fillStyle=hd.wallC;
+    ctx.fillRect(hx-22,hy-38,44,38);
+    // Stone texture lines
+    ctx.strokeStyle='rgba(150,130,100,0.3)'; ctx.lineWidth=1;
+    for(var row=0;row<3;row++){
+      ctx.beginPath(); ctx.moveTo(hx-22,hy-12-row*12); ctx.lineTo(hx+22,hy-12-row*12); ctx.stroke();
+    }
+    // Roof
+    ctx.fillStyle=hd.roofC;
+    ctx.beginPath();
+    ctx.moveTo(hx-26,hy-38); ctx.lineTo(hx,hy-62); ctx.lineTo(hx+26,hy-38);
+    ctx.closePath(); ctx.fill();
+    // Roof ridge
+    ctx.strokeStyle='rgba(100,40,20,0.6)'; ctx.lineWidth=2;
+    ctx.beginPath(); ctx.moveTo(hx-26,hy-38); ctx.lineTo(hx+26,hy-38); ctx.stroke();
+    // Chimney
+    ctx.fillStyle='rgba(140,100,60,0.85)';
+    ctx.fillRect(hx+(hd.flip?-18:10),hy-70,10,32);
+    // Smoke puff
+    var sf=Math.sin(t*1.5+h)*3;
+    ctx.fillStyle='rgba(200,200,200,0.25)';
+    for(var sp=0;sp<3;sp++){
+      ctx.beginPath(); ctx.arc(hx+(hd.flip?-13:15)+sf*sp*0.3, hy-72-sp*10, 5+sp*2, 0, Math.PI*2); ctx.fill();
+    }
+    // Window with warm glow
+    ctx.fillStyle='rgba(255,200,80,'+glow+')';
+    ctx.shadowColor='rgba(255,180,50,0.9)'; ctx.shadowBlur=14;
+    ctx.fillRect(hx-10,hy-30,10,12);
+    ctx.fillRect(hx+2,hy-30,10,12);
+    ctx.shadowBlur=0;
+    // Window cross
+    ctx.strokeStyle='rgba(100,70,30,0.6)'; ctx.lineWidth=1.5;
+    ctx.beginPath(); ctx.moveTo(hx-5,hy-30); ctx.lineTo(hx-5,hy-18); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(hx-10,hy-24); ctx.lineTo(hx,hy-24); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(hx+7,hy-30); ctx.lineTo(hx+7,hy-18); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(hx+2,hy-24); ctx.lineTo(hx+12,hy-24); ctx.stroke();
+    // Door
+    ctx.fillStyle='rgba(100,65,25,0.85)';
+    ctx.beginPath(); ctx.roundRect(hx-7,hy-22,14,22,[4,4,0,0]); ctx.fill();
+    ctx.fillStyle='rgba(200,160,60,0.8)';
+    ctx.beginPath(); ctx.arc(hx+(hd.flip?-2:3),hy-11,2,0,Math.PI*2); ctx.fill();
+    // Ambient glow on ground
+    var groundGlow=ctx.createRadialGradient(hx,hy,0,hx,hy,35);
+    groundGlow.addColorStop(0,'rgba(255,180,50,'+(glow*0.18)+')');
+    groundGlow.addColorStop(1,'rgba(255,180,50,0)');
+    ctx.fillStyle=groundGlow; ctx.beginPath(); ctx.arc(hx,hy,35,0,Math.PI*2); ctx.fill();
+    ctx.restore();
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// WAVE 8: 3 market stalls (2 right, 1 left near tent) with lantern lights
+// ─────────────────────────────────────────────────────────────────────────────
+function drawCityMarkets(t){
+  // 1 left (near tent), 2 right of castle
+  var stalls=[
+    {x:W*0.17, awningC:'#c0392b', stripeC:'#f8f0d8'},
+    {x:W*0.63, awningC:'#27ae60', stripeC:'#f5f5dc'},
+    {x:W*0.74, awningC:'#2980b9', stripeC:'#f0f8ff'},
+  ];
+  for(var s=0;s<stalls.length;s++){
+    var st=stalls[s], mx=st.x, my=GY-2;
+    var bob=Math.sin(t*1.8+s)*1.5;
+    ctx.save();
+    // Counter
+    ctx.fillStyle='rgba(160,120,60,0.85)';
+    ctx.fillRect(mx-20,my-30,40,30);
+    // Legs
+    ctx.strokeStyle='rgba(120,80,30,0.8)'; ctx.lineWidth=3;
+    ctx.beginPath(); ctx.moveTo(mx-18,my); ctx.lineTo(mx-18,my+8); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(mx+18,my); ctx.lineTo(mx+18,my+8); ctx.stroke();
+    // Awning frame
+    ctx.fillStyle=st.awningC;
+    ctx.beginPath();
+    ctx.moveTo(mx-24,my-30); ctx.lineTo(mx+24,my-30);
+    ctx.lineTo(mx+20,my-44); ctx.lineTo(mx-20,my-44);
+    ctx.closePath(); ctx.fill();
+    // Awning stripes
+    ctx.strokeStyle='rgba(255,255,255,0.3)'; ctx.lineWidth=4;
+    for(var stripe=0;stripe<4;stripe++){
+      var sx2=mx-20+stripe*(40/3);
+      ctx.beginPath(); ctx.moveTo(sx2,my-44); ctx.lineTo(sx2-1,my-30); ctx.stroke();
+    }
+    // Scalloped edge
+    ctx.fillStyle=st.awningC;
+    for(var sc=0;sc<5;sc++){
+      ctx.beginPath(); ctx.arc(mx-20+sc*10,my-30,5,0,Math.PI*2); ctx.fill();
+    }
+    // Goods
+    var goodsC=['rgba(230,60,40,0.85)','rgba(255,180,0,0.85)','rgba(50,180,50,0.85)','rgba(180,80,200,0.85)'];
+    for(var g=0;g<4;g++){
+      ctx.fillStyle=goodsC[g];
+      ctx.beginPath(); ctx.arc(mx-14+g*10, my-18+bob, 5, 0, Math.PI*2); ctx.fill();
+    }
+    // Hanging lantern
+    var lGlow=0.7+Math.sin(t*2.2+s*1.1)*0.25;
+    ctx.strokeStyle='rgba(80,50,10,0.7)'; ctx.lineWidth=1.5;
+    ctx.beginPath(); ctx.moveTo(mx,my-44); ctx.lineTo(mx,my-52); ctx.stroke();
+    ctx.fillStyle='rgba(255,190,40,'+lGlow+')';
+    ctx.shadowColor='rgba(255,160,0,0.85)'; ctx.shadowBlur=18;
+    ctx.beginPath(); ctx.arc(mx,my-56,7,0,Math.PI*2); ctx.fill();
+    ctx.shadowBlur=0;
+    // Sign
+    ctx.fillStyle='rgba(160,110,50,0.8)';
+    ctx.fillRect(mx-14,my-56,28,9);
+    ctx.restore();
+  }
+  // String lights between stalls
+  if(stalls.length >= 2){
+    var a=stalls[1], b=stalls[2];
+    ctx.save();
+    ctx.strokeStyle='rgba(80,50,10,0.4)'; ctx.lineWidth=1;
+    ctx.beginPath(); ctx.moveTo(a.x,GY-54); ctx.lineTo(b.x,GY-54); ctx.stroke();
+    for(var bl=0;bl<5;bl++){
+      var blx=a.x+(b.x-a.x)*(bl+1)/6;
+      var bly=GY-54+Math.sin(bl*0.8)*4;
+      var blGlow=0.6+Math.sin(t*3+bl)*0.35;
+      ctx.fillStyle='rgba(255,220,80,'+blGlow+')';
+      ctx.shadowColor='rgba(255,200,0,0.7)'; ctx.shadowBlur=8;
+      ctx.beginPath(); ctx.arc(blx,bly,3.5,0,Math.PI*2); ctx.fill();
+    }
+    ctx.shadowBlur=0;
+    ctx.restore();
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// WAVE 9: School (left side of screen)
+// ─────────────────────────────────────────────────────────────────────────────
+function drawCitySchool(t){
+  var sx=W*0.33, sy=GY-2;
+  ctx.save();
+  // Main building
+  ctx.fillStyle='rgba(210,195,155,1.0)';
+  ctx.fillRect(sx-45,sy-55,90,55);
+  // Side wing
+  ctx.fillStyle='rgba(200,185,145,1.0)';
+  ctx.fillRect(sx+38,sy-42,22,42);
+  // Roof (flat with parapet)
+  ctx.fillStyle='rgba(170,60,40,1.0)';
+  ctx.fillRect(sx-48,sy-60,96,10);
+  ctx.fillRect(sx+35,sy-47,28,8);
+  // Parapet notches
+  ctx.fillStyle='rgba(210,195,155,1.0)';
+  for(var n=0;n<6;n++){
+    ctx.fillRect(sx-44+n*16,sy-65,8,10);
+  }
+  // Bell tower
+  ctx.fillStyle='rgba(190,170,130,0.9)';
+  ctx.fillRect(sx-8,sy-85,16,30);
+  // Bell tower roof
+  ctx.fillStyle='rgba(150,50,30,0.9)';
+  ctx.beginPath(); ctx.moveTo(sx-12,sy-85); ctx.lineTo(sx,sy-100); ctx.lineTo(sx+12,sy-85); ctx.closePath(); ctx.fill();
+  // Bell
+  var bellSwing=Math.sin(t*1.8)*0.15;
+  ctx.save(); ctx.translate(sx,sy-78); ctx.rotate(bellSwing);
+  ctx.fillStyle='rgba(200,170,40,0.9)';
+  ctx.beginPath(); ctx.arc(0,0,5,0,Math.PI*2); ctx.fill();
+  ctx.restore();
+  // Windows (grid)
+  var winC='rgba(180,220,255,0.6)';
+  var winGlow=0.5+Math.sin(t*0.8)*0.2;
+  ctx.fillStyle='rgba(255,220,100,'+winGlow+')';
+  ctx.shadowColor='rgba(255,200,60,0.5)'; ctx.shadowBlur=8;
+  for(var wr=0;wr<2;wr++){
+    for(var wc=0;wc<4;wc++){
+      ctx.fillRect(sx-38+wc*20,sy-48+wr*20,12,14);
+    }
+  }
+  ctx.shadowBlur=0;
+  // Door (double)
+  ctx.fillStyle='rgba(90,60,25,0.9)';
+  ctx.fillRect(sx-10,sy-30,9,30);
+  ctx.fillRect(sx+1,sy-30,9,30);
+  // Steps
+  ctx.fillStyle='rgba(170,155,120,0.85)';
+  ctx.fillRect(sx-14,sy-6,28,6); ctx.fillRect(sx-18,sy-3,36,5);
+  // Sign "SCHOOL / مدرسة"
+  ctx.fillStyle='rgba(120,80,30,0.9)';
+  ctx.fillRect(sx-20,sy-68,40,9);
+  ctx.fillStyle='rgba(255,240,200,0.9)';
+  ctx.font='bold 6px Arial';
+  ctx.textAlign='center';
+  ctx.fillText('SCHOOL',sx,sy-61);
+  ctx.restore();
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// WAVE 10: Hospital (right area)
+// ─────────────────────────────────────────────────────────────────────────────
+function drawCityHospital(t){
+  var hx=W*0.91, hy=GY-2;
+  ctx.save();
+  // Main building (white/cream)
+  ctx.fillStyle='rgba(240,238,232,1.0)';
+  ctx.fillRect(hx-42,hy-62,84,62);
+  // Left wing
+  ctx.fillStyle='rgba(230,228,222,1.0)';
+  ctx.fillRect(hx-58,hy-45,18,45);
+  // Roof (flat)
+  ctx.fillStyle='rgba(180,70,70,0.9)';
+  ctx.fillRect(hx-45,hy-67,90,9);
+  ctx.fillRect(hx-61,hy-50,22,7);
+  // Roof edge trim
+  ctx.strokeStyle='rgba(220,220,220,0.6)'; ctx.lineWidth=2;
+  ctx.strokeRect(hx-45,hy-67,90,9);
+  // Red cross on front (large, iconic)
+  ctx.fillStyle='rgba(210,30,30,0.9)';
+  ctx.fillRect(hx-5,hy-55,10,28); // vertical
+  ctx.fillRect(hx-14,hy-48,28,10); // horizontal
+  // Windows with blue/white calm glow
+  ctx.fillStyle='rgba(180,220,255,0.65)';
+  var winPositions=[-28,-14,2,16,-28,-14,2,16];
+  var winRows=[-55,-35];
+  for(var wr=0;wr<2;wr++){
+    for(var wc=0;wc<4;wc++){
+      ctx.fillRect(hx+winPositions[wc]-6,hy+winRows[wr],12,14);
+    }
+  }
+  // Emergency lights (blinking)
+  var emBlink=Math.sin(t*4)>0?'rgba(255,50,50,0.9)':'rgba(255,50,50,0.2)';
+  ctx.fillStyle=emBlink;
+  ctx.shadowColor='rgba(255,0,0,0.7)'; ctx.shadowBlur=10;
+  ctx.beginPath(); ctx.arc(hx-35,hy-70,4,0,Math.PI*2); ctx.fill();
+  ctx.beginPath(); ctx.arc(hx+35,hy-70,4,0,Math.PI*2); ctx.fill();
+  ctx.shadowBlur=0;
+  // Door (double sliding)
+  ctx.fillStyle='rgba(160,210,255,0.5)';
+  ctx.fillRect(hx-10,hy-28,9,28);
+  ctx.fillRect(hx+1,hy-28,9,28);
+  ctx.strokeStyle='rgba(100,150,200,0.5)'; ctx.lineWidth=1;
+  ctx.strokeRect(hx-10,hy-28,9,28); ctx.strokeRect(hx+1,hy-28,9,28);
+  // Ambulance hint (small van)
+  ctx.fillStyle='rgba(240,240,240,0.85)';
+  ctx.fillRect(hx+48,hy-20,26,18);
+  ctx.fillStyle='rgba(210,30,30,0.8)';
+  ctx.fillRect(hx+48,hy-22,26,5);
+  ctx.fillStyle='rgba(160,200,255,0.6)';
+  ctx.fillRect(hx+50,hy-18,8,8); ctx.fillRect(hx+60,hy-18,8,8);
+  // Wheels
+  ctx.fillStyle='rgba(40,40,40,0.7)';
+  ctx.beginPath(); ctx.arc(hx+54,hy-2,4,0,Math.PI*2); ctx.fill();
+  ctx.beginPath(); ctx.arc(hx+68,hy-2,4,0,Math.PI*2); ctx.fill();
+  // Sign "HOSPITAL / مستشفى"
+  ctx.fillStyle='rgba(200,30,30,0.9)';
+  ctx.fillRect(hx-22,hy-76,44,10);
+  ctx.fillStyle='rgba(255,255,255,0.95)';
+  ctx.font='bold 6px Arial'; ctx.textAlign='center';
+  ctx.fillText('HOSPITAL',hx,hy-68);
+  ctx.restore();
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// WAVE 11: Two fountains
+// ─────────────────────────────────────────────────────────────────────────────
+function drawCityFountains(t){
+  // Fountains lower — in open areas away from castle
+  var founts=[{x:W*0.24},{x:W*0.76}];
+  for(var fi=0;fi<founts.length;fi++){
+    var fx=founts[fi].x, fy=GY+18;  // lower, in foreground area
+    ctx.save();
+    // Outer basin
+    ctx.fillStyle='rgba(80,140,200,0.7)';
+    ctx.beginPath(); ctx.ellipse(fx,fy,32,13,0,0,Math.PI*2); ctx.fill();
+    ctx.strokeStyle='rgba(140,200,255,0.8)'; ctx.lineWidth=2.5;
+    ctx.beginPath(); ctx.ellipse(fx,fy,32,13,0,0,Math.PI*2); ctx.stroke();
+    // Column
+    ctx.fillStyle='rgba(200,195,220,0.95)';
+    ctx.fillRect(fx-5,fy-30,10,30);
+    // Top basin
+    ctx.fillStyle='rgba(110,165,230,0.65)';
+    ctx.beginPath(); ctx.ellipse(fx,fy-30,16,7,0,0,Math.PI*2); ctx.fill();
+    ctx.strokeStyle='rgba(160,210,255,0.7)'; ctx.lineWidth=1.5;
+    ctx.beginPath(); ctx.ellipse(fx,fy-30,16,7,0,0,Math.PI*2); ctx.stroke();
+    // Water arcs (6 arcs)
+    ctx.strokeStyle='rgba(100,210,255,0.75)'; ctx.lineWidth=2.5; ctx.lineCap='round';
+    for(var a=0;a<6;a++){
+      var angle=(a/6)*Math.PI*2;
+      var wt=t*2.5+a*0.4;
+      var ex=fx+Math.cos(angle)*(20+Math.sin(wt)*4);
+      var ey=fy-3+Math.sin(wt)*3;
+      ctx.beginPath();
+      ctx.moveTo(fx+Math.cos(angle)*5, fy-30);
+      ctx.quadraticCurveTo(fx+Math.cos(angle)*15, fy-40, ex, ey);
+      ctx.stroke();
+    }
+    // Water shimmer in basin
+    var spark=0.5+Math.sin(t*3+fi)*0.35;
+    ctx.fillStyle='rgba(180,240,255,'+spark+')';
+    ctx.beginPath(); ctx.ellipse(fx-8,fy-2,8,4,-0.3,0,Math.PI*2); ctx.fill();
+    ctx.restore();
+
+    // Children playing around fountain
+    var kidC=['#e74c3c','#3498db','#2ecc71','#f39c12','#9b59b6'];
+    for(var k=0;k<3;k++){
+      var kAng=t*1.4+k*(Math.PI*2/3)+fi*1.1;
+      var kr=38+Math.sin(t+k)*4;
+      var kx=fx+Math.cos(kAng)*kr;
+      var ky=fy+Math.sin(kAng)*kr*0.38;
+      var kleg=Math.sin(t*4.5+k*1.5)*8;
+      ctx.save();
+      ctx.fillStyle='rgba(220,170,100,0.97)';
+      ctx.beginPath(); ctx.arc(kx,ky-13,4.5,0,Math.PI*2); ctx.fill();
+      ctx.fillStyle=kidC[(k+fi*2)%kidC.length];
+      ctx.fillRect(kx-3.5,ky-9,7,9);
+      ctx.strokeStyle='rgba(60,40,20,0.9)'; ctx.lineWidth=2; ctx.lineCap='round';
+      ctx.beginPath(); ctx.moveTo(kx-2,ky); ctx.lineTo(kx-3+kleg,ky+8); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(kx+2,ky); ctx.lineTo(kx+3-kleg,ky+8); ctx.stroke();
+      // Some kids raise arms (waving/splashing)
+      if(k===1){
+        ctx.strokeStyle=kidC[(k+fi*2)%kidC.length]; ctx.lineWidth=2;
+        ctx.beginPath(); ctx.moveTo(kx,ky-5); ctx.lineTo(kx-8,ky-12+Math.sin(t*3+k)*4); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(kx,ky-5); ctx.lineTo(kx+8,ky-12+Math.sin(t*3+k+1)*4); ctx.stroke();
+      }
+      ctx.restore();
+    }
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// WAVE 12: Horses
+// ─────────────────────────────────────────────────────────────────────────────
+function drawCityHorses(t){
+  var hData=[
+    {x:W*0.35,spd:20,col:'rgba(120,80,40,0.85)'},
+    {x:W*0.42,spd:-16,col:'rgba(80,50,20,0.85)'},
+    {x:W*0.58,spd:18,col:'rgba(160,110,60,0.85)'},
+    {x:W*0.65,spd:-14,col:'rgba(100,65,30,0.85)'},
+    {x:W*0.50,spd:12,col:'rgba(140,90,40,0.85)'},
+  ];
+  for(var h=0;h<hData.length;h++){
+    var hd=hData[h];
+    var hx=((hd.x+t*hd.spd+W*1.5)%(W+120))-60;
+    var hy=GY-8;
+    var trot=Math.sin(t*3.5+h*1.1)*5;
+    var facing=hd.spd>0?1:-1;
+    ctx.save();
+    ctx.fillStyle=hd.col;
+    // Body
+    ctx.beginPath(); ctx.ellipse(hx,hy-11,17,8,0.18*facing,0,Math.PI*2); ctx.fill();
+    // Neck
+    ctx.beginPath(); ctx.ellipse(hx+14*facing,hy-18,6,10,0.55*facing,0,Math.PI*2); ctx.fill();
+    // Head
+    ctx.beginPath(); ctx.ellipse(hx+20*facing,hy-24,7,5,0.4*facing,0,Math.PI*2); ctx.fill();
+    // Ear
+    ctx.beginPath(); ctx.moveTo(hx+21*facing,hy-28); ctx.lineTo(hx+24*facing,hy-33); ctx.lineTo(hx+19*facing,hy-29); ctx.fill();
+    // Eye
+    ctx.fillStyle='rgba(20,10,5,0.95)';
+    ctx.beginPath(); ctx.arc(hx+22*facing,hy-25,1.5,0,Math.PI*2); ctx.fill();
+    // Mane
+    ctx.strokeStyle='rgba(70,40,12,0.75)'; ctx.lineWidth=2.5; ctx.lineCap='round';
+    ctx.beginPath(); ctx.moveTo(hx+13*facing,hy-24); ctx.quadraticCurveTo(hx+8*facing,hy-20,hx+4*facing,hy-15); ctx.stroke();
+    // 4 legs
+    ctx.strokeStyle=hd.col; ctx.lineWidth=3;
+    var lOff=[-10,-4,3,10];
+    for(var l=0;l<4;l++){
+      var lx=hx+lOff[l]*facing;
+      var lp=Math.sin(t*3.5+h*1.1+(l<2?0:Math.PI))*6;
+      ctx.beginPath(); ctx.moveTo(lx,hy-3); ctx.lineTo(lx+lp*0.3*facing,hy+9); ctx.stroke();
+    }
+    // Tail
+    ctx.beginPath(); ctx.moveTo(hx-14*facing,hy-11);
+    ctx.quadraticCurveTo(hx-24*facing,hy-3+trot,hx-20*facing,hy+6); ctx.stroke();
+    ctx.restore();
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// WAVE 13: Other animals (sheep + cows)
+// ─────────────────────────────────────────────────────────────────────────────
+function drawCityAnimals(t){
+  // 4 sheep (right area)
+  var sheepData=[{x:W*0.68,spd:8},{x:W*0.73,spd:-7},{x:W*0.78,spd:9},{x:W*0.83,spd:-6}];
+  for(var s=0;s<sheepData.length;s++){
+    var sd=sheepData[s];
+    var sx=((sd.x+t*sd.spd+W)%(W+80))-40;
+    var sy=GY-6;
+    var legBob=Math.sin(t*2+s)*3;
+    ctx.save();
+    // Fluffy body
+    ctx.fillStyle='rgba(240,235,230,0.85)';
+    ctx.beginPath(); ctx.arc(sx,sy-8,14,0,Math.PI*2); ctx.fill();
+    // Texture bumps
+    ctx.fillStyle='rgba(220,215,210,0.7)';
+    for(var b=0;b<5;b++){
+      ctx.beginPath(); ctx.arc(sx-8+b*4,sy-8+seededRand(s*10+b)*6-3,5,0,Math.PI*2); ctx.fill();
+    }
+    // Head
+    ctx.fillStyle='rgba(80,70,60,0.85)';
+    var hFacing=sd.spd>0?1:-1;
+    ctx.beginPath(); ctx.arc(sx+12*hFacing,sy-13,6,0,Math.PI*2); ctx.fill();
+    // Eye
+    ctx.fillStyle='rgba(255,255,255,0.9)';
+    ctx.beginPath(); ctx.arc(sx+13*hFacing,sy-14,1.8,0,Math.PI*2); ctx.fill();
+    ctx.fillStyle='rgba(10,5,0,0.9)';
+    ctx.beginPath(); ctx.arc(sx+13*hFacing,sy-14,1,0,Math.PI*2); ctx.fill();
+    // Legs
+    ctx.strokeStyle='rgba(80,70,60,0.8)'; ctx.lineWidth=2.5; ctx.lineCap='round';
+    for(var l=0;l<4;l++){
+      var lx=sx-8+l*5;
+      ctx.beginPath(); ctx.moveTo(lx,sy-2); ctx.lineTo(lx+(l<2?-1:1)*legBob*0.3,sy+6); ctx.stroke();
+    }
+    ctx.restore();
+  }
+  // 2 cows (left area)
+  var cowData=[{x:W*0.22,spd:6},{x:W*0.27,spd:-5}];
+  for(var c=0;c<cowData.length;c++){
+    var cd=cowData[c];
+    var cx=((cd.x+t*cd.spd+W)%(W+80))-40;
+    var cy=GY-8;
+    var cLeg=Math.sin(t*2+c+2)*4;
+    var cFacing=cd.spd>0?1:-1;
+    ctx.save();
+    // Body (black and white patches)
+    ctx.fillStyle='rgba(240,238,235,0.85)';
+    ctx.beginPath(); ctx.ellipse(cx,cy-10,18,9,0.1,0,Math.PI*2); ctx.fill();
+    // Patches
+    ctx.fillStyle='rgba(30,25,20,0.5)';
+    ctx.beginPath(); ctx.arc(cx-5,cy-14,6,0,Math.PI*2); ctx.fill();
+    ctx.beginPath(); ctx.arc(cx+8,cy-8,5,0,Math.PI*2); ctx.fill();
+    // Head
+    ctx.fillStyle='rgba(200,190,175,0.85)';
+    ctx.beginPath(); ctx.ellipse(cx+16*cFacing,cy-14,8,6,0.4*cFacing,0,Math.PI*2); ctx.fill();
+    // Horns
+    ctx.strokeStyle='rgba(200,180,120,0.8)'; ctx.lineWidth=2;
+    ctx.beginPath(); ctx.moveTo(cx+14*cFacing,cy-19); ctx.lineTo(cx+10*cFacing,cy-24); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(cx+18*cFacing,cy-19); ctx.lineTo(cx+22*cFacing,cy-24); ctx.stroke();
+    // Nose
+    ctx.fillStyle='rgba(220,170,160,0.8)';
+    ctx.beginPath(); ctx.ellipse(cx+20*cFacing,cy-12,4,3,0.3,0,Math.PI*2); ctx.fill();
+    // Legs
+    ctx.strokeStyle='rgba(180,170,155,0.8)'; ctx.lineWidth=3; ctx.lineCap='round';
+    for(var l=0;l<4;l++){
+      var lx=cx-10+l*7;
+      var lp=Math.sin(t*2+c+2+(l<2?0:Math.PI))*4;
+      ctx.beginPath(); ctx.moveTo(lx,cy-2); ctx.lineTo(lx+lp*0.3,cy+8); ctx.stroke();
+    }
+    // Tail
+    ctx.strokeStyle='rgba(150,140,120,0.7)'; ctx.lineWidth=2;
+    ctx.beginPath(); ctx.moveTo(cx-16*cFacing,cy-10); ctx.quadraticCurveTo(cx-24*cFacing,cy-3,cx-20*cFacing,cy+4); ctx.stroke();
+    ctx.restore();
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// WAVE 14: Windmill
+// ─────────────────────────────────────────────────────────────────────────────
+function drawCityWindmill(t){
+  // Right side, far from tent/school — tall and prominent
+  var wx=W*0.96, wy=GY;
+  var th=100; // tower height
+  ctx.save();
+  // Tower (tapered)
+  ctx.fillStyle='rgba(200,185,155,0.95)';
+  ctx.beginPath();
+  ctx.moveTo(wx-14,wy); ctx.lineTo(wx-8,wy-th); ctx.lineTo(wx+8,wy-th); ctx.lineTo(wx+14,wy); ctx.closePath(); ctx.fill();
+  // Tower detail lines
+  ctx.strokeStyle='rgba(160,145,115,0.4)'; ctx.lineWidth=1;
+  for(var r=0;r<4;r++){
+    var ry=wy-20-r*22;
+    var rx=14-r*1.4;
+    ctx.beginPath(); ctx.moveTo(wx-rx,ry); ctx.lineTo(wx+rx,ry); ctx.stroke();
+  }
+  // Red roof cone
+  ctx.fillStyle='rgba(170,55,30,0.95)';
+  ctx.beginPath(); ctx.moveTo(wx-11,wy-th); ctx.lineTo(wx,wy-th-26); ctx.lineTo(wx+11,wy-th); ctx.closePath(); ctx.fill();
+  // Door
+  ctx.fillStyle='rgba(100,70,30,0.85)';
+  ctx.beginPath(); ctx.roundRect(wx-7,wy-30,14,30,[4,4,0,0]); ctx.fill();
+  // Small window
+  ctx.fillStyle='rgba(180,220,255,0.5)';
+  ctx.fillRect(wx-5,wy-60,10,10);
+  // Spinning blades (4 big blades)
+  var bladePivotY = wy-th+2;
+  ctx.save(); ctx.translate(wx, bladePivotY); ctx.rotate(t*1.8);
+  for(var b=0;b<4;b++){
+    ctx.save(); ctx.rotate(b*Math.PI/2);
+    ctx.fillStyle='rgba(215,195,155,0.92)';
+    ctx.strokeStyle='rgba(140,110,60,0.5)'; ctx.lineWidth=1.5;
+    ctx.beginPath();
+    ctx.moveTo(-4,0);
+    ctx.lineTo(-7,-38);
+    ctx.lineTo(7,-38);
+    ctx.lineTo(4,0);
+    ctx.closePath(); ctx.fill(); ctx.stroke();
+    ctx.restore();
+  }
+  ctx.restore();
+  // Hub
+  ctx.fillStyle='rgba(100,75,40,0.95)';
+  ctx.beginPath(); ctx.arc(wx,bladePivotY,7,0,Math.PI*2); ctx.fill();
+  ctx.restore();
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// WAVE 15: Bridge
+// ─────────────────────────────────────────────────────────────────────────────
+function drawCityBridge(){
+  var bx=W*0.37, by=GY+6;
+  ctx.save();
+  ctx.fillStyle='rgba(130,95,50,0.8)';
+  ctx.fillRect(bx-28,by-8,56,8);
+  // Planks
+  ctx.strokeStyle='rgba(105,72,30,0.6)'; ctx.lineWidth=2;
+  for(var p=0;p<7;p++){
+    var px=bx-26+p*8;
+    ctx.beginPath(); ctx.moveTo(px,by-8); ctx.lineTo(px,by); ctx.stroke();
+  }
+  // Railings
+  ctx.strokeStyle='rgba(90,60,22,0.7)'; ctx.lineWidth=3;
+  ctx.beginPath(); ctx.moveTo(bx-28,by-8); ctx.lineTo(bx+28,by-8); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(bx-28,by-16); ctx.lineTo(bx+28,by-16); ctx.stroke();
+  for(var i=0;i<4;i++){
+    var postX=bx-24+i*16;
+    ctx.beginPath(); ctx.moveTo(postX,by-8); ctx.lineTo(postX,by-18); ctx.stroke();
+  }
+  ctx.restore();
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// WAVE 16: River
+// ─────────────────────────────────────────────────────────────────────────────
+function drawCityRiver(t){
+  // River flows from near the castle (center-left, GY level)
+  // outward in a cone toward the bottom-left corner of the screen
+  // Start: roughly W*0.38, GY (left side of castle base)
+  // End: 0, H (bottom-left corner)
+  var startX = W*0.38, startY = GY + 5;
+  var endX   = 0,      endY   = H;
+
+  // Width widens from ~8px at source to ~36px at mouth (conical)
+  var steps  = 40;
+  var points = [];
+  for(var i=0; i<=steps; i++){
+    var frac = i/steps;
+    var px = startX + (endX - startX)*frac;
+    var py = startY + (endY - startY)*frac;
+    // Gentle lateral meander (sin wave perpendicular to flow direction)
+    var meander = Math.sin(frac*Math.PI*2.5 + t*1.6) * (6 + frac*18);
+    var perpX   = -(endY - startY) / Math.sqrt((endX-startX)**2+(endY-startY)**2);
+    var perpY   =  (endX - startX) / Math.sqrt((endX-startX)**2+(endY-startY)**2);
+    points.push({
+      x: px + meander*perpX,
+      y: py + meander*perpY,
+      w: 8 + frac*28  // width grows along the flow
+    });
+  }
+
+  ctx.save();
+  // ── Main river body (filled polygon of left+right banks) ──
+  var leftBank = [], rightBank = [];
+  for(var i=0; i<points.length; i++){
+    var p = points[i];
+    // Direction vector
+    var nx, ny;
+    if(i < points.length-1){
+      nx = points[i+1].x - p.x; ny = points[i+1].y - p.y;
+    } else {
+      nx = p.x - points[i-1].x; ny = p.y - points[i-1].y;
+    }
+    var len = Math.sqrt(nx*nx+ny*ny) || 1;
+    var perpX = -ny/len, perpY = nx/len;
+    var hw = p.w/2;
+    leftBank.push({x: p.x + perpX*hw, y: p.y + perpY*hw});
+    rightBank.push({x: p.x - perpX*hw, y: p.y - perpY*hw});
+  }
+
+  // Fill body with gradient (deep blue center → lighter edges)
+  var riverGrd = ctx.createLinearGradient(startX, startY, endX, endY);
+  riverGrd.addColorStop(0,   'rgba(40,100,200,0.55)');
+  riverGrd.addColorStop(0.5, 'rgba(35,120,210,0.50)');
+  riverGrd.addColorStop(1,   'rgba(50,140,220,0.45)');
+
+  ctx.fillStyle = riverGrd;
+  ctx.beginPath();
+  ctx.moveTo(leftBank[0].x, leftBank[0].y);
+  for(var i=1;i<leftBank.length;i++) ctx.lineTo(leftBank[i].x, leftBank[i].y);
+  for(var i=rightBank.length-1;i>=0;i--) ctx.lineTo(rightBank[i].x, rightBank[i].y);
+  ctx.closePath();
+  ctx.fill();
+
+  // ── Shimmer highlights flowing downstream ──
+  ctx.strokeStyle='rgba(120,200,255,0.35)'; ctx.lineWidth=2; ctx.lineCap='round';
+  for(var s=0;s<5;s++){
+    var frac0 = ((t*0.22 + s*0.2) % 1.0);
+    var frac1 = Math.min(frac0 + 0.08, 1.0);
+    var p0 = points[Math.floor(frac0*(steps-1))];
+    var p1 = points[Math.floor(frac1*(steps-1))];
+    if(p0 && p1){
+      ctx.beginPath(); ctx.moveTo(p0.x, p0.y); ctx.lineTo(p1.x, p1.y); ctx.stroke();
+    }
+  }
+
+  // ── Banks: soft dark edge ──
+  ctx.strokeStyle='rgba(25,70,160,0.3)'; ctx.lineWidth=2.5;
+  ctx.beginPath();
+  ctx.moveTo(leftBank[0].x, leftBank[0].y);
+  for(var i=1;i<leftBank.length;i++) ctx.lineTo(leftBank[i].x, leftBank[i].y);
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo(rightBank[0].x, rightBank[0].y);
+  for(var i=1;i<rightBank.length;i++) ctx.lineTo(rightBank[i].x, rightBank[i].y);
+  ctx.stroke();
+
+  ctx.restore();
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// WAVE 17: Clock tower
+// ─────────────────────────────────────────────────────────────────────────────
+function drawCityClockTower(t){
+  var cx=W*0.96, cy=GY;
+  ctx.save();
+  // Tower
+  ctx.fillStyle='rgba(190,175,145,1.0)';
+  ctx.fillRect(cx-14,cy-90,28,90);
+  // Decorative band
+  ctx.fillStyle='rgba(160,140,110,0.7)';
+  ctx.fillRect(cx-14,cy-62,28,6);
+  // Roof
+  ctx.fillStyle='rgba(60,90,140,1.0)';
+  ctx.beginPath(); ctx.moveTo(cx-16,cy-90); ctx.lineTo(cx,cy-115); ctx.lineTo(cx+16,cy-90); ctx.closePath(); ctx.fill();
+  // Spire
+  ctx.fillStyle='rgba(50,75,120,0.9)';
+  ctx.beginPath(); ctx.moveTo(cx-4,cy-110); ctx.lineTo(cx,cy-130); ctx.lineTo(cx+4,cy-110); ctx.closePath(); ctx.fill();
+  // Clock face
+  ctx.fillStyle='rgba(250,245,235,0.95)';
+  ctx.beginPath(); ctx.arc(cx,cy-72,12,0,Math.PI*2); ctx.fill();
+  ctx.strokeStyle='rgba(80,60,30,0.7)'; ctx.lineWidth=1.5;
+  ctx.beginPath(); ctx.arc(cx,cy-72,12,0,Math.PI*2); ctx.stroke();
+  // Clock hands
+  var hour=t*0.15, minute=t*1.8;
+  ctx.strokeStyle='rgba(40,30,15,0.9)'; ctx.lineWidth=2; ctx.lineCap='round';
+  ctx.beginPath(); ctx.moveTo(cx,cy-72); ctx.lineTo(cx+Math.cos(hour-Math.PI/2)*7, cy-72+Math.sin(hour-Math.PI/2)*7); ctx.stroke();
+  ctx.lineWidth=1.5;
+  ctx.beginPath(); ctx.moveTo(cx,cy-72); ctx.lineTo(cx+Math.cos(minute-Math.PI/2)*10, cy-72+Math.sin(minute-Math.PI/2)*10); ctx.stroke();
+  // Arched windows
+  ctx.fillStyle='rgba(180,210,255,0.55)';
+  ctx.beginPath(); ctx.arc(cx,cy-45,5,Math.PI,0); ctx.rect(cx-5,cy-45,10,8); ctx.fill();
+  ctx.beginPath(); ctx.arc(cx,cy-25,5,Math.PI,0); ctx.rect(cx-5,cy-25,10,8); ctx.fill();
+  ctx.restore();
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// WAVE 18: Farm fields
+// ─────────────────────────────────────────────────────────────────────────────
+function drawCityFarm(t){
+  // Fields behind right houses
+  var fx=W*0.55, fy=GY;
+  ctx.save();
+  // Field rows
+  var rowColors=['rgba(80,140,30,0.35)','rgba(60,120,20,0.35)'];
+  for(var r=0;r<6;r++){
+    ctx.fillStyle=rowColors[r%2];
+    ctx.fillRect(fx+r*12-2,fy-28,10,28);
+  }
+  // Crop stalks
+  ctx.strokeStyle='rgba(100,160,40,0.5)'; ctx.lineWidth=1.5;
+  for(var r=0;r<6;r++){
+    for(var row=0;row<4;row++){
+      var stalkX=fx+r*12+4;
+      var stalkY=fy-8-row*7;
+      var sw=Math.sin(t*1.5+r+row)*2;
+      ctx.beginPath(); ctx.moveTo(stalkX,stalkY); ctx.lineTo(stalkX+sw,stalkY-6); ctx.stroke();
+    }
+  }
+  // Farmer
+  var farmT=Math.sin(t*2)*4;
+  ctx.fillStyle='rgba(80,110,50,0.8)';
+  ctx.beginPath(); ctx.arc(fx+38,fy-28,5,0,Math.PI*2); ctx.fill();
+  ctx.fillStyle='rgba(100,140,60,0.8)';
+  ctx.fillRect(fx+33,fy-23,10,14);
+  ctx.strokeStyle='rgba(80,100,40,0.7)'; ctx.lineWidth=2; ctx.lineCap='round';
+  ctx.beginPath(); ctx.moveTo(fx+38,fy-9); ctx.lineTo(fx+35,fy-1); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(fx+38,fy-9); ctx.lineTo(fx+41,fy-1); ctx.stroke();
+  // Hoe
+  ctx.strokeStyle='rgba(120,80,30,0.8)'; ctx.lineWidth=2;
+  ctx.beginPath(); ctx.moveTo(fx+38,fy-20); ctx.lineTo(fx+48+farmT,fy-8); ctx.stroke();
+  ctx.restore();
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// WAVE 19: Lighthouse
+// ─────────────────────────────────────────────────────────────────────────────
+function drawCityLighthouse(t){
+  var lx=W*0.02, ly=GY;
+  ctx.save();
+  // Base
+  ctx.fillStyle='rgba(200,190,170,0.9)';
+  ctx.beginPath();
+  ctx.moveTo(lx-10,ly); ctx.lineTo(lx-6,ly-60); ctx.lineTo(lx+6,ly-60); ctx.lineTo(lx+10,ly); ctx.closePath(); ctx.fill();
+  // Stripes (red bands)
+  ctx.fillStyle='rgba(200,50,40,0.7)';
+  ctx.fillRect(lx-8,ly-20,16,8);
+  ctx.fillRect(lx-7,ly-40,14,8);
+  // Lantern room
+  ctx.fillStyle='rgba(80,70,60,0.85)';
+  ctx.fillRect(lx-8,ly-70,16,12);
+  // Dome
+  ctx.fillStyle='rgba(60,55,50,0.9)';
+  ctx.beginPath(); ctx.arc(lx,ly-70,8,Math.PI,0); ctx.fill();
+  // Rotating light beam
+  var beamAngle=t*2;
+  ctx.save();
+  ctx.translate(lx,ly-68);
+  ctx.rotate(beamAngle);
+  var beamGrad=ctx.createLinearGradient(0,0,120,0);
+  beamGrad.addColorStop(0,'rgba(255,250,180,0.5)');
+  beamGrad.addColorStop(1,'rgba(255,250,180,0)');
+  ctx.fillStyle=beamGrad;
+  ctx.beginPath(); ctx.moveTo(0,0); ctx.lineTo(120,-15); ctx.lineTo(120,15); ctx.closePath(); ctx.fill();
+  ctx.restore();
+  // Light core glow
+  var lglow=0.7+Math.sin(t*3)*0.25;
+  ctx.fillStyle='rgba(255,250,180,'+lglow+')';
+  ctx.shadowColor='rgba(255,240,100,0.9)'; ctx.shadowBlur=20;
+  ctx.beginPath(); ctx.arc(lx,ly-68,5,0,Math.PI*2); ctx.fill();
+  ctx.shadowBlur=0;
+  ctx.restore();
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// WAVE 20: Festival lights and banners
+// ─────────────────────────────────────────────────────────────────────────────
+function drawCityFestival(t){
+  ctx.save();
+  // String lights across top of scene
+  var lightColors=['rgba(255,80,80,','rgba(80,200,80,','rgba(80,130,255,','rgba(255,200,50,','rgba(255,100,200,'];
+  var lineY=H*0.28;
+  // 3 strings
+  for(var ls=0;ls<3;ls++){
+    var y1=lineY+ls*22;
+    ctx.strokeStyle='rgba(60,40,15,0.3)'; ctx.lineWidth=1;
+    ctx.beginPath(); ctx.moveTo(0,y1); ctx.lineTo(W,y1); ctx.stroke();
+    for(var l=0;l<14;l++){
+      var lx=l*(W/13);
+      var ly=y1+Math.sin(l*0.5)*5;
+      var glow=0.7+Math.sin(t*3+l*0.7+ls)*0.28;
+      var col=lightColors[(l+ls)%lightColors.length];
+      ctx.fillStyle=col+glow+')';
+      ctx.shadowColor=col+'0.9)'; ctx.shadowBlur=12;
+      ctx.beginPath(); ctx.arc(lx,ly,5,0,Math.PI*2); ctx.fill();
+    }
+  }
+  ctx.shadowBlur=0;
+  // Pennant banners
+  var bannerC=['#e74c3c','#f39c12','#2ecc71','#3498db','#9b59b6'];
+  for(var b=0;b<8;b++){
+    var bx=b*(W/7);
+    var by=H*0.3+Math.sin(b*0.6)*8;
+    var swing=Math.sin(t*1.5+b*0.8)*5;
+    ctx.fillStyle=bannerC[b%bannerC.length];
+    ctx.beginPath();
+    ctx.moveTo(bx,by); ctx.lineTo(bx+10+swing,by+20); ctx.lineTo(bx+20,by); ctx.closePath(); ctx.fill();
+  }
+  ctx.restore();
+}
+
+
 function buildTrees(){
   G.trees = [];
   var count = Math.floor(W/60)+5;
@@ -844,6 +2251,8 @@ function update(dt){
 
   // Archers shoot
   G.archers.forEach(function(a){ updateArcher(a, dt); });
+  // Dragons
+  G.dragons.forEach(function(d){ updateDragon(d, dt); });
 
   // Walls take zombie damage
   G.zombies.forEach(function(z){
@@ -940,6 +2349,404 @@ function handleTap(px, py){
   }
 }
 // ────────────────────────────────────────────────────
+// DRAGON
+// ────────────────────────────────────────────────────
+var DRAGON_RECHARGE_TIMES = [25, 16, 10]; // per level 1,2,3
+var dragonFlames = [];
+
+function updateDragon(d, dt){
+  d.animT = (d.animT || 0) + dt;
+  d.level = d.level || 1;
+  var rechargeTime = DRAGON_RECHARGE_TIMES[d.level - 1];
+
+  // Recharge
+  if(d.charges < 2){
+    d.rechargeTimer += dt;
+    if(d.rechargeTimer >= rechargeTime){
+      d.charges++;
+      d.rechargeTimer = 0;
+      if(d.charges === 2) addFloat(CX, GY - 200, T('dragonReady'), '#ff6030');
+      updateHUD();
+    }
+  }
+
+  // Find strongest zombie (highest HP) as target
+  if(d.charges > 0 && G.zombies.length > 0){
+    d.breathTimer = (d.breathTimer || 0) + dt;
+    var fireInterval = d.level >= 3 ? 2.5 : d.level === 2 ? 3.2 : 4;
+    if(d.breathTimer >= fireInterval){
+      d.breathTimer = 0;
+      // Find strongest zombie
+      var strongest = G.zombies.reduce(function(best, z){
+        return z.hp > best.hp ? z : best;
+      }, G.zombies[0]);
+      d.targetX = strongest.x;
+      d.targetY = strongest.y;
+      // Compute head angle toward target
+      var ts = Math.min(TS * 2, TS + Math.max(0,(G.wave||1)-1)*4);
+      var hx = CX + ts*0.55 - 22;
+      var hy = GY - ts*1.9 - 45;
+      d.fireAngle = Math.atan2(strongest.y - hy, strongest.x - hx);
+      dragonBreath(d);
+    }
+  }
+
+  // Update flame particles
+  for(var i = dragonFlames.length - 1; i >= 0; i--){
+    var f = dragonFlames[i];
+    f.x += f.vx * dt;
+    f.y += f.vy * dt;
+    f.life -= dt;
+    f.r = Math.max(0, f.r - dt * 25);
+    if(f.life <= 0) dragonFlames.splice(i, 1);
+  }
+}
+
+function dragonBreath(d){
+  d.charges--;
+  d.isBreathing = true;
+  d.breathAnimTimer = 0.9;
+  updateHUD();
+  addFloat(CX, GY - 250, T('dragonBreath'), '#ff6030');
+
+  // Kill all zombies in one breath
+  G.zombies.forEach(function(z){
+    spawnParticles(z.x, z.y, '#ff4400', 10);
+    G.killed++;
+  });
+  G.zombies = [];
+
+  // Directed flame stream toward target
+  var angle = d.fireAngle || -Math.PI;
+  var ts = Math.min(TS * 2, TS + Math.max(0,(G.wave||1)-1)*4);
+  var ox = CX + ts*0.55 - 30;
+  var oy = GY - ts*1.9 - 43;
+  for(var i = 0; i < 120; i++){
+    var spread = (Math.random()-0.5) * 0.55;
+    var a = angle + spread;
+    var speed = 180 + Math.random()*350;
+    var size = 10 + Math.random()*22;
+    dragonFlames.push({
+      x: ox, y: oy,
+      vx: Math.cos(a)*speed,
+      vy: Math.sin(a)*speed,
+      life: 0.5 + Math.random()*0.7,
+      r: size,
+      color: Math.random() > 0.4 ? (Math.random()>0.5?'#ff3300':'#ff6600') : '#ffbb00'
+    });
+  }
+
+  updateHUD();
+  setTimeout(function(){ if(d){ d.isBreathing = false; d.breathAnimTimer = 0; }}, 900);
+}
+
+function drawDragon(d){
+  var ts = Math.min(TS * 2, TS + Math.max(0, (G.wave||1) - 1) * 4);
+  // Dragon sits on the RIGHT shoulder of tower, larger and more imposing
+  var scale = 1 + (d.level||1) * 0.12; // grows with level
+  var dx = CX + ts * 0.6;
+  var dy = GY - ts * 2.05;
+  var t = d.animT || 0;
+  var lvl = d.level || 1;
+  var bob = Math.sin(t * 2.2) * 5;
+  var breathing = d.isBreathing;
+  var fireAngle = d.fireAngle || -Math.PI;
+
+  // Color palette gets more menacing with level
+  var bodyColor  = ['#1a1a1a','#2a0a0a','#1a0a2a'][lvl-1];
+  var scaleColor = ['#3a3a3a','#5a1010','#3a0a5a'][lvl-1];
+  var glowColor  = ['#ff4400','#ff2200','#cc00ff'][lvl-1];
+  var wingColor  = ['rgba(40,40,40,0.9)','rgba(80,10,10,0.9)','rgba(60,0,80,0.9)'][lvl-1];
+  var eyeColor   = ['#ff6600','#ff2200','#cc00ff'][lvl-1];
+  var hornColor  = ['#555','#880000','#440066'][lvl-1];
+
+  ctx.save();
+  ctx.translate(dx, dy);
+  ctx.scale(scale, scale);
+
+  // ── Flame particles ──
+  ctx.save();
+  ctx.translate(-dx, -dy);
+  dragonFlames.forEach(function(f){
+    var alpha = Math.min(1, f.life * 1.8);
+    ctx.globalAlpha = alpha;
+    var grad = ctx.createRadialGradient(f.x, f.y, 0, f.x, f.y, f.r);
+    grad.addColorStop(0, '#ffffff');
+    grad.addColorStop(0.2, f.color);
+    grad.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = grad;
+    ctx.shadowColor = f.color;
+    ctx.shadowBlur = 12;
+    ctx.beginPath(); ctx.arc(f.x, f.y, f.r, 0, Math.PI*2); ctx.fill();
+    ctx.shadowBlur = 0;
+  });
+  ctx.globalAlpha = 1;
+  ctx.restore();
+
+  // ── Wing membrane veins ──
+  var wFlap = Math.sin(t*3.5) * (breathing ? 0.05 : 0.2);
+  function drawWing(side){
+    var s = side === 'L' ? -1 : 1;
+    var wx = s*8, wy = -10+bob;
+    // Wing membrane
+    ctx.fillStyle = wingColor;
+    ctx.beginPath();
+    ctx.moveTo(wx, wy);
+    ctx.bezierCurveTo(wx+s*35, wy - 60 + wFlap*s*40, wx+s*80, wy - 30 + wFlap*s*20, wx+s*90, wy+20+bob);
+    ctx.bezierCurveTo(wx+s*70, wy+35+bob, wx+s*40, wy+30+bob, wx, wy+25+bob);
+    ctx.closePath();
+    ctx.shadowColor = glowColor;
+    ctx.shadowBlur = breathing ? 18 : 4;
+    ctx.fill();
+    ctx.shadowBlur = 0;
+    // Vein lines
+    ctx.strokeStyle = 'rgba(255,50,0,0.4)';
+    ctx.lineWidth = 1.2;
+    for(var v=0;v<3;v++){
+      ctx.beginPath();
+      ctx.moveTo(wx, wy);
+      ctx.quadraticCurveTo(wx+s*(25+v*15), wy-30+wFlap*s*20, wx+s*(50+v*20), wy+10+bob);
+      ctx.stroke();
+    }
+    // Wing claws
+    ctx.fillStyle = hornColor;
+    for(var c=0;c<3;c++){
+      ctx.beginPath();
+      var cx2 = wx+s*(40+c*20);
+      var cy2 = wy - 55 + wFlap*s*30 + c*12;
+      ctx.moveTo(cx2, cy2);
+      ctx.lineTo(cx2+s*3, cy2-9);
+      ctx.lineTo(cx2+s*6, cy2);
+      ctx.closePath(); ctx.fill();
+    }
+  }
+  drawWing('L');
+  drawWing('R');
+
+  // ── Spiked tail ──
+  ctx.strokeStyle = scaleColor;
+  ctx.lineWidth = 9;
+  ctx.lineCap = 'round';
+  ctx.shadowColor = glowColor; ctx.shadowBlur = 6;
+  ctx.beginPath();
+  ctx.moveTo(12, 25+bob);
+  ctx.bezierCurveTo(55, 55+bob, 48, 85+bob, 28, 105+bob);
+  ctx.bezierCurveTo(12, 118+bob, 40, 130+bob, 50, 118+bob);
+  ctx.stroke(); ctx.shadowBlur = 0;
+  // Tail spikes
+  ctx.fillStyle = hornColor;
+  var tailPts = [[25,50],[38,75],[32,95],[42,115]];
+  tailPts.forEach(function(p){
+    ctx.save();
+    ctx.translate(p[0]+3, p[1]+bob);
+    ctx.rotate(0.8);
+    ctx.beginPath(); ctx.moveTo(0,0); ctx.lineTo(6,-12); ctx.lineTo(12,0); ctx.closePath(); ctx.fill();
+    ctx.restore();
+  });
+
+  // ── Body (armored, menacing) ──
+  var bGrad = ctx.createRadialGradient(5, 20+bob, 5, 5, 20+bob, 32);
+  bGrad.addColorStop(0, scaleColor);
+  bGrad.addColorStop(0.5, bodyColor);
+  bGrad.addColorStop(1, '#000');
+  ctx.fillStyle = bGrad;
+  ctx.shadowColor = glowColor;
+  ctx.shadowBlur = breathing ? 35 : (lvl>1 ? 14 : 8);
+  ctx.beginPath();
+  ctx.ellipse(5, 22+bob, 22, 34, 0.08, 0, Math.PI*2);
+  ctx.fill(); ctx.shadowBlur = 0;
+
+  // ── Armor scales on body ──
+  ctx.fillStyle = scaleColor;
+  for(var row=0; row<5; row++){
+    for(var col=0; col<2; col++){
+      var sx = col*11 - 7;
+      var sy = row*12 - 5 + bob + (row%2)*5;
+      ctx.beginPath();
+      ctx.moveTo(sx, sy); ctx.lineTo(sx-6, sy+8); ctx.lineTo(sx+6, sy+8); ctx.closePath();
+      ctx.fill();
+    }
+  }
+
+  // ── Dorsal spikes ──
+  ctx.fillStyle = hornColor;
+  ctx.shadowColor = glowColor; ctx.shadowBlur = 8;
+  var dorsalPts = [[5,-5],[8,8],[10,20],[8,33]];
+  dorsalPts.forEach(function(p, i){
+    var h = 14 - i*2;
+    ctx.beginPath();
+    ctx.moveTo(p[0]-5, p[1]+bob);
+    ctx.lineTo(p[0], p[1]+bob - h);
+    ctx.lineTo(p[0]+5, p[1]+bob);
+    ctx.closePath(); ctx.fill();
+  });
+  ctx.shadowBlur = 0;
+
+  // ── Neck (thick, armored) ──
+  var nGrad = ctx.createLinearGradient(-10, -5+bob, 12, -35+bob);
+  nGrad.addColorStop(0, scaleColor);
+  nGrad.addColorStop(1, bodyColor);
+  ctx.fillStyle = nGrad;
+  ctx.beginPath();
+  ctx.moveTo(-8, -2+bob);
+  ctx.bezierCurveTo(-22, -18+bob, -16, -38+bob, -8, -48+bob);
+  ctx.lineTo(8, -44+bob);
+  ctx.bezierCurveTo(14, -28+bob, 14, -8+bob, 12, -2+bob);
+  ctx.closePath(); ctx.fill();
+  // Neck scales
+  ctx.fillStyle = hornColor;
+  for(var ns=0; ns<3; ns++){
+    ctx.beginPath();
+    ctx.moveTo(-12+ns*3, -10+ns*(-10)+bob);
+    ctx.lineTo(-8+ns*3, -18+ns*(-10)+bob);
+    ctx.lineTo(-4+ns*3, -10+ns*(-10)+bob);
+    ctx.closePath(); ctx.fill();
+  }
+
+  // ── Head (large, angular, frightening) ──
+  var hGrad = ctx.createLinearGradient(-20,-55+bob, 8,-35+bob);
+  hGrad.addColorStop(0, scaleColor);
+  hGrad.addColorStop(1, bodyColor);
+  ctx.fillStyle = hGrad;
+  ctx.shadowColor = glowColor;
+  ctx.shadowBlur = breathing ? 30 : 10;
+  // Angular head shape
+  ctx.beginPath();
+  ctx.moveTo(-5, -36+bob);
+  ctx.lineTo(-16, -42+bob);
+  ctx.lineTo(-22, -55+bob);
+  ctx.lineTo(-8, -60+bob);
+  ctx.lineTo(6, -56+bob);
+  ctx.lineTo(8, -42+bob);
+  ctx.closePath(); ctx.fill();
+  ctx.shadowBlur = 0;
+
+  // ── Massive jaw / snout ──
+  ctx.fillStyle = bodyColor;
+  ctx.beginPath();
+  ctx.moveTo(-16, -43+bob);
+  ctx.lineTo(-36, -36+bob);
+  ctx.lineTo(-40, -44+bob);
+  ctx.lineTo(-20, -52+bob);
+  ctx.closePath(); ctx.fill();
+  // Teeth (jagged)
+  ctx.fillStyle = '#e8e8e0';
+  var teethX = [-34,-30,-26,-22];
+  teethX.forEach(function(tx2, ti){
+    ctx.beginPath();
+    ctx.moveTo(tx2, -38+bob);
+    ctx.lineTo(tx2+2, ti%2===0?-43:-46+bob);
+    ctx.lineTo(tx2+4, -38+bob);
+    ctx.closePath(); ctx.fill();
+  });
+  // Nostril glow
+  ctx.fillStyle = glowColor;
+  ctx.shadowColor = glowColor; ctx.shadowBlur = 8;
+  ctx.beginPath(); ctx.arc(-33, -42+bob, 2.5, 0, Math.PI*2); ctx.fill();
+  ctx.beginPath(); ctx.arc(-28, -43+bob, 2.5, 0, Math.PI*2); ctx.fill();
+  if(breathing){
+    ctx.shadowBlur = 20;
+    ctx.fillStyle = '#ffff00';
+    ctx.beginPath(); ctx.arc(-33, -42+bob, 5, 0, Math.PI*2); ctx.fill();
+    ctx.beginPath(); ctx.arc(-28, -43+bob, 5, 0, Math.PI*2); ctx.fill();
+  }
+  ctx.shadowBlur = 0;
+
+  // ── Eyes (glowing, slit pupils) ──
+  var eyeGlow = breathing ? 35 : (Math.sin(t*4)*3+10);
+  ctx.fillStyle = eyeColor;
+  ctx.shadowColor = eyeColor; ctx.shadowBlur = eyeGlow;
+  ctx.beginPath(); ctx.arc(-8, -50+bob, 5.5, 0, Math.PI*2); ctx.fill();
+  ctx.shadowBlur = 0;
+  // Slit pupil
+  ctx.fillStyle = '#000';
+  ctx.save();
+  ctx.translate(-8, -50+bob);
+  ctx.scale(0.3, 1);
+  ctx.beginPath(); ctx.arc(0, 0, 5, 0, Math.PI*2); ctx.fill();
+  ctx.restore();
+  // Eye scar for lvl 2+
+  if(lvl >= 2){
+    ctx.strokeStyle = hornColor; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(-12, -53+bob); ctx.lineTo(-4, -47+bob); ctx.stroke();
+  }
+
+  // ── Horns (multiple, curved menacingly) ──
+  ctx.fillStyle = hornColor;
+  ctx.shadowColor = glowColor; ctx.shadowBlur = 6;
+  // Main horns
+  ctx.beginPath(); ctx.moveTo(-4,-58+bob); ctx.bezierCurveTo(0,-70+bob,8,-75+bob,6,-80+bob); ctx.lineTo(-2,-76+bob); ctx.bezierCurveTo(-4,-70+bob,-8,-65+bob,-10,-58+bob); ctx.closePath(); ctx.fill();
+  ctx.beginPath(); ctx.moveTo(-14,-56+bob); ctx.bezierCurveTo(-12,-68+bob,-4,-72+bob,-6,-77+bob); ctx.lineTo(-14,-73+bob); ctx.bezierCurveTo(-18,-66+bob,-20,-60+bob,-20,-56+bob); ctx.closePath(); ctx.fill();
+  // Extra side horn for lvl3
+  if(lvl >= 3){
+    ctx.beginPath(); ctx.moveTo(3,-56+bob); ctx.bezierCurveTo(12,-62+bob,15,-68+bob,18,-66+bob); ctx.lineTo(14,-60+bob); ctx.bezierCurveTo(9,-57+bob,6,-55+bob,3,-56+bob); ctx.closePath(); ctx.fill();
+  }
+  ctx.shadowBlur = 0;
+
+  // ── Directed flame breath ──
+  if(breathing){
+    var muzzleX = -38;
+    var muzzleY = -40+bob;
+    var relAngle = d.fireAngle || -Math.PI;
+    // Transform back to local space for flame direction
+    var cosA = Math.cos(relAngle);
+    var sinA = Math.sin(relAngle);
+    ctx.save();
+    ctx.translate(-dx/scale, -dy/scale); // cancel the translate to get world flame
+    ctx.translate(dx + muzzleX*scale, dy + muzzleY*scale);
+    for(var fi=0;fi<8;fi++){
+      var pct = fi/7;
+      var fSize = (28-fi*2.5) * (breathing?1.4:1);
+      var dist = fi*28;
+      var wobble = Math.sin(t*20+fi)*6;
+      var fAlpha = 1 - pct*0.7;
+      ctx.globalAlpha = fAlpha;
+      var fg = ctx.createRadialGradient(cosA*dist+wobble, sinA*dist+wobble, 1, cosA*dist+wobble, sinA*dist+wobble, fSize);
+      fg.addColorStop(0, '#ffffff');
+      fg.addColorStop(0.25, '#ffee00');
+      fg.addColorStop(0.6, '#ff4400');
+      fg.addColorStop(1, 'rgba(255,0,0,0)');
+      ctx.fillStyle = fg;
+      ctx.shadowColor = '#ff4400'; ctx.shadowBlur = 25;
+      ctx.beginPath(); ctx.arc(cosA*dist+wobble, sinA*dist+wobble, fSize, 0, Math.PI*2); ctx.fill();
+      ctx.shadowBlur = 0;
+    }
+    ctx.globalAlpha = 1;
+    ctx.restore();
+  }
+
+  // ── Level badge ──
+  var badgeColors = ['#ff6030','#ff2200','#cc00ff'];
+  ctx.fillStyle = badgeColors[lvl-1];
+  ctx.shadowColor = badgeColors[lvl-1]; ctx.shadowBlur = 10;
+  ctx.font = 'bold 11px Arial';
+  ctx.fillText('Lv'+lvl, -4, 72+bob);
+  ctx.shadowBlur = 0;
+
+  // ── Charge dots ──
+  for(var ci = 0; ci < 2; ci++){
+    ctx.fillStyle = ci < d.charges ? glowColor : 'rgba(255,255,255,0.15)';
+    ctx.shadowColor = ci < d.charges ? glowColor : 'transparent';
+    ctx.shadowBlur = ci < d.charges ? 12 : 0;
+    ctx.beginPath(); ctx.arc(-5 + ci*14, 62+bob, 5, 0, Math.PI*2); ctx.fill();
+    ctx.shadowBlur = 0;
+  }
+  // Recharge bar
+  if(d.charges < 2){
+    var rechargeT = DRAGON_RECHARGE_TIMES[(d.level||1)-1];
+    var bW = 44, bX = -bW/2, bY = 70+bob;
+    ctx.fillStyle = 'rgba(0,0,0,0.6)';
+    ctx.beginPath(); ctx.roundRect(bX, bY, bW, 6, 3); ctx.fill();
+    ctx.fillStyle = glowColor;
+    ctx.shadowColor = glowColor; ctx.shadowBlur = 8;
+    ctx.beginPath(); ctx.roundRect(bX, bY, bW*(d.rechargeTimer/rechargeT), 6, 3); ctx.fill();
+    ctx.shadowBlur = 0;
+  }
+
+  ctx.restore();
+}
+
+// ────────────────────────────────────────────────────
 
 function updateArcher(a, dt){
   var idx = G.archers.indexOf(a);
@@ -1002,9 +2809,12 @@ function shoot(a, idx){
 function startWave(){
   G.waveActive = true;
   G.spawned = 0;
-  // Start from wave 3 difficulty equivalent: base count boosted, spawn faster
-  G.toSpawn = 6 + G.wave*3;
-  G.spawnInterval = Math.max(0.5, 2.2 - G.wave*0.08);
+  // Age group scaling: 1=easiest (8-10), 2=medium (10-12), 3=hardest (13-15)
+  var agIdx = {'8-11':0,'12-15':1}[PLAYER_GRADE] || 0;
+  var gradeBonus = agIdx * 0.25; // 0 for 8-11, +0.25 for 12-15
+  var baseCount = 6 + agIdx;     // 6 for 8-11, 7 for 12-15
+  G.toSpawn = Math.round((baseCount + G.wave * 3) * (1 + gradeBonus));
+  G.spawnInterval = Math.max(0.35, (2.4 - gradeBonus * 1.5) - G.wave * 0.08);
   G.spawnTimer = 0.5;
 }
 
@@ -1075,8 +2885,10 @@ function render(){
   drawForestBackground();
   drawGround();
   drawForestForeground();
+  drawCityElements();
   drawWalls();
   drawTower();
+  if(G.dragons.length > 0) drawDragon(G.dragons[0]);
   drawZombies();
   drawArrows();
   drawParticles();
@@ -1331,12 +3143,20 @@ function drawTower(){
 
 function getArcherPos(idx){
   var ts = Math.min(TS * 2, TS + Math.max(0, (G.wave||1) - 1) * 4);
+  // 10 positions: 5 archer slots (left/center tower) + 5 sniper slots (right/elevated)
   var pos = [
-    {x:CX, y:GY-ts*1.65},
-    {x:CX-ts*0.32, y:GY-ts*0.85},
-    {x:CX+ts*0.32, y:GY-ts*0.85},
-    {x:CX, y:GY-ts*0.45},
-    {x:CX-ts*0.35, y:GY-ts*1.3},
+    // Archer positions (idx 0-4 when sorted by type, but we use absolute idx)
+    {x:CX,           y:GY-ts*1.65},
+    {x:CX-ts*0.32,   y:GY-ts*0.85},
+    {x:CX+ts*0.28,   y:GY-ts*0.85},
+    {x:CX,           y:GY-ts*0.45},
+    {x:CX-ts*0.35,   y:GY-ts*1.3 },
+    // Sniper positions (idx 5-9) — elevated, spread wider
+    {x:CX+ts*0.35,   y:GY-ts*1.3 },
+    {x:CX-ts*0.5,    y:GY-ts*1.1 },
+    {x:CX+ts*0.5,    y:GY-ts*1.1 },
+    {x:CX-ts*0.2,    y:GY-ts*0.25},
+    {x:CX+ts*0.2,    y:GY-ts*0.25},
   ];
   return pos[idx % pos.length];
 }
@@ -1830,57 +3650,82 @@ function addFloat(x,y,text,color){
 // BUY
 // ═══════════════════════════════════════════════════
 function buy(type){
-  var cost = COSTS[type];
-  if(G.coins < cost){ addFloat(CX, H/2, T('notEnough'), '#ff6b6b'); return; }
+  // upgrade cost is dynamic — bypass static COSTS check
+  if(type !== 'upgrade' && type !== 'dragonUpgrade'){
+    var cost = COSTS[type];
+    if(cost === undefined){ return; }
+    if(G.coins < cost){ addFloat(CX, H/2, T('notEnough'), '#ff6b6b'); return; }
+  }
 
   if(type==='archer'){
-    if(G.archers.length>=5){ addFloat(CX,H/2,T('maxArch'),'#ff6b6b'); return; }
+    if(G.archerCount()>=5){ addFloat(CX,H/2,LANG==='ar'?'وصلت للحد الأقصى (5 رماة)!':'Max archers (5) reached!','#ff6b6b'); return; }
     G.archers.push({lvl:1,type:'archer',angle:0,shootTimer:0});
-    G.coins-=cost;
+    G.coins -= COSTS.archer;
     addFloat(CX,GY-TS*1.8,T('archAdded'),'#3498db');
   }
+  else if(type==='sniper'){
+    if(G.sniperCount()>=5){ addFloat(CX,H/2,LANG==='ar'?'وصلت للحد الأقصى (5 قناصين)!':'Max snipers (5) reached!','#ff6b6b'); return; }
+    G.archers.push({lvl:1,type:'sniper',angle:0,shootTimer:0});
+    G.coins -= COSTS.sniper;
+    addFloat(CX,GY-TS*1.8,T('sniperAdded'),'#1abc9c');
+  }
   else if(type==='upgrade'){
-    var a=G.archers[0];
+    var idx = (INPUT.selectedIdx>=0 && INPUT.selectedIdx<G.archers.length) ? INPUT.selectedIdx : 0;
+    var a = G.archers[idx];
+    if(!a){ addFloat(CX,H/2,LANG==='ar'?'لا يوجد مقاتل للتطوير!':'No unit to upgrade!','#ff6b6b'); return; }
     if(a.lvl>=10){ addFloat(CX,H/2,T('maxLvl'),'#ff6b6b'); return; }
+    var baseCost = a.type==='sniper' ? 9 : 6;
+    var upCost = upgradeCost(baseCost, a.lvl);
+    if(G.coins < upCost){ addFloat(CX,H/2,T('notEnough')+' ('+upCost+'🪙)','#ff6b6b'); return; }
+    G.coins -= upCost;
     a.lvl++;
-    G.coins-=cost;
-    addFloat(CX,GY-TS*1.8,T('upgraded'),'#9b59b6');
+    var unitName = a.type==='sniper'?(LANG==='ar'?'القناص':'Sniper'):(LANG==='ar'?'الرامي':'Archer');
+    addFloat(CX,GY-TS*1.8, unitName+' → Lv'+a.lvl+'! ⬆️','#9b59b6');
   }
   else if(type==='wall'){
-    // First 2 presses: build left & right walls
-    // After that: upgrade all existing walls to be taller (max 2 upgrades)
     var builtCount = G.walls.filter(function(w){ return w.hp > 0; }).length;
     var wallLvl = G.wallLevel || 0;
-
     if(builtCount < 2){
-      // Build new wall
       var wps = [{x:CX-115, y:GY-25}, {x:CX+115, y:GY-25}];
       var wp = wps[builtCount];
       G.walls.push({x:wp.x, y:wp.y, bw:28, bh:55, hp:100, maxHp:100});
-      G.coins -= cost;
+      G.coins -= COSTS.wall;
       addFloat(wp.x, wp.y-40, T('wallBuilt'), '#95a5a6');
     } else if(wallLvl < 2){
-      // Upgrade existing walls: make them taller
       G.wallLevel = wallLvl + 1;
       G.walls.forEach(function(w){
         var newBh = 55 + G.wallLevel * 35;
         var newY = GY - 25 - (newBh - 55) / 2;
-        w.bh = newBh;
-        w.y = newY;
+        w.bh = newBh; w.y = newY;
         w.maxHp = 100 + G.wallLevel * 60;
         w.hp = Math.min(w.hp + 60, w.maxHp);
       });
-      G.coins -= cost;
+      G.coins -= COSTS.wall;
       addFloat(CX, GY-80, LANG==='ar'?'الجدار أطول! 🧱':'Wall upgraded! 🧱', '#95a5a6');
     } else {
       addFloat(CX, H/2, T('maxWall'), '#ff6b6b'); return;
     }
   }
-  else if(type==='sniper'){
-    if(G.archers.length>=5){ addFloat(CX,H/2,T('maxArch'),'#ff6b6b'); return; }
-    G.archers.push({lvl:1,type:'sniper',angle:0,shootTimer:0});
-    G.coins-=cost;
-    addFloat(CX,GY-TS*1.8,T('sniperAdded'),'#1abc9c');
+  else if(type==='dragon'){
+    if(G.dragons.length >= 1){ addFloat(CX,H/2,LANG==='ar'?'التنين موجود بالفعل!':'Dragon already active!','#ff6b6b'); return; }
+    G.dragons.push({charges:2, rechargeTimer:0, breathTimer:0, angle:0, animT:0, level:1});
+    G.coins -= COSTS.dragon;
+    addFloat(CX, GY-TS*1.8, T('dragonAdded'), '#ff6030');
+    document.getElementById('bDragon').style.display = 'none';
+    document.getElementById('bDragonUp').style.display = '';
+  }
+  else if(type==='dragonUpgrade'){
+    if(G.dragons.length === 0){ return; }
+    var d = G.dragons[0];
+    if(d.level >= 3){ addFloat(CX,H/2,LANG==='ar'?'التنين بأقصى مستوى!':'Dragon is max level!','#ff6b6b'); return; }
+    var dCost = DRAGON_UPGRADE_COSTS[d.level]; // 35 or 50
+    if(G.coins < dCost){ addFloat(CX,H/2,T('notEnough')+' ('+dCost+'🪙)','#ff6b6b'); return; }
+    G.coins -= dCost;
+    d.level++;
+    var dMsgs  = ['','','🔥 Dragon Level 2! Faster recharge','🔥 Dragon Level 3! Maximum power!'];
+    var dArMsgs= ['','','🔥 التنين مستوى 2! إعادة شحن أسرع','🔥 التنين مستوى 3! أقصى قوة!'];
+    addFloat(CX, GY-TS*2, LANG==='ar'?dArMsgs[d.level]:dMsgs[d.level], '#dd44ff');
+    if(d.level >= 3) document.getElementById('bDragonUp').style.display = 'none';
   }
   updateHUD();
 }
@@ -1889,6 +3734,21 @@ function buy(type){
 // QUIZ
 // ═══════════════════════════════════════════════════
 var QS = {};
+
+function searchQuestion(){
+  var qEl = document.getElementById('qTxt');
+  if(!qEl) return;
+  var questionText = qEl.textContent || qEl.innerText || '';
+  questionText = questionText.trim();
+  if(!questionText) return;
+  // Copy to clipboard
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(questionText).catch(function(){});
+  }
+  // Open Google search in new tab
+  var url = 'https://www.google.com/search?q=' + encodeURIComponent(questionText);
+  window.open(url, '_blank', 'noopener');
+}
 
 function openQuiz(){
   G.paused=true;
@@ -1908,6 +3768,19 @@ function pickSubj(s){
   QS.subj=s;
   document.getElementById('qS1').style.display='none';
   document.getElementById('qS2').style.display='block';
+
+  // All grades 3-9 now have easy/medium/hard — show all buttons
+  var easyBtn  = document.querySelector('.d-easy');
+  var medBtn   = document.querySelector('.d-med');
+  var hardBtn  = document.querySelector('.d-hard');
+  var hardInfo = document.getElementById('hardInfoDiff');
+  var gradeNote = document.getElementById('gradeDiffNote');
+
+  if(easyBtn)  easyBtn.style.display  = '';
+  if(medBtn)   medBtn.style.display   = '';
+  if(hardBtn)  hardBtn.style.display  = '';
+  if(hardInfo) hardInfo.style.display = '';
+  if(gradeNote) gradeNote.style.display = 'none';
 }
 
 function pickDiff(d){
@@ -1919,6 +3792,10 @@ function pickDiff(d){
   document.getElementById('qS2').style.display='none';
   document.getElementById('qS3').style.display='block';
   document.getElementById('qTxt').textContent=q.q;
+
+  // Show hard info banner only for hard questions
+  var hardInfoQ = document.getElementById('hardInfoQ');
+  if(hardInfoQ) hardInfoQ.style.display = (d==='hard') ? 'block' : 'none';
 
   var grid=document.getElementById('aGrid');
   grid.innerHTML='';
@@ -1947,6 +3824,12 @@ function checkAns(idx, btn){
   } else {
     btn.classList.add('wrong');
     all[QS.question.c].classList.add('correct');
+    // Hard penalty: lose 1 coin on wrong answer
+    if(QS.diff === 'hard' && G.coins > 0){
+      G.coins = Math.max(0, G.coins - 1);
+      updateHUD();
+      addFloat(CX, GY-TS*2, '-1🪙', '#ff4444');
+    }
     setTimeout(function(){
       document.getElementById('qS3').style.display='none';
       document.getElementById('qS1').style.display='block';
@@ -1968,69 +3851,366 @@ function showCoinPop(n){
 // WAVE ANNOUNCE
 // ═══════════════════════════════════════════════════
 var annTimer;
+var sloganTimer;
+function showCitySlogan(){
+  var el = document.getElementById('citySlogan');
+  if(!el) return;
+  el.textContent = LANG==='ar' ? 'بنمو المعرفة... تزدهر المدن' : 'As Knowledge Grows... Cities Flourish';
+  el.style.display = 'block';
+  el.style.animation = 'none';
+  void el.offsetWidth;
+  el.style.animation = 'sloganRise 3.5s forwards';
+  clearTimeout(sloganTimer);
+  sloganTimer = setTimeout(function(){ el.style.display='none'; }, 3500);
+}
+
 function showWaveAnn(){
   var el=document.getElementById('waveAnn');
   var isBoss=G.wave%5===0;
-  el.textContent = isBoss ? TX[LANG].bann(G.wave) : TX[LANG].wann(G.wave);
+  var waveText = isBoss ? TX[LANG].bann(G.wave) : TX[LANG].wann(G.wave);
+
+  // Check for city unlock at this wave
+  var cityMsg = getCityUnlockMsg(G.wave);
+  if(cityMsg){
+    var msg = LANG==='ar' ? cityMsg.ar : cityMsg.en;
+    el.innerHTML = waveText + '<br><span style="font-size:0.7em;opacity:0.9;color:#FFD6B0">' + msg + '</span>';
+    // Show the big slogan slightly after wave ann
+    setTimeout(showCitySlogan, 600);
+  } else {
+    el.textContent = waveText;
+  }
+
   el.style.display='block';
   el.style.animation='none';
   void el.offsetWidth;
-  el.style.animation='wann 2s forwards';
+  el.style.animation='wann 3.5s forwards';
   clearTimeout(annTimer);
-  annTimer=setTimeout(function(){el.style.display='none';},2000);
+  annTimer=setTimeout(function(){el.style.display='none';},cityMsg?5000:3500);
 }
 
 // ═══════════════════════════════════════════════════
 // HUD
 // ═══════════════════════════════════════════════════
 function updateHUD(){
-  document.getElementById('hCoins').textContent=G.coins;
-  document.getElementById('hWave').textContent=G.wave;
-  document.getElementById('hInv').textContent=G.invaded+'/10';
-  document.getElementById('hArch').textContent=G.archers.length;
-  var btns={archer:'bArcher',upgrade:'bUpgrade',wall:'bWall',sniper:'bSniper'};
-  Object.keys(COSTS).forEach(function(k){
-    var el=document.getElementById(btns[k]);
-    if(el) el.disabled=(G.coins<COSTS[k]);
+  document.getElementById('hCoins').textContent = G.coins;
+  document.getElementById('hWave').textContent  = G.wave;
+  document.getElementById('hInv').textContent   = G.invaded+'/10';
+  document.getElementById('hArch').textContent  = G.archerCount ? G.archerCount() : G.archers.length;
+  var sniperEl = document.getElementById('hSniper');
+  if(sniperEl) sniperEl.textContent = G.sniperCount ? G.sniperCount() : 0;
+
+  // Dynamic upgrade cost based on selected/first unit
+  var upgradeIdx = (INPUT.selectedIdx>=0 && INPUT.selectedIdx<G.archers.length) ? INPUT.selectedIdx : 0;
+  if(G.archers.length > 0){
+    var ua = G.archers[upgradeIdx];
+    var uBase = ua.type==='sniper' ? 9 : 6;
+    var uCost = ua.lvl < 10 ? upgradeCost(uBase, ua.lvl) : '—';
+    var upCostEl = document.getElementById('cUpgrade');
+    if(upCostEl) upCostEl.textContent = uCost + (uCost !== '—' ? '🪙' : '');
+    var upBtn = document.getElementById('bUpgrade');
+    if(upBtn) upBtn.disabled = (uCost === '—' || G.coins < uCost);
+  }
+
+  // Static cost buttons
+  var staticBtns = {archer:'bArcher', wall:'bWall', sniper:'bSniper', dragon:'bDragon'};
+  Object.keys(staticBtns).forEach(function(k){
+    var el = document.getElementById(staticBtns[k]);
+    if(el) el.disabled = (G.coins < COSTS[k]);
   });
+
+  // Archer/sniper cap buttons
+  var bArcher = document.getElementById('bArcher');
+  if(bArcher && G.archerCount && G.archerCount() >= 5) bArcher.disabled = true;
+  var bSniper = document.getElementById('bSniper');
+  if(bSniper && G.sniperCount && G.sniperCount() >= 5) bSniper.disabled = true;
+
+  // Hard difficulty lock
+  var hardBtn = document.querySelector('.d-hard');
+  if(hardBtn){
+    if(G.coins <= 0) hardBtn.classList.add('coins-locked');
+    else hardBtn.classList.remove('coins-locked');
+  }
+
+  // Dragon UI
+  if(G.dragons.length > 0){
+    var d = G.dragons[0];
+    var lvl = d.level || 1;
+    var stars = ['★','★★','★★★'][lvl-1];
+    var chargeStr = '🔥'.repeat(d.charges) + (d.charges < 2 ? '🕐' : '');
+    var lbDragon = document.getElementById('lbDragon');
+    if(lbDragon) lbDragon.textContent = chargeStr + ' ' + stars;
+
+    // Dragon upgrade button
+    var bDUp = document.getElementById('bDragonUp');
+    if(bDUp && lvl < 3){
+      var dUpCost = DRAGON_UPGRADE_COSTS[lvl];
+      var cDUp = document.getElementById('cDragonUp');
+      if(cDUp) cDUp.textContent = dUpCost + '🪙';
+      bDUp.disabled = (G.coins < dUpCost);
+      var lbDUp = document.getElementById('lbDragonUp');
+      if(lbDUp){
+        var rechargeNow  = [25,16,10][lvl-1];
+        var rechargeNext = [25,16,10][lvl] || 10;
+        lbDUp.textContent = LANG==='ar'
+          ? 'ترقية التنين '+rechargeNow+'ث→'+rechargeNext+'ث'
+          : 'Dragon Lv'+(lvl+1)+' ('+rechargeNow+'s→'+rechargeNext+'s)';
+      }
+    }
+  }
+}
+
+function tryPickHard(){
+  // Check grade first
+  if(availableDiffs().indexOf('hard') === -1){
+    var gradeNote = document.getElementById('gradeDiffNote');
+    if(gradeNote){
+      gradeNote.textContent = LANG==='ar'
+        ? '🎓 الصف '+PLAYER_GRADE+': الصعب غير متاح — يحتاج الصف 7+'
+        : '🎓 Grade '+PLAYER_GRADE+': Hard not available — requires Grade 7+';
+      gradeNote.style.display = 'block';
+    }
+    return;
+  }
+  // Check coins
+  if(G.coins <= 0){
+    var msg = LANG==='ar' ? '⚠️ تحتاج كوينز لاختيار الصعب! الخطأ يخصم كوينزاً' : '⚠️ Need coins to pick Hard! Wrong answer costs 1 🪙';
+    var hardBtn = document.querySelector('.d-hard');
+    if(hardBtn){
+      hardBtn.style.background = 'rgba(200,0,0,0.6)';
+      hardBtn.style.border = '2px solid #ff0000';
+      setTimeout(function(){ hardBtn.style.background=''; hardBtn.style.border=''; }, 800);
+    }
+    var warnEl = document.getElementById('hardWarnMsg');
+    if(warnEl){
+      warnEl.textContent = msg;
+      warnEl.style.display = 'block';
+      setTimeout(function(){ warnEl.style.display='none'; }, 2500);
+    }
+    return;
+  }
+  pickDiff('hard');
+}
+
+// ── FIREWORKS SYSTEM ──────────────────────────────────────────────
+var fwAnim = null;
+function showFireworks(completedWave, onDone){
+  var overlay = document.getElementById('fireworksOverlay');
+  var msgEl   = document.getElementById('fireworksMsg');
+  var cvs     = document.getElementById('fwCanvas');
+
+  // Size canvas to match game
+  cvs.width  = W; cvs.height = H;
+  var fc = cvs.getContext('2d');
+
+  overlay.style.display = 'block';
+
+  // Message
+  var waveLabel = LANG==='ar' ? 'الموجة '+completedWave : 'Wave '+completedWave;
+  var congrats  = LANG==='ar' ? '🎉 أحسنت! '+waveLabel+' مكتملة! 🎉' : '🎉 Brilliant! '+waveLabel+' Complete! 🎉';
+  msgEl.textContent = congrats;
+  msgEl.style.display = 'block';
+  msgEl.style.animation = 'none';
+  void msgEl.offsetWidth;
+  msgEl.style.animation = 'fwMsg 7s forwards';
+
+  // Firework particles
+  var particles = [];
+  var rockets    = [];
+  var castleX    = W * 0.5;  // launch from castle area
+  var castleTX   = [W*0.42, W*0.5, W*0.58, W*0.45, W*0.55]; // multiple launch points
+
+  function spawnRocket(){
+    var lx = castleTX[Math.floor(Math.random()*castleTX.length)];
+    rockets.push({
+      x: lx, y: H - 210,
+      vx: (Math.random()-0.5)*3,
+      vy: -(8 + Math.random()*6),
+      life: 0,
+      explodeAt: 0.35 + Math.random()*0.25,
+      exploded: false,
+      hue: Math.random()*360,
+      trail: []
+    });
+  }
+
+  var rocketTimer = 0;
+  var startTime   = null;
+  var DURATION    = 7000; // ms
+
+  function burst(rx, ry, hue){
+    var count = 80 + Math.floor(Math.random()*40);
+    for(var i=0;i<count;i++){
+      var ang  = (i/count)*Math.PI*2 + Math.random()*0.3;
+      var spd  = 1.5 + Math.random()*5;
+      var hue2 = hue + (Math.random()-0.5)*40;
+      particles.push({
+        x:rx, y:ry,
+        vx: Math.cos(ang)*spd,
+        vy: Math.sin(ang)*spd,
+        life:1.0,
+        decay: 0.012 + Math.random()*0.018,
+        hue: hue2,
+        sat: 80+Math.random()*20,
+        bright: 60+Math.random()*30,
+        size: 2+Math.random()*3,
+        gravity: 0.06+Math.random()*0.04,
+        type: Math.random()<0.2?'star':'circle'
+      });
+    }
+    // Golden shimmer ring
+    for(var i=0;i<30;i++){
+      var ang = (i/30)*Math.PI*2;
+      particles.push({
+        x:rx, y:ry,
+        vx: Math.cos(ang)*(0.5+Math.random()*2),
+        vy: Math.sin(ang)*(0.5+Math.random()*2),
+        life:1.0, decay:0.025,
+        hue:50, sat:100, bright:70, size:3, gravity:0.02, type:'circle'
+      });
+    }
+  }
+
+  function fwFrame(ts){
+    if(!startTime) startTime = ts;
+    var elapsed = ts - startTime;
+
+    fc.clearRect(0, 0, W, H);
+
+    // Dark semi-transparent overlay for contrast
+    fc.fillStyle = 'rgba(0,0,10,0.18)';
+    fc.fillRect(0,0,W,H);
+
+    // Spawn rockets periodically
+    rocketTimer += 16;
+    if(rocketTimer > 280 && elapsed < DURATION - 1200){
+      rocketTimer = 0;
+      spawnRocket();
+      if(Math.random()<0.4) spawnRocket(); // double burst sometimes
+    }
+
+    // Update and draw rockets
+    for(var i=rockets.length-1;i>=0;i--){
+      var r = rockets[i];
+      r.trail.push({x:r.x, y:r.y});
+      if(r.trail.length > 12) r.trail.shift();
+      r.x += r.vx; r.y += r.vy;
+      r.vy += 0.12; // gravity
+      r.life += 0.016;
+
+      // Draw trail
+      for(var j=0;j<r.trail.length;j++){
+        var alpha = (j/r.trail.length)*0.7;
+        fc.fillStyle = 'rgba(255,220,100,'+alpha+')';
+        fc.beginPath(); fc.arc(r.trail[j].x, r.trail[j].y, 2, 0, Math.PI*2); fc.fill();
+      }
+      // Draw rocket head
+      fc.fillStyle = 'rgba(255,240,150,0.9)';
+      fc.beginPath(); fc.arc(r.x, r.y, 3, 0, Math.PI*2); fc.fill();
+
+      // Explode
+      if(!r.exploded && r.life >= r.explodeAt){
+        r.exploded = true;
+        burst(r.x, r.y, r.hue);
+        rockets.splice(i,1);
+        continue;
+      }
+      // Remove if gone too far up or life too long
+      if(r.y < -10 || r.life > 1) rockets.splice(i,1);
+    }
+
+    // Update and draw particles
+    for(var i=particles.length-1;i>=0;i--){
+      var p = particles[i];
+      p.x += p.vx; p.y += p.vy;
+      p.vy += p.gravity;
+      p.vx *= 0.97; p.vy *= 0.97;
+      p.life -= p.decay;
+      if(p.life <= 0){ particles.splice(i,1); continue; }
+      var alpha = Math.min(p.life, 1);
+      fc.fillStyle = 'hsla('+p.hue+','+p.sat+'%,'+p.bright+'%,'+alpha+')';
+      if(p.type==='star'){
+        // Draw star sparkle
+        fc.save(); fc.translate(p.x, p.y);
+        fc.beginPath();
+        for(var s=0;s<4;s++){
+          var a=s*Math.PI/2;
+          fc.moveTo(0,0);
+          fc.lineTo(Math.cos(a)*p.size*2, Math.sin(a)*p.size*2);
+        }
+        fc.strokeStyle='hsla('+p.hue+','+p.sat+'%,'+p.bright+'%,'+alpha+')';
+        fc.lineWidth=1.5; fc.stroke();
+        fc.restore();
+      } else {
+        fc.beginPath(); fc.arc(p.x, p.y, p.size*(0.5+p.life*0.5), 0, Math.PI*2); fc.fill();
+      }
+    }
+
+    if(elapsed < DURATION){
+      fwAnim = requestAnimationFrame(fwFrame);
+    } else {
+      // Done — hide overlay and show victory
+      overlay.style.display = 'none';
+      msgEl.style.display   = 'none';
+      fc.clearRect(0,0,W,H);
+      if(fwAnim) cancelAnimationFrame(fwAnim);
+      fwAnim = null;
+      onDone();
+    }
+  }
+
+  // Kick off first rocket immediately
+  spawnRocket(); spawnRocket();
+  fwAnim = requestAnimationFrame(fwFrame);
 }
 
 function showVictory(completedWave){
   G.paused = true;
 
-  setTimeout(function(){
-    document.getElementById('gScreen').classList.add('hidden');
-    var vs = document.getElementById('vScreen');
-    vs.classList.remove('hidden');
+  // Milestone waves (5, 10, 15, 20) get fireworks first
+  var isMilestone = (completedWave % 5 === 0);
 
-    var stars = G.invaded === 0 ? '⭐⭐⭐' : G.invaded <= 3 ? '⭐⭐' : '⭐';
-    document.getElementById('vStars').textContent = stars;
-    document.getElementById('vTitle').textContent = TX[LANG].vcTitle(completedWave);
-    document.getElementById('vStats').innerHTML = TX[LANG].vcStats(G.killed, G.questionsOk, G.coins);
-    document.getElementById('vReward').style.display = 'none';
-    document.getElementById('vContinueBtn').textContent = TX[LANG].vcContinue;
-    document.getElementById('vRestart').textContent = TX[LANG].restart;
+  function doShowVictory(){
+    setTimeout(function(){
+      document.getElementById('gScreen').classList.add('hidden');
+      var vs = document.getElementById('vScreen');
+      vs.classList.remove('hidden');
 
-    // Confetti
-    var wrap = document.getElementById('confettiWrap');
-    wrap.innerHTML = '';
-    var colors = ['#ffd700','#ff6b6b','#4ecdc4','#a8e6a0','#fff'];
-    for(var i = 0; i < 60; i++){
-      var c = document.createElement('div');
-      c.className = 'conf';
-      c.style.cssText = [
-        'left:' + Math.random()*100 + '%',
-        'background:' + colors[Math.floor(Math.random()*colors.length)],
-        'width:' + (6+Math.random()*10) + 'px',
-        'height:' + (6+Math.random()*10) + 'px',
-        'border-radius:' + (Math.random() > 0.5 ? '50%' : '2px'),
-        'animation-duration:' + (1.5+Math.random()*2) + 's',
-        'animation-delay:' + Math.random()*1 + 's',
-      ].join(';');
-      wrap.appendChild(c);
-    }
-    updateHUD();
-  }, 300);
+      var stars = G.invaded === 0 ? '⭐⭐⭐' : G.invaded <= 3 ? '⭐⭐' : '⭐';
+      document.getElementById('vStars').textContent = stars;
+      document.getElementById('vTitle').textContent = TX[LANG].vcTitle(completedWave);
+      document.getElementById('vStats').innerHTML = TX[LANG].vcStats(G.killed, G.questionsOk, G.coins);
+      document.getElementById('vReward').style.display = 'none';
+      document.getElementById('vContinueBtn').textContent = TX[LANG].vcContinue;
+      document.getElementById('vRestart').textContent = TX[LANG].restart;
+
+      // Confetti
+      var wrap = document.getElementById('confettiWrap');
+      wrap.innerHTML = '';
+      var colors = ['#ffd700','#ff6b6b','#4ecdc4','#a8e6a0','#fff'];
+      for(var i = 0; i < 60; i++){
+        var c = document.createElement('div');
+        c.className = 'conf';
+        c.style.cssText = [
+          'left:' + Math.random()*100 + '%',
+          'background:' + colors[Math.floor(Math.random()*colors.length)],
+          'width:' + (6+Math.random()*10) + 'px',
+          'height:' + (6+Math.random()*10) + 'px',
+          'border-radius:' + (Math.random() > 0.5 ? '50%' : '2px'),
+          'animation-duration:' + (1.5+Math.random()*2) + 's',
+          'animation-delay:' + Math.random()*1 + 's',
+        ].join(';');
+        wrap.appendChild(c);
+      }
+      updateHUD();
+      saveHS(completedWave, G.killed);
+    }, 300);
+  }
+
+  if(isMilestone){
+    showFireworks(completedWave, doShowVictory);
+  } else {
+    doShowVictory();
+  }
 }
 
 function continueGame(){
@@ -2055,11 +4235,27 @@ function endGame(){
     document.getElementById('vScreen').classList.add('hidden');
     var rs=document.getElementById('rScreen');
     rs.classList.remove('hidden');
+
+    // Show GAME OVER banner only on loss (not new record)
+    var goBanner = document.getElementById('gameOverBanner');
+    if(goBanner){
+      goBanner.textContent = LANG==='ar' ? 'انتهت اللعبة' : 'GAME OVER';
+      goBanner.style.display = 'block';
+    }
+
     document.getElementById('rEmo').textContent='💀';
     document.getElementById('rTitle').textContent=T('loseTitle');
     document.getElementById('rTitle').style.color='#e74c3c';
     document.getElementById('rStats').innerHTML=TX[LANG].stats(G.wave,G.killed,G.questionsOk);
     document.getElementById('lRestart').textContent=TX[LANG].restart;
+    // Save & show High Score
+    var isNew = saveHS(G.wave, G.killed);
+    if(isNew){
+      if(goBanner) goBanner.style.display = 'none'; // hide plain banner on record
+      document.getElementById('rEmo').textContent = '🏆';
+      document.getElementById('rTitle').style.color = '#ffd700';
+      document.getElementById('rTitle').textContent = (LANG==='ar' ? '🏆 رقم قياسي جديد!' : '🏆 New Record!');
+    }
   }, 400);
 }
 
@@ -2067,6 +4263,7 @@ function endGame(){
 // START / RESTART
 // ═══════════════════════════════════════════════════
 function startGame(){
+  resetSeenQuestions();
   document.getElementById('sScreen').classList.add('hidden');
   document.getElementById('gScreen').classList.remove('hidden');
   resize();
@@ -2081,19 +4278,15 @@ function restartGame(){
   document.getElementById('rScreen').classList.add('hidden');
   document.getElementById('vScreen').classList.add('hidden');
   document.getElementById('confettiWrap').innerHTML = '';
-  document.getElementById('gScreen').classList.remove('hidden');
-  resize();
-  initState();
-  showWaveAnn();
-  G.paused=false; G.over=false;
-  prevT=performance.now();
-  if(RAF) cancelAnimationFrame(RAF);
-  RAF=requestAnimationFrame(loop);
+  document.getElementById('sScreen').classList.remove('hidden');
+  document.getElementById('gScreen').classList.add('hidden');
+  updateHSDisplay();
 }
 
 // ═══════════════════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════════════════
+updateHSDisplay();
 resize();
 </script>
 </body>
