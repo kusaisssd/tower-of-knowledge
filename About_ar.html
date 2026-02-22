@@ -1,0 +1,1923 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>برج المعرفة — Tower of Knowledge | Pro S</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Tajawal:wght@300;400;500;700;800;900&family=Fredoka+One&family=Cinzel:wght@400;600;900&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --gold: #c9a84c;
+  --gold-light: #f0d080;
+  --gold-pale: rgba(201,168,76,0.15);
+  --ember: #e05c1a;
+  --ember-glow: rgba(224,92,26,0.3);
+  --dark: #060a06;
+  --dark-2: #0a100a;
+  --dark-3: #0f1a0f;
+  --green-dim: #1a3d1a;
+  --green-mid: #2d5a1b;
+  --text-muted: rgba(255,255,255,0.45);
+  --text-sub: rgba(255,255,255,0.7);
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Tajawal', sans-serif;
+  background: var(--dark);
+  color: #fff;
+  overflow-x: hidden;
+  cursor: default;
+}
+
+/* ─── NOISE TEXTURE OVERLAY ─── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0.4;
+}
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--dark-2); }
+::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+/* ══════════════════════════════════
+   NAVIGATION
+══════════════════════════════════ */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 900;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 48px;
+  background: linear-gradient(180deg, rgba(6,10,6,0.97) 0%, transparent 100%);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(201,168,76,0.12);
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.nav-logo-ico {
+  width: 38px; height: 38px;
+  background: linear-gradient(135deg, var(--gold), var(--ember));
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  box-shadow: 0 0 20px rgba(201,168,76,0.4);
+}
+
+.nav-logo-text {
+  font-family: 'Cinzel', serif;
+  font-size: 0.9rem;
+  color: var(--gold);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+.nav-logo-sub {
+  font-family: 'Tajawal', sans-serif;
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  display: block;
+}
+
+.nav-links {
+  display: flex;
+  gap: 36px;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--text-sub);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  transition: color 0.2s;
+  position: relative;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0; right: 0;
+  height: 1px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transition: transform 0.2s;
+}
+
+.nav-links a:hover { color: var(--gold); }
+.nav-links a:hover::after { transform: scaleX(1); }
+
+.nav-cta {
+  padding: 10px 28px;
+  background: linear-gradient(135deg, var(--gold), var(--ember));
+  color: var(--dark);
+  font-family: 'Tajawal', sans-serif;
+  font-weight: 800;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s;
+  box-shadow: 0 0 25px rgba(201,168,76,0.35);
+}
+
+.nav-cta:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 40px rgba(201,168,76,0.6);
+}
+
+/* ══════════════════════════════════
+   HERO
+══════════════════════════════════ */
+#hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 120px 48px 80px;
+}
+
+/* Radial glow bg */
+#hero::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 900px; height: 900px;
+  background: radial-gradient(ellipse at center,
+    rgba(201,168,76,0.06) 0%,
+    rgba(224,92,26,0.04) 30%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+/* Ground line */
+#hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0.3;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 1100px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.hero-text { animation: fadeUp 1s ease both; }
+.hero-visual { animation: fadeUp 1s ease 0.2s both; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border: 1px solid rgba(201,168,76,0.35);
+  border-radius: 50px;
+  font-size: 0.75rem;
+  color: var(--gold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+  background: rgba(201,168,76,0.06);
+}
+
+.hero-badge::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  animation: blink 1.5s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%,100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.hero-title {
+  font-family: 'Cinzel Decorative', cursive;
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 12px;
+  background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 50%, var(--ember) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: none;
+}
+
+.hero-title-ar {
+  font-family: 'Tajawal', sans-serif;
+  font-weight: 900;
+  font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 24px;
+  letter-spacing: 0.02em;
+}
+
+.hero-desc {
+  font-size: 1.1rem;
+  line-height: 1.9;
+  color: var(--text-sub);
+  margin-bottom: 40px;
+  max-width: 480px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 40px;
+  background: linear-gradient(135deg, var(--gold), var(--ember));
+  color: var(--dark);
+  font-family: 'Tajawal', sans-serif;
+  font-weight: 800;
+  font-size: 1.05rem;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.25s;
+  box-shadow: 0 0 35px rgba(201,168,76,0.4);
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%,100% { box-shadow: 0 0 35px rgba(201,168,76,0.4); }
+  50% { box-shadow: 0 0 55px rgba(201,168,76,0.7), 0 0 80px rgba(224,92,26,0.3); }
+}
+
+.btn-primary:hover { transform: scale(1.05) translateY(-2px); }
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 36px;
+  background: transparent;
+  color: var(--gold);
+  font-family: 'Tajawal', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  border: 2px solid rgba(201,168,76,0.4);
+  border-radius: 50px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.25s;
+}
+
+.btn-secondary:hover {
+  border-color: var(--gold);
+  background: rgba(201,168,76,0.08);
+}
+
+/* Hero visual — tower card */
+.hero-card {
+  position: relative;
+  background: linear-gradient(145deg, #0a180a, #0d2208);
+  border: 1px solid rgba(201,168,76,0.25);
+  border-radius: 28px;
+  padding: 40px 32px;
+  box-shadow:
+    0 0 60px rgba(0,0,0,0.8),
+    0 0 30px rgba(201,168,76,0.1),
+    inset 0 1px 0 rgba(255,255,255,0.04);
+  overflow: hidden;
+}
+
+.hero-card::before {
+  content: '';
+  position: absolute;
+  top: -80px; right: -80px;
+  width: 250px; height: 250px;
+  background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.castle-emo {
+  font-size: 5rem;
+  display: block;
+  text-align: center;
+  margin-bottom: 12px;
+  animation: castleFloat 3s ease-in-out infinite;
+  filter: drop-shadow(0 0 30px rgba(201,168,76,0.5));
+}
+
+@keyframes castleFloat {
+  0%,100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-12px) scale(1.04); }
+}
+
+.card-game-title {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.5rem;
+  text-align: center;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+
+.mini-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.mini-stat {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+  padding: 14px;
+  text-align: center;
+}
+
+.mini-stat-num {
+  font-family: 'Cinzel', serif;
+  font-size: 1.6rem;
+  color: var(--gold);
+  font-weight: 700;
+  display: block;
+  line-height: 1;
+}
+
+.mini-stat-lbl {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+  display: block;
+  letter-spacing: 0.05em;
+}
+
+.mini-bar {
+  height: 4px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.mini-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--gold), var(--ember));
+  animation: barFill 2s ease-out forwards;
+}
+
+@keyframes barFill { from { width: 0; } }
+
+.card-tag-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.card-tag {
+  padding: 4px 12px;
+  border-radius: 50px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.tag-free { background: rgba(46,204,113,0.15); color: #2ecc71; border: 1px solid rgba(46,204,113,0.3); }
+.tag-ar { background: rgba(201,168,76,0.12); color: var(--gold); border: 1px solid rgba(201,168,76,0.3); }
+.tag-edu { background: rgba(52,152,219,0.12); color: #5dade2; border: 1px solid rgba(52,152,219,0.3); }
+.tag-browser { background: rgba(156,89,182,0.12); color: #bb8fce; border: 1px solid rgba(156,89,182,0.3); }
+
+/* scrolling zombies in card */
+.zombie-parade {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+  overflow: hidden;
+  justify-content: center;
+}
+
+.z-icon {
+  font-size: 1.4rem;
+  animation: zombieWalk 0.8s steps(2) infinite;
+  display: inline-block;
+}
+
+.z-icon:nth-child(1) { animation-delay: 0s; }
+.z-icon:nth-child(2) { animation-delay: 0.15s; }
+.z-icon:nth-child(3) { animation-delay: 0.3s; opacity: 0.6; }
+.z-icon:nth-child(4) { animation-delay: 0.45s; opacity: 0.4; }
+
+@keyframes zombieWalk {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+/* ══════════════════════════════════
+   SECTION COMMON
+══════════════════════════════════ */
+section {
+  padding: 100px 48px;
+  position: relative;
+}
+
+.section-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.section-label {
+  font-size: 0.72rem;
+  color: var(--gold);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 14px;
+}
+
+.section-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 900;
+  line-height: 1.2;
+  margin-bottom: 16px;
+  color: #fff;
+}
+
+.section-title span {
+  background: linear-gradient(135deg, var(--gold-light), var(--gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.section-desc {
+  font-size: 1.05rem;
+  color: var(--text-sub);
+  line-height: 1.9;
+  max-width: 600px;
+}
+
+/* ══════════════════════════════════
+   CONCEPT SECTION
+══════════════════════════════════ */
+#concept {
+  background: linear-gradient(180deg, var(--dark) 0%, var(--dark-2) 100%);
+  border-top: 1px solid rgba(201,168,76,0.08);
+}
+
+.concept-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  margin-top: 60px;
+}
+
+.concept-story {
+  position: relative;
+}
+
+.concept-story::before {
+  content: '';
+  position: absolute;
+  right: -30px; top: 0; bottom: 0;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, rgba(201,168,76,0.3), transparent);
+}
+
+.story-block {
+  display: flex;
+  gap: 18px;
+  margin-bottom: 32px;
+  align-items: flex-start;
+}
+
+.story-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.si-gold { background: rgba(201,168,76,0.12); border-color: rgba(201,168,76,0.25); }
+.si-ember { background: rgba(224,92,26,0.12); border-color: rgba(224,92,26,0.25); }
+.si-green { background: rgba(46,204,113,0.1); border-color: rgba(46,204,113,0.2); }
+
+.story-body h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 1.05rem;
+  color: var(--gold);
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.story-body p {
+  font-size: 0.95rem;
+  color: var(--text-sub);
+  line-height: 1.75;
+}
+
+/* concept visual */
+.concept-visual {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.cv-card {
+  background: linear-gradient(135deg, rgba(10,24,10,0.9), rgba(13,34,8,0.9));
+  border: 1px solid rgba(201,168,76,0.15);
+  border-radius: 18px;
+  padding: 22px 24px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  transition: all 0.3s;
+  cursor: default;
+}
+
+.cv-card:hover {
+  border-color: rgba(201,168,76,0.4);
+  transform: translateX(-8px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+}
+
+.cv-card-ico {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.cv-card-text h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 3px;
+}
+
+.cv-card-text p {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.cv-progress {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.cv-prog-bar {
+  flex: 1;
+  height: 4px;
+  background: rgba(255,255,255,0.07);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.cv-prog-fill {
+  height: 100%;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--gold), var(--ember));
+}
+
+.cv-prog-lbl {
+  font-size: 0.72rem;
+  color: var(--gold);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* ══════════════════════════════════
+   FEATURES
+══════════════════════════════════ */
+#features {
+  background: var(--dark-2);
+  border-top: 1px solid rgba(201,168,76,0.08);
+  border-bottom: 1px solid rgba(201,168,76,0.08);
+}
+
+.features-header {
+  text-align: center;
+  margin-bottom: 70px;
+}
+
+.features-header .section-desc {
+  margin: 0 auto;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.feature-card {
+  background: linear-gradient(145deg, rgba(10,18,10,0.8), rgba(12,22,10,0.6));
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 22px;
+  padding: 36px 28px;
+  transition: all 0.35s;
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--gold-pale) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.35s;
+}
+
+.feature-card:hover {
+  border-color: rgba(201,168,76,0.3);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 30px rgba(201,168,76,0.08);
+}
+
+.feature-card:hover::before { opacity: 1; }
+
+.feature-card.highlight {
+  border-color: rgba(201,168,76,0.25);
+  background: linear-gradient(145deg, rgba(15,28,10,0.9), rgba(20,35,12,0.8));
+}
+
+.feature-ico {
+  width: 60px; height: 60px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.7rem;
+  margin-bottom: 22px;
+  position: relative;
+  z-index: 1;
+}
+
+.fic-1 { background: linear-gradient(135deg, rgba(201,168,76,0.2), rgba(201,168,76,0.08)); border: 1px solid rgba(201,168,76,0.3); }
+.fic-2 { background: linear-gradient(135deg, rgba(52,152,219,0.2), rgba(52,152,219,0.08)); border: 1px solid rgba(52,152,219,0.3); }
+.fic-3 { background: linear-gradient(135deg, rgba(46,204,113,0.2), rgba(46,204,113,0.08)); border: 1px solid rgba(46,204,113,0.3); }
+.fic-4 { background: linear-gradient(135deg, rgba(224,92,26,0.2), rgba(224,92,26,0.08)); border: 1px solid rgba(224,92,26,0.3); }
+.fic-5 { background: linear-gradient(135deg, rgba(156,89,182,0.2), rgba(156,89,182,0.08)); border: 1px solid rgba(156,89,182,0.3); }
+.fic-6 { background: linear-gradient(135deg, rgba(231,76,60,0.2), rgba(231,76,60,0.08)); border: 1px solid rgba(231,76,60,0.3); }
+
+.feature-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.feature-desc {
+  font-size: 0.9rem;
+  color: var(--text-sub);
+  line-height: 1.75;
+  position: relative;
+  z-index: 1;
+}
+
+.feature-chip {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 3px 12px;
+  border-radius: 50px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  position: relative;
+  z-index: 1;
+}
+
+.chip-gold { background: rgba(201,168,76,0.15); color: var(--gold); }
+.chip-blue { background: rgba(52,152,219,0.15); color: #5dade2; }
+.chip-green { background: rgba(46,204,113,0.15); color: #2ecc71; }
+.chip-ember { background: rgba(224,92,26,0.15); color: #e89050; }
+.chip-purple { background: rgba(156,89,182,0.15); color: #c39bd3; }
+.chip-red { background: rgba(231,76,60,0.15); color: #ec7063; }
+
+/* ══════════════════════════════════
+   SUBJECTS SECTION
+══════════════════════════════════ */
+#subjects {
+  background: var(--dark-3);
+  border-top: 1px solid rgba(201,168,76,0.06);
+}
+
+.subjects-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.subjects-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.subj-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 16px;
+  padding: 22px 18px;
+  text-align: center;
+  transition: all 0.3s;
+  cursor: default;
+}
+
+.subj-card:hover {
+  transform: scale(1.04);
+  border-color: rgba(201,168,76,0.25);
+}
+
+.subj-ico { font-size: 2.2rem; display: block; margin-bottom: 10px; }
+.subj-name { font-size: 0.95rem; font-weight: 700; color: #fff; display: block; margin-bottom: 4px; }
+.subj-name-ar { font-size: 0.78rem; color: var(--text-muted); display: block; }
+
+.subj-card.s-wide {
+  grid-column: 1 / -1;
+}
+
+.diff-row {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.diff-pill {
+  border-radius: 12px;
+  padding: 14px 10px;
+  text-align: center;
+}
+
+.diff-pill .dp-ico { font-size: 1.4rem; display: block; margin-bottom: 5px; }
+.diff-pill .dp-name { font-size: 0.78rem; font-weight: 700; display: block; }
+.diff-pill .dp-reward { font-size: 0.68rem; color: var(--gold); display: block; margin-top: 3px; }
+
+.dp-easy { background: rgba(46,204,113,0.1); border: 1px solid rgba(46,204,113,0.25); }
+.dp-easy .dp-name { color: #2ecc71; }
+.dp-med { background: rgba(243,156,18,0.1); border: 1px solid rgba(243,156,18,0.25); }
+.dp-med .dp-name { color: #f39c12; }
+.dp-hard { background: rgba(231,76,60,0.1); border: 1px solid rgba(231,76,60,0.25); }
+.dp-hard .dp-name { color: #e74c3c; }
+
+/* ══════════════════════════════════
+   CITY EVOLUTION
+══════════════════════════════════ */
+#city {
+  background: var(--dark-2);
+  border-top: 1px solid rgba(201,168,76,0.08);
+}
+
+.city-header { text-align: center; margin-bottom: 60px; }
+
+.city-timeline {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.city-timeline::before {
+  content: '';
+  position: absolute;
+  top: 28px; left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  bottom: 28px;
+  background: linear-gradient(180deg, var(--gold), rgba(201,168,76,0.1));
+}
+
+.city-wave {
+  display: grid;
+  grid-template-columns: 1fr 60px 1fr;
+  gap: 0;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.city-wave:nth-child(odd) .wave-content {
+  text-align: right;
+  padding-right: 36px;
+}
+
+.city-wave:nth-child(odd) .wave-empty { order: 3; }
+
+.city-wave:nth-child(even) .wave-content {
+  text-align: left;
+  padding-left: 36px;
+  order: 3;
+}
+
+.city-wave:nth-child(even) .wave-empty { order: 1; }
+
+.wave-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.wave-dot {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--dark-3), var(--dark-2));
+  border: 2px solid var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  box-shadow: 0 0 15px rgba(201,168,76,0.3);
+  cursor: default;
+  transition: all 0.3s;
+}
+
+.wave-dot:hover {
+  box-shadow: 0 0 30px rgba(201,168,76,0.6);
+  transform: scale(1.15);
+}
+
+.wave-content h4 {
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  color: var(--gold);
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+}
+
+.wave-content p {
+  font-size: 0.82rem;
+  color: var(--text-sub);
+  line-height: 1.5;
+}
+
+.wave-num {
+  font-size: 0.62rem;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+  display: block;
+}
+
+/* ══════════════════════════════════
+   UNITS SECTION
+══════════════════════════════════ */
+#units {
+  background: var(--dark-3);
+  border-top: 1px solid rgba(201,168,76,0.08);
+}
+
+.units-header { text-align: center; margin-bottom: 60px; }
+
+.units-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+}
+
+.unit-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 20px;
+  padding: 28px 18px;
+  text-align: center;
+  transition: all 0.3s;
+  cursor: default;
+}
+
+.unit-card:hover {
+  border-color: rgba(201,168,76,0.3);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+}
+
+.unit-icon { font-size: 2.8rem; display: block; margin-bottom: 12px; }
+
+.unit-name {
+  font-family: 'Cinzel', serif;
+  font-size: 0.82rem;
+  color: var(--gold);
+  margin-bottom: 8px;
+  display: block;
+  font-weight: 600;
+}
+
+.unit-name-ar {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+  display: block;
+}
+
+.unit-cost {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #ffd700;
+  background: rgba(255,215,0,0.1);
+  border-radius: 8px;
+  padding: 4px 10px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.unit-desc {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* ══════════════════════════════════
+   QUOTE / PHILOSOPHY
+══════════════════════════════════ */
+#philosophy {
+  background: linear-gradient(135deg, var(--dark-2) 0%, rgba(25,45,15,0.8) 50%, var(--dark-2) 100%);
+  border-top: 1px solid rgba(201,168,76,0.1);
+  border-bottom: 1px solid rgba(201,168,76,0.1);
+  text-align: center;
+  padding: 110px 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+#philosophy::before {
+  content: '🏰';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 25rem;
+  opacity: 0.03;
+  pointer-events: none;
+}
+
+.quote-marks {
+  font-family: 'Cinzel Decorative', cursive;
+  font-size: 5rem;
+  color: var(--gold);
+  opacity: 0.2;
+  line-height: 0.5;
+  display: block;
+  margin-bottom: 30px;
+}
+
+.philosophy-text {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.4rem, 3.5vw, 2.4rem);
+  color: #fff;
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto 24px;
+  font-weight: 400;
+}
+
+.philosophy-text span {
+  background: linear-gradient(135deg, var(--gold-light), var(--gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 900;
+}
+
+.philosophy-sub {
+  font-size: 1rem;
+  color: var(--text-muted);
+  font-style: italic;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* ══════════════════════════════════
+   TEAM
+══════════════════════════════════ */
+#team {
+  background: var(--dark);
+  border-top: 1px solid rgba(201,168,76,0.08);
+}
+
+.team-header { text-align: center; margin-bottom: 60px; }
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.team-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 20px;
+  padding: 36px 24px;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.team-card:hover {
+  border-color: rgba(201,168,76,0.3);
+  background: rgba(201,168,76,0.04);
+  transform: translateY(-5px);
+}
+
+.team-avatar {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--green-dim), var(--green-mid));
+  border: 2px solid rgba(201,168,76,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  margin: 0 auto 16px;
+  box-shadow: 0 0 20px rgba(201,168,76,0.15);
+}
+
+.team-name {
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  color: #fff;
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+
+.team-role {
+  font-size: 0.8rem;
+  color: var(--gold);
+  margin-bottom: 8px;
+  display: block;
+}
+
+.team-company {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+/* ══════════════════════════════════
+   PROS SECTION
+══════════════════════════════════ */
+#pros-company {
+  background: linear-gradient(135deg, var(--dark-2) 0%, #0a1f0a 100%);
+  border-top: 1px solid rgba(201,168,76,0.1);
+  text-align: center;
+  padding: 80px 48px;
+}
+
+.pros-logo {
+  font-family: 'Cinzel Decorative', cursive;
+  font-size: 2.5rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--gold-light), var(--gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 8px;
+}
+
+.pros-tagline {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+
+.pros-desc {
+  font-size: 1rem;
+  color: var(--text-sub);
+  max-width: 520px;
+  margin: 0 auto 36px;
+  line-height: 1.8;
+}
+
+.pros-services {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 36px;
+}
+
+.pros-service {
+  padding: 8px 22px;
+  border: 1px solid rgba(201,168,76,0.2);
+  border-radius: 50px;
+  font-size: 0.82rem;
+  color: var(--gold);
+  background: rgba(201,168,76,0.06);
+}
+
+/* ══════════════════════════════════
+   CTA
+══════════════════════════════════ */
+#cta {
+  background: linear-gradient(180deg, var(--dark-2), var(--dark));
+  text-align: center;
+  padding: 100px 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+#cta::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.cta-emo { font-size: 4rem; display: block; margin-bottom: 24px; animation: castleFloat 3s ease-in-out infinite; }
+
+.cta-title {
+  font-family: 'Cinzel Decorative', cursive;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--ember));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 16px;
+}
+
+.cta-sub {
+  font-size: 1.1rem;
+  color: var(--text-sub);
+  margin-bottom: 40px;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.8;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ══════════════════════════════════
+   FOOTER
+══════════════════════════════════ */
+footer {
+  background: var(--dark);
+  border-top: 1px solid rgba(201,168,76,0.1);
+  padding: 36px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer-left {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.footer-left span {
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.footer-right {
+  display: flex;
+  gap: 24px;
+}
+
+.footer-right a {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-right a:hover { color: var(--gold); }
+
+/* ══════════════════════════════════
+   DIVIDER
+══════════════════════════════════ */
+.gold-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0.2;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* ══════════════════════════════════
+   SCROLL REVEAL
+══════════════════════════════════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ══════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════ */
+@media (max-width: 900px) {
+  nav { padding: 16px 24px; }
+  .nav-links { display: none; }
+  section { padding: 70px 24px; }
+  #hero { padding: 100px 24px 60px; }
+  .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+  .concept-grid { grid-template-columns: 1fr; gap: 40px; }
+  .concept-story::before { display: none; }
+  .features-grid { grid-template-columns: 1fr; }
+  .subjects-inner { grid-template-columns: 1fr; gap: 40px; }
+  .units-grid { grid-template-columns: repeat(2,1fr); }
+  .team-grid { grid-template-columns: 1fr; max-width: 300px; }
+  footer { flex-direction: column; text-align: center; }
+}
+
+@media (max-width: 600px) {
+  .hero-title { font-size: 2rem; }
+  .features-grid { grid-template-columns: 1fr; }
+  .units-grid { grid-template-columns: repeat(2,1fr); }
+  .city-timeline::before { display: none; }
+  .city-wave { grid-template-columns: 1fr; gap: 8px; }
+  .wave-center { justify-content: flex-start; }
+  .city-wave:nth-child(odd) .wave-content,
+  .city-wave:nth-child(even) .wave-content { text-align: right; padding: 0; order: 1; }
+  .city-wave:nth-child(odd) .wave-empty,
+  .city-wave:nth-child(even) .wave-empty { display: none; }
+  .wave-center { order: 2; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════ -->
+<!-- NAV -->
+<!-- ══════════════════════════════════ -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-ico">⚡</div>
+    <div>
+      <span class="nav-logo-text">Pro S;</span>
+      <span class="nav-logo-sub">As Smart As Simple</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#concept">القصة</a></li>
+    <li><a href="#features">المزايا</a></li>
+    <li><a href="#subjects">المواد</a></li>
+    <li><a href="#city">تطور المدينة</a></li>
+    <li><a href="#team">الفريق</a></li>
+  </ul>
+  <a href="#cta" class="nav-cta">🎮 العب الآن</a>
+</nav>
+
+<!-- ══════════════════════════════════ -->
+<!-- HERO -->
+<!-- ══════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-inner">
+
+    <div class="hero-text">
+      <div class="hero-badge">🏰 منتج Pro S التعليمي</div>
+      <h1 class="hero-title">Tower of<br>Knowledge</h1>
+      <div class="hero-title-ar">برج المعرفة</div>
+      <p class="hero-desc">
+        لعبة دفاع تعليمية تُعلّم وترفّه في آنٍ واحد.
+        أجب على الأسئلة العلمية لتُحصّن برجك، وشاهد مدينتك تنمو مع كل انتصار للمعرفة.
+      </p>
+      <div class="hero-buttons">
+        <a href="https://kusaisssd.github.io/tower-of-knowledge/" class="btn-primary">🎮 جرّبها مجاناً الآن</a>
+        <a href="#features" class="btn-secondary">اكتشف المزايا ↓</a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-card">
+        <div class="castle-emo">🏰</div>
+        <div class="card-game-title">Tower of Knowledge</div>
+
+        <div class="mini-stats">
+          <div class="mini-stat">
+            <span class="mini-stat-num">+300</span>
+            <span class="mini-stat-lbl">سؤال ثنائي اللغة</span>
+          </div>
+          <div class="mini-stat">
+            <span class="mini-stat-num">5</span>
+            <span class="mini-stat-lbl">مواد علمية</span>
+          </div>
+          <div class="mini-stat">
+            <span class="mini-stat-num">20</span>
+            <span class="mini-stat-lbl">موجة من الزومبي</span>
+          </div>
+          <div class="mini-stat">
+            <span class="mini-stat-num">∞</span>
+            <span class="mini-stat-lbl">في أي متصفح</span>
+          </div>
+        </div>
+
+        <div class="mini-bar"><div class="mini-bar-fill" style="width:78%;animation-duration:2.5s"></div></div>
+        <div class="mini-bar"><div class="mini-bar-fill" style="width:92%;animation-duration:2s;background:linear-gradient(90deg,#2ecc71,#27ae60)"></div></div>
+
+        <div class="card-tag-row">
+          <span class="card-tag tag-free">مجانية 100%</span>
+          <span class="card-tag tag-ar">عربي + إنجليزي</span>
+          <span class="card-tag tag-edu">تعليمية</span>
+          <span class="card-tag tag-browser">Browser-Based</span>
+        </div>
+
+        <div class="zombie-parade" style="margin-top:14px">
+          <span class="z-icon">🧟</span>
+          <span class="z-icon">🧟</span>
+          <span class="z-icon">🧟</span>
+          <span class="z-icon">🧟</span>
+          <span style="font-size:1.4rem">⚔️</span>
+          <span style="font-size:1.4rem">🏰</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ -->
+<!-- CONCEPT -->
+<!-- ══════════════════════════════════ -->
+<section id="concept">
+  <div class="section-inner">
+    <div class="concept-grid">
+      <div class="concept-story">
+        <span class="section-label">الفكرة المحورية</span>
+        <h2 class="section-title">المعرفة <span>تبني المدن</span></h2>
+        <p class="section-desc" style="margin-bottom:36px">
+          ليس مجرد لعبة — بل تجربة بصرية تُجسّد فكرة فلسفية: عندما تجيب الإجابة الصحيحة، تزدهر حضارتك. وعندما يتسلّل الجهل بكميات كبيرة... تنتهي المملكة.
+        </p>
+
+        <div class="story-block">
+          <div class="story-icon si-gold">🧠</div>
+          <div class="story-body">
+            <h3>العلم = الذخيرة</h3>
+            <p>كل سؤال تجيب عليه صحيحاً يمنحك كوينزاً تشتري بها أسلحة الدفاع. المعرفة ليست مجردة — هي سلاحك الفعلي.</p>
+          </div>
+        </div>
+
+        <div class="story-block">
+          <div class="story-icon si-ember">🧟</div>
+          <div class="story-body">
+            <h3>الجهل = الزومبي</h3>
+            <p>موجات متصاعدة من الزومبي تمثّل الجهل المتراكم. بطيء في البداية، ثم يتضاعف ويتسارع حتى يهدّد المملكة.</p>
+          </div>
+        </div>
+
+        <div class="story-block">
+          <div class="story-icon si-green">🏙️</div>
+          <div class="story-body">
+            <h3>الانتصار = حضارة</h3>
+            <p>مع كل موجة تكسرها، تنمو مدينتك: تظهر منازل، مدرسة، مستشفى، سوق، جسر... 20 عنصر بصري يُكافئ التعلم.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="concept-visual">
+        <div class="cv-card reveal">
+          <span class="cv-card-ico">📚</span>
+          <div class="cv-card-text">
+            <h4>بنك الأسئلة الذكي</h4>
+            <p>نظام anti-repeat يمنع تكرار الأسئلة حتى استهلاك 80% من البنك</p>
+            <div class="cv-progress">
+              <div class="cv-prog-bar"><div class="cv-prog-fill" style="width:80%"></div></div>
+              <span class="cv-prog-lbl">80% → إعادة خلط</span>
+            </div>
+          </div>
+        </div>
+        <div class="cv-card reveal reveal-delay-1">
+          <span class="cv-card-ico">🌍</span>
+          <div class="cv-card-text">
+            <h4>ثنائي اللغة الكامل</h4>
+            <p>كل سؤال وكل واجهة بالعربي والإنجليزي مع دعم RTL</p>
+            <div class="cv-progress">
+              <div class="cv-prog-bar"><div class="cv-prog-fill" style="width:100%;background:linear-gradient(90deg,#2ecc71,#27ae60)"></div></div>
+              <span class="cv-prog-lbl">100% ثنائي</span>
+            </div>
+          </div>
+        </div>
+        <div class="cv-card reveal reveal-delay-2">
+          <span class="cv-card-ico">🎮</span>
+          <div class="cv-card-text">
+            <h4>بدون تثبيت — فوري</h4>
+            <p>يعمل في أي متصفح على موبايل وتابلت وديسكتوب</p>
+            <div class="cv-progress">
+              <div class="cv-prog-bar"><div class="cv-prog-fill" style="width:100%;background:linear-gradient(90deg,#9b59b6,#8e44ad)"></div></div>
+              <span class="cv-prog-lbl">Cross-Platform</span>
+            </div>
+          </div>
+        </div>
+        <div class="cv-card reveal reveal-delay-3">
+          <span class="cv-card-ico">🏆</span>
+          <div class="cv-card-text">
+            <h4>High Score محلي</h4>
+            <p>يحفظ أعلى نتيجة لكل فئة عمرية بالمتصفح — تحدٍّ مستمر</p>
+            <div class="cv-progress">
+              <div class="cv-prog-bar"><div class="cv-prog-fill" style="width:65%;background:linear-gradient(90deg,#f39c12,#e67e22)"></div></div>
+              <span class="cv-prog-lbl">Local Storage</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ -->
+<!-- FEATURES -->
+<!-- ══════════════════════════════════ -->
+<section id="features">
+  <div class="section-inner">
+    <div class="features-header">
+      <span class="section-label">لماذا تختارها؟</span>
+      <h2 class="section-title">ميزات <span>لا تجدها في مكان آخر</span></h2>
+      <p class="section-desc">دمجنا التصميم التعليمي مع ميكانيكا ألعاب حقيقية لتكون التجربة ممتعة ومثمرة في وقت واحد.</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card reveal highlight">
+        <div class="feature-ico fic-1">🏙️</div>
+        <div class="feature-title">المدينة الحية — 20 عنصر</div>
+        <p class="feature-desc">مع كل موجة تكسرها تظهر إضافة جديدة في مدينتك: أشجار، منازل، سوق، مدرسة، مستشفى، طاحونة، جسر، مهرجان... مكافأة بصرية لكل انتصار.</p>
+        <span class="feature-chip chip-gold">حصري</span>
+      </div>
+
+      <div class="feature-card reveal reveal-delay-1">
+        <div class="feature-ico fic-2">🌍</div>
+        <div class="feature-title">ثنائي اللغة الكامل</div>
+        <p class="feature-desc">الواجهة والأسئلة والإجابات — كل شيء بالعربية والإنجليزية. دعم RTL مدمج، مثالية للأطفال العرب في الداخل والشتات.</p>
+        <span class="feature-chip chip-blue">AR + EN</span>
+      </div>
+
+      <div class="feature-card reveal reveal-delay-2">
+        <div class="feature-ico fic-3">📊</div>
+        <div class="feature-title">فئتان عمريتان</div>
+        <p class="feature-desc">أسئلة مصممة لعمر 8–11 وأسئلة أصعب لعمر 12–15. كل فئة لها بنك مستقل من الأسئلة في كل المستويات.</p>
+        <span class="feature-chip chip-green">Adaptive</span>
+      </div>
+
+      <div class="feature-card reveal">
+        <div class="feature-ico fic-4">🐉</div>
+        <div class="feature-title">التنين — نظام الشحن</div>
+        <p class="feature-desc">سلاح استراتيجي فريد: التنين يحرق جميع الزومبي على الشاشة. 3 مستويات ترقية، وقت شحن ديناميكي، شحنتان احتياطيتان.</p>
+        <span class="feature-chip chip-ember">استراتيجي</span>
+      </div>
+
+      <div class="feature-card reveal reveal-delay-1">
+        <div class="feature-ico fic-5">🎆</div>
+        <div class="feature-title">ألعاب نارية عند الإنجاز</div>
+        <p class="feature-desc">في كل موجة من مضاعفات الـ5 يحتفل النظام بألعاب نارية مرسومة بالـ Canvas — مكافأة بصرية حقيقية على الإنجاز.</p>
+        <span class="feature-chip chip-purple">Canvas FX</span>
+      </div>
+
+      <div class="feature-card reveal reveal-delay-2">
+        <div class="feature-ico fic-6">🔁</div>
+        <div class="feature-title">نظام Anti-Repeat</div>
+        <p class="feature-desc">يتتبع كل سؤال شوهد، ولا يُعيد عرضه حتى استهلاك 80% من البنك. ثم يخلط من جديد — جلسات لعب لا تتكرر.</p>
+        <span class="feature-chip chip-red">Smart System</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ -->
+<!-- SUBJECTS -->
+<!-- ══════════════════════════════════ -->
+<section id="subjects">
+  <div class="section-inner subjects-inner">
+
+    <div>
+      <span class="section-label">بنك الأسئلة</span>
+      <h2 class="section-title">5 مواد، <span>3 مستويات</span></h2>
+      <p class="section-desc" style="margin-bottom:32px">
+        أكثر من 300 سؤال ثنائي اللغة موزّعة على 5 مواد علمية، لكل منها 3 مستويات صعوبة مع مكافأة كوينز مختلفة.
+      </p>
+
+      <div class="diff-row">
+        <div class="diff-pill dp-easy">
+          <span class="dp-ico">😊</span>
+          <span class="dp-name">سهل</span>
+          <span class="dp-reward">+1 🪙 للإجابة</span>
+        </div>
+        <div class="diff-pill dp-med">
+          <span class="dp-ico">🤔</span>
+          <span class="dp-name">متوسط</span>
+          <span class="dp-reward">+2 🪙 للإجابة</span>
+        </div>
+        <div class="diff-pill dp-hard">
+          <span class="dp-ico">🔥</span>
+          <span class="dp-name">صعب</span>
+          <span class="dp-reward">+3 🪙 · خطأ = -1🪙</span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="subjects-grid reveal">
+        <div class="subj-card">
+          <span class="subj-ico">🔢</span>
+          <span class="subj-name">Mathematics</span>
+          <span class="subj-name-ar">الرياضيات</span>
+        </div>
+        <div class="subj-card">
+          <span class="subj-ico">🔬</span>
+          <span class="subj-name">Science</span>
+          <span class="subj-name-ar">العلوم</span>
+        </div>
+        <div class="subj-card">
+          <span class="subj-ico">⚡</span>
+          <span class="subj-name">Physics</span>
+          <span class="subj-name-ar">الفيزياء</span>
+        </div>
+        <div class="subj-card">
+          <span class="subj-ico">🌍</span>
+          <span class="subj-name">History & Geo</span>
+          <span class="subj-name-ar">تاريخ وجغرافيا</span>
+        </div>
+        <div class="subj-card s-wide">
+          <span class="subj-ico">🧩</span>
+          <span class="subj-name">Logic & Reasoning</span>
+          <span class="subj-name-ar">التفكير المنطقي</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ -->
+<!-- PHILOSOPHY -->
+<!-- ══════════════════════════════════ -->
+<section id="philosophy">
+  <div class="section-inner" style="position:relative;z-index:2">
+    <span class="quote-marks">"</span>
+    <p class="philosophy-text">
+      بنمو <span>المعرفة</span>... تزدهر المدن.
+      وبتراكم الجهل... تسقط الممالك.
+    </p>
+    <p class="philosophy-sub">
+      هذا ليس مجرد شعار لعبة — هو الدرس الذي أردنا أن يعيشه الأطفال، لا أن يقرأوه فقط.
+    </p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ -->
+<!-- CITY EVOLUTION -->
+<!-- ══════════════════════════════════ -->
+<section id="city">
+  <div class="section-inner">
+    <div class="city-header">
+      <span class="section-label">رحلة الحضارة</span>
+      <h2 class="section-title">مدينتك تنمو مع <span>كل انتصار</span></h2>
+      <p class="section-desc" style="margin:0 auto">20 عنصر بصري تُفتح تدريجياً — كل موجة تكسرها تُضيف حياة لمملكتك.</p>
+    </div>
+
+    <div class="city-timeline">
+
+      <div class="city-wave">
+        <div class="wave-content">
+          <span class="wave-num">موجة 2</span>
+          <h4>🌳 الطبيعة تُزهر</h4>
+          <p>أشجار وأزهار وعشب يظهر حول القلعة</p>
+        </div>
+        <div class="wave-center">
+          <div class="wave-dot">🌳</div>
+        </div>
+        <div class="wave-empty"></div>
+      </div>
+
+      <div class="city-wave">
+        <div class="wave-empty"></div>
+        <div class="wave-center">
+          <div class="wave-dot">☀️</div>
+        </div>
+        <div class="wave-content">
+          <span class="wave-num">موجة 3</span>
+          <h4>☀️ السماء تحيا</h4>
+          <p>شمس وغيوم وطيور تحلّق في السماء</p>
+        </div>
+      </div>
+
+      <div class="city-wave">
+        <div class="wave-content">
+          <span class="wave-num">موجة 7</span>
+          <h4>🏠 المنازل والنهر</h4>
+          <p>بيوت بأضواء دافئة ونهر يجري عبر المملكة</p>
+        </div>
+        <div class="wave-center">
+          <div class="wave-dot">🏠</div>
+        </div>
+        <div class="wave-empty"></div>
+      </div>
+
+      <div class="city-wave">
+        <div class="wave-empty"></div>
+        <div class="wave-center">
+          <div class="wave-dot">🏫</div>
+        </div>
+        <div class="wave-content">
+          <span class="wave-num">موجة 9</span>
+          <h4>🏫 المدرسة</h4>
+          <p>مبنى المدرسة يظهر رمزاً لانتصار العلم</p>
+        </div>
+      </div>
+
+      <div class="city-wave">
+        <div class="wave-content">
+          <span class="wave-num">موجة 10</span>
+          <h4>🏥 المستشفى</h4>
+          <p>مستشفى يفتح أبوابه لخدمة أبناء المملكة</p>
+        </div>
+        <div class="wave-center">
+          <div class="wave-dot">🏥</div>
+        </div>
+        <div class="wave-empty"></div>
+      </div>
+
+      <div class="city-wave">
+        <div class="wave-empty"></div>
+        <div class="wave-center">
+          <div class="wave-dot">🕰️</div>
+        </div>
+        <div class="wave-content">
+          <span class="wave-num">موجة 17</span>
+          <h4>🕰️ برج الساعة</h4>
+          <p>برج ساعة ضخم يعلن اكتمال الحضارة</p>
+        </div>
+      </div>
+
+      <div class="city-wave">
+        <div class="wave-content">
+          <span class="wave-num">موجة 20</span>
+          <h4>🎉 المهرجان الكبير</h4>
+          <p>المملكة تحتفل! أضواء مهرجان تُضيء كل شيء</p>
+        </div>
+        <div class="wave-center">
+          <div class="wave-dot">🎉</div>
+        </div>
+        <div class="wave-empty"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ -->
+<!-- UNITS -->
+<!-- ══════════════════════════════════ -->
+<section id="units">
+  <div class="section-inner">
+    <div class="units-header">
+      <span class="section-label">وحدات الدفاع</span>
+      <h2 class="section-title">اختر <span>أسلوب دفاعك</span></h2>
+      <p class="section-desc" style="margin:0 auto">5 وحدات بخصائص مختلفة، كل منها يُشترى بكوينز المعرفة.</p>
+    </div>
+    <div class="units-grid">
+      <div class="unit-card reveal">
+        <span class="unit-icon">🏹</span>
+        <span class="unit-name">Archer</span>
+        <span class="unit-name-ar">الرامي</span>
+        <div class="unit-cost">10 🪙</div>
+        <p class="unit-desc">سريع الإطلاق، مدى متوسط، أساس الدفاع</p>
+      </div>
+      <div class="unit-card reveal reveal-delay-1">
+        <span class="unit-icon">🎯</span>
+        <span class="unit-name">Sniper</span>
+        <span class="unit-name-ar">القناص</span>
+        <div class="unit-cost">14 🪙</div>
+        <p class="unit-desc">ضرر عالٍ، مدى بعيد، يستهدف الأقوى</p>
+      </div>
+      <div class="unit-card reveal reveal-delay-2">
+        <span class="unit-icon">🧱</span>
+        <span class="unit-name">Wall</span>
+        <span class="unit-name-ar">الجدار</span>
+        <div class="unit-cost">8 🪙</div>
+        <p class="unit-desc">يُعيق الزومبي ويكسر تقدمهم، 3 مستويات</p>
+      </div>
+      <div class="unit-card reveal reveal-delay-3">
+        <span class="unit-icon">🐉</span>
+        <span class="unit-name">Dragon</span>
+        <span class="unit-name-ar">التنين</span>
+        <div class="unit-cost">25 🪙</div>
+        <p class="unit-desc">يحرق الجميع دفعة واحدة — سلاح استراتيجي</p>
+      </div>
+      <div class="unit-card reveal reveal-delay-4">
+        <span class="unit-icon">⬆️</span>
+        <span class="unit-name">Upgrade</span>
+        <span class="unit-name-ar">الترقية</span>
+        <div class="unit-cost">6+ 🪙</div>
+        <p class="unit-desc">طوّر أي وحدة — التكلفة تتضاعف ×1.5</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ -->
+<!-- TEAM -->
+<!-- ══════════════════════════════════ -->
+<section id="team">
+  <div class="section-inner">
+    <div class="team-header">
+      <span class="section-label">فريق الإبداع</span>
+      <h2 class="section-title">الأيدي التي <span>بنت البرج</span></h2>
+    </div>
+    <div class="team-grid">
+      <div class="team-card reveal">
+        <div class="team-avatar">💻</div>
+        <div class="team-name">Kosay Alassaf</div>
+        <span class="team-role">Lead Developer</span>
+        <span class="team-company">Pro S — Damascus, Syria</span>
+      </div>
+      <div class="team-card reveal reveal-delay-1">
+        <div class="team-avatar">🎨</div>
+        <div class="team-name">Shakoup Alrezk</div>
+        <span class="team-role">Scenario & Design</span>
+        <span class="team-company">Creative Direction</span>
+      </div>
+      <div class="team-card reveal reveal-delay-2">
+        <div class="team-avatar">✨</div>
+        <div class="team-name">Augusten Alrezk</div>
+        <span class="team-role">Scenario & Design</span>
+        <span class="team-company">Creative Direction</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ -->
+<!-- PRO S COMPANY -->
+<!-- ══════════════════════════════════ -->
+<section id="pros-company">
+  <div class="section-inner">
+    <div class="gold-divider" style="margin-bottom:48px"></div>
+    <div class="pros-logo">Pro S;</div>
+    <div class="pros-tagline">As Smart As Simple</div>
+    <p class="pros-desc">
+      شركة تقنية دمشقية متخصصة في تطوير البرمجيات، البنية التحتية، وتحليل البيانات. نبني حلولاً ذكية للقطاعين التعليمي والإنساني.
+    </p>
+    <div class="pros-services">
+      <span class="pros-service">🖥️ تطوير البرمجيات</span>
+      <span class="pros-service">🏗️ البنية التحتية</span>
+      <span class="pros-service">📊 تحليل البيانات</span>
+      <span class="pros-service">🎮 الألعاب التعليمية</span>
+      <span class="pros-service">🌐 تطوير الويب</span>
+    </div>
+    <div class="gold-divider"></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ -->
+<!-- CTA -->
+<!-- ══════════════════════════════════ -->
+<section id="cta">
+  <div class="section-inner" style="position:relative;z-index:2">
+    <span class="cta-emo">🏰</span>
+    <h2 class="cta-title">ابدأ رحلتك الآن</h2>
+    <p class="cta-sub">
+      مجانية تماماً. بدون تثبيت. بدون حساب.
+      فقط افتح المتصفح وادافع عن مملكتك بالمعرفة.
+    </p>
+    <div class="cta-buttons">
+      <a href="https://kusaisssd.github.io/tower-of-knowledge/" class="btn-primary">🎮 العب برج المعرفة الآن</a>
+      <a href="https://kosayalassaf.github.io/" target="_blank" class="btn-secondary">🌐 Portfolio المطوّر ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ -->
+<!-- FOOTER -->
+<!-- ══════════════════════════════════ -->
+<footer>
+  <div class="footer-left">
+    <span>Pro S;</span> · Tower of Knowledge · برج المعرفة<br>
+    <span style="color:var(--text-muted);font-size:0.72rem">Damascus, Syria — 2025</span>
+  </div>
+  <div class="footer-right">
+    <a href="https://kosayalassaf.github.io/" target="_blank">Portfolio</a>
+    <a href="#hero">العودة للأعلى ↑</a>
+  </div>
+</footer>
+
+<script>
+// ── Scroll Reveal ──
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+reveals.forEach(el => observer.observe(el));
+
+// ── Nav scroll effect ──
+const nav = document.querySelector('nav');
+window.addEventListener('scroll', () => {
+  if(window.scrollY > 60) {
+    nav.style.borderBottomColor = 'rgba(201,168,76,0.2)';
+  } else {
+    nav.style.borderBottomColor = 'rgba(201,168,76,0.12)';
+  }
+});
+
+// ── Bar fill animation trigger ──
+const bars = document.querySelectorAll('.mini-bar-fill');
+const barObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting) {
+      e.target.style.animationPlayState = 'running';
+    }
+  });
+});
+bars.forEach(b => {
+  b.style.animationPlayState = 'paused';
+  barObs.observe(b);
+});
+
+// ── Parallax ember glow on hero ──
+document.addEventListener('mousemove', (e) => {
+  const hero = document.getElementById('hero');
+  if(!hero) return;
+  const rect = hero.getBoundingClientRect();
+  const x = (e.clientX - rect.left) / rect.width - 0.5;
+  const y = (e.clientY - rect.top) / rect.height - 0.5;
+  hero.style.setProperty('--mx', x * 30 + 'px');
+  hero.style.setProperty('--my', y * 20 + 'px');
+});
+</script>
+
+</body>
+</html>
